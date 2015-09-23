@@ -37,7 +37,7 @@ inoremap jk <esc>
 "noremap k gk
 
 " Associate *.less with css filetype
-au BufRead,BufNewFile *.less setfiletype css
+" au BufRead,BufNewFile *.less setfiletype css
 
 
 " Pathogen
