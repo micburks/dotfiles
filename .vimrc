@@ -4,6 +4,12 @@ set number
 set paste
 syntax on
 
+" Indenting
+set autoindent      " Match indents on new lines
+" Filetype based indenting
+filetype plugin indent on
+
+
 set tabstop=4
 set shiftwidth=4
 set expandtab       " Use spaces instead of tabs
@@ -12,7 +18,6 @@ set expandtab       " Use spaces instead of tabs
 set softtabstop=4
 set smarttab        " Lets tab key insert 'tab stops', and bksp deletes tabs
 set shiftround      " Tab / Shifting moves to closest tabstop
-set autoindent      " Match indents on new lines
 set smartindent     " Intelligently dedent / indent new lines based on rules
 
 set ignorecase      " Case insensitive search
