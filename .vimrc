@@ -5,7 +5,7 @@ set paste
 syntax on
 
 " Indenting
-set autoindent      " Match indents on new lines
+" set autoindent      " Match indents on new lines
 " Filetype based indenting
 filetype plugin indent on
 
