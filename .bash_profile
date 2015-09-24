@@ -5,15 +5,19 @@ alias ll='ls -l'
 alias la='ll -a'
 alias grep='grep --color=auto'
 
-# DNS
-alias dnsflush='sudo discoveryutil udnsflushcaches'
+# If Mac
+if [ $(uname -s) = 'Darwin' ]; then
 
-# Postgres config - Mac install of Postgres.App
-# export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
-# export PGDATA=/Users/mickey/Library/Application\ Support/Postgres/var-9.4
+    # DNS
+    alias dnsflush='sudo discoveryutil udnsflushcaches'
 
-# Composer installs - Mac
-# export PATH=$PATH:/Users/mickey/.composer/vendor/bin
+    # Postgres config - Mac install of Postgres.App
+    export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+    export PGDATA=/Users/mickey/Library/Application\ Support/Postgres/var-9.4
+
+    # Composer installs - Mac
+    export PATH=$PATH:/Users/mickey/.composer/vendor/bin
+fi
 
 # Aquameta aliases
 if [ -f ~/.aquameta_aliases ]; then
