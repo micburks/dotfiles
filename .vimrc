@@ -12,6 +12,9 @@ set modelines=0     " Don't look for modelines
 
 let mapleader = "," " Remap leader
 
+" One handed vim exit - particularly for use in ranger
+nnoremap ;; :q
+
 " Quick way to add empty lines
 nnoremap <leader>O O<ESC>
 nnoremap <leader>o o<ESC>
