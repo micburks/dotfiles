@@ -11,6 +11,16 @@ set nocompatible    " Not compatible with vi
 set modelines=0     " Don't look for modelines
 
 let mapleader = "," " Remap leader
+
+" Quick way to add empty lines
+nnoremap <leader>O O<ESC>
+nnoremap <leader>o o<ESC>
+
+" For most filetypes
+" <leader>d comment single line
+" <leader>f comment multiple selected lines
+
+" Then <leader>s commented line to add long lines above and below for marking
 nnoremap <leader>s yyPVr-yyjp
 
 set tabstop=4
