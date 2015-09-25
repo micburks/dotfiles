@@ -1,6 +1,6 @@
 
 " Comment out selected lines
-nnoremap <leader>f di/*<CR>*/<CR><ESC>kP
+noremap <leader>f di/*<CR>*/<CR><ESC>kP
 " Comment out single, selected or unselected line
-nnoremap <leader>d I// <ESC>
+noremap <leader>d I// <ESC>
 
