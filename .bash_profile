@@ -1,5 +1,5 @@
 # Generic
-alias vi='vim'
+alias vi='vim -p'
 alias ls='ls -G'
 alias ll='ls -l'
 alias la='ll -a'
