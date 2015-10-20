@@ -61,7 +61,7 @@ vnoremap / /\v
 
 set ignorecase      " Case insensitive search
 set smartcase       " If there are uppercase letters, become case-sensitive
-set gdefault        " Always use global replace
+"set gdefault        " Always use global replace
 set incsearch       " Live incremental searching
 set showmatch       " Live match highlighting
 set hlsearch        " Highlight matches
