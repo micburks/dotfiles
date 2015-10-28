@@ -1,5 +1,12 @@
+" show current line number
 set number
-set paste
+" changes Vim’s line number column to display how far away each line is from the current one
+set relativenumber
+
+" This ruins everything
+" set paste will disable a bunch of things including:
+" mapping on insert and command line modes
+" set paste
 syntax on
 
 " Indenting
@@ -7,10 +14,16 @@ syntax on
 " Filetype based indenting
 filetype off
 filetype plugin indent on
-set nocompatible    " Not compatible with vi
-set modelines=0     " Don't look for modelines
 
-let mapleader = "," " Remap leader
+" Not compatible with vi
+set nocompatible
+" Don't look for modelines
+set modelines=0
+
+
+" Remap leader
+let mapleader = ","
+
 
 " One handed vim exit - particularly for use in ranger
 nnoremap ;; :q
@@ -28,13 +41,20 @@ nnoremap <leader>s yyPVr-yyjp
 
 set tabstop=4
 set shiftwidth=4
-set expandtab       " Use spaces instead of tabs
+" Use spaces instead of tabs
+set expandtab
 
 " Not sure
 set softtabstop=4
-set smarttab        " Lets tab key insert 'tab stops', and bksp deletes tabs
-set shiftround      " Tab / Shifting moves to closest tabstop
-set smartindent     " Intelligently dedent / indent new lines based on rules
+
+" Lets tab key insert 'tab stops', and bksp deletes tabs
+set smarttab
+
+" Tab / Shifting moves to closest tabstop
+set shiftround
+
+" Intelligently dedent / indent new lines based on rules
+set smartindent
 
 " Begin - not sure what all these do
 set encoding=utf-8
@@ -51,22 +71,30 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set relativenumber  " changes Vim’s line number column to display how far away each line is from the current one
-" set undofile      "tells Vim to create <FILENAME>.un~ 'undo' files whenever you edit a file
+
+"tells Vim to create <FILENAME>.un~ 'undo' files whenever you edit a file
+" set undofile
 "   End 
 
 
 nnoremap / /\v
 vnoremap / /\v
 
-set ignorecase      " Case insensitive search
-set smartcase       " If there are uppercase letters, become case-sensitive
-"set gdefault        " Always use global replace
-set incsearch       " Live incremental searching
-set showmatch       " Live match highlighting
-set hlsearch        " Highlight matches
+" Case insensitive search
+set ignorecase
+" If there are uppercase letters, become case-sensitive
+set smartcase
+" Always use global replace
+"set gdefault
+" Live incremental searching
+set incsearch
+" Live match highlighting
+set showmatch
+" Highlight matches
+set hlsearch
 
-nnoremap <leader><space> :noh<cr>   " Clear highlighting
+" Clear highlighting
+nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
@@ -74,7 +102,8 @@ vnoremap <tab> %
 set wrap
 set textwidth=79
 set formatoptions=qrn1
-set colorcolumn=85  " Color characters starting here
+" Color characters starting here
+set colorcolumn=85
 
 " set list
 " set listchars=tab:▸\ ,eol:¬
@@ -85,7 +114,7 @@ nnoremap ; :
 vnoremap ; :
 
 " So we don't have to reach for escape to leave insert mode
-inoremap jk <esc>
+imap jk <Esc>
 
 " Visual line nav, not real line nav
 " If you wrap lines, vim by default won't let you move down one line to the wrapped portion. This fixes that.
@@ -93,7 +122,7 @@ noremap j gj
 noremap k gk
 
 " Associate *.less with css filetype
-" au BufRead,BufNewFile *.less setfiletype css
+au BufRead,BufNewFile *.less setfiletype css
 
 
 " Pathogen
