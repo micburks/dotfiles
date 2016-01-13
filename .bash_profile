@@ -1,6 +1,6 @@
 # Generic
 alias vi='vim -p'
-alias ls='ls -G'
+alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ll -a'
 alias grep='grep --color=auto'
@@ -33,6 +33,8 @@ if [ $(uname -s) = 'Darwin' ]; then
 
     # Composer installs - Mac
     export PATH=$PATH:/Users/mickey/.composer/vendor/bin
+
+    alias ls='ls -G'
 fi
 
 # Aquameta aliases
