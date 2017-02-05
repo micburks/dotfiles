@@ -24,6 +24,8 @@ set modelines=0
 " Remap leader
 let mapleader = ","
 
+" Paste toggle
+set pastetoggle=<leader>v
 
 " One handed vim exit - particularly for use in ranger
 nnoremap ;; :q
@@ -147,7 +149,4 @@ colorscheme jellybeans
 " set background=dark
 " colorscheme solarized
 " call togglebg#map("<F5>")
-
-
-
 
