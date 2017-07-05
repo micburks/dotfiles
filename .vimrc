@@ -9,6 +9,9 @@ set relativenumber
 " set paste
 syntax on
 
+" JSX highlighting in JS files
+let g:jsx_ext_required = 0
+
 " Indenting
 " set autoindent      " Match indents on new lines
 " Filetype based indenting
@@ -30,6 +33,12 @@ set pastetoggle=<leader>v
 " One handed vim exit - particularly for use in ranger
 nnoremap ;; :q
 
+" Easy quit
+" qwerty 
+nnoremap df :q
+" dvorak 
+" nnoremap eu :q
+
 " Quick way to add empty lines
 nnoremap <leader>O O<ESC>
 nnoremap <leader>o o<ESC>
@@ -41,8 +50,8 @@ nnoremap <leader>o o<ESC>
 " Then <leader>s commented line to add long lines above and below for marking
 nnoremap <leader>s yyPVr-yyjp
 
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 " Use spaces instead of tabs
 set expandtab
 
@@ -116,7 +125,11 @@ nnoremap ; :
 vnoremap ; :
 
 " So we don't have to reach for escape to leave insert mode
+" qwerty
 imap jk <Esc>
+
+" dvorak
+" imap ht <Esc>
 
 " Visual line nav, not real line nav
 " If you wrap lines, vim by default won't let you move down one line to the wrapped portion. This fixes that.
@@ -126,9 +139,14 @@ noremap k gk
 " Associate *.less with css filetype
 au BufRead,BufNewFile *.less setfiletype css
 
-
 " Pathogen
 execute pathogen#infect()
+
+" Indent guides
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray   ctermbg=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=8
+autocmd VimEnter * IndentGuidesEnable
 
 " Nerd Tree Tabs Plugin
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
@@ -141,7 +159,7 @@ nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 " colorscheme delek
 
 " JellyBeans
-colorscheme jellybeans
+" colorscheme jellybeans
 
 " Solarized
 " syntax enable
@@ -150,3 +168,6 @@ colorscheme jellybeans
 " colorscheme solarized
 " call togglebg#map("<F5>")
 
+" Dracula
+colorscheme dracula
+imap 
