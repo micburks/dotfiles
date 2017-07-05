@@ -1,6 +1,6 @@
 # Generic
 alias vi='vim -p'
-alias ls='ls --color=auto'
+alias ls='ls -G'
 alias ll='ls -l'
 alias la='ll -a'
 alias grep='grep --color=auto'
@@ -12,14 +12,18 @@ function parse_git_branch () {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-RED="\[\033[0;31m\]"
-YELLOW="\[\033[0;33m\]"
-GREEN="\[\033[0;32m\]"
-NO_COLOR="\[\033[0m\]"
+# Set colors
+export TERM="xterm-256color"
+RED="\[\033[0;31m\]" #$(tput setaf 1)
+GREEN="\[\033[0;32m\]" # $(tput setaf 2)
+YELLOW="\[\033[0;33m\]" # $(tput setaf 3)
+BLUE="\[\033[0;34m\]" # $(tput setaf 4)
+NO_COLOR="\[\033[0m\]" # $(tput sgr0)
 
-PS1="$GREEN\u@\h$NO_COLOR:\w$YELLOW\$(parse_git_branch)$NO_COLOR\$ "
+# Set terminal prompt
+PS1="\n$YELLOW[\d] $GREEN\$(parse_git_branch) $BLUE\w $NO_COLOR\n\$ "
+
 ######################
-
 
 # If Mac
 if [ $(uname -s) = 'Darwin' ]; then
@@ -46,3 +50,9 @@ fi
 if [ -f ~/.mab_aliases ]; then
     source ~/.mab_aliases
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+# JSON tool
+alias json='python -m json.tool'
