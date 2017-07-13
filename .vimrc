@@ -33,6 +33,12 @@ set pastetoggle=<leader>v
 " One handed vim exit - particularly for use in ranger
 nnoremap ;; :q
 
+" Copy mode - toggle number settings
+nnoremap <leader>c :setlocal number! relativenumber!<cr>
+
+" Copy entire file
+nnoremap <leader>y :!cat "%" \| pbcopy<cr>q
+
 " Easy quit
 " qwerty 
 nnoremap df :q
@@ -170,4 +176,3 @@ nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
 " Dracula
 colorscheme dracula
-imap 
