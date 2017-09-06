@@ -9,6 +9,7 @@ git clone git@github.com:dracula/vim.git dracula
 git clone git@github.com:easymotion/vim-easymotion.git
 git clone git@github.com:nathanaelkane/vim-indent-guides.git
 git clone git@github.com:mxw/vim-jsx.git
+git clone https://github.com/posva/vim-vue.git
 
 git clone git@github.com:ryym/vim-riot.git
 # depends on
