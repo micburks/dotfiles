@@ -145,6 +145,9 @@ noremap k gk
 " Associate *.less with css filetype
 au BufRead,BufNewFile *.less setfiletype css
 
+" Associate *.mjs with js filetype
+au BufRead,BufNewFile *.mjs setfiletype javascript
+
 " Pathogen
 execute pathogen#infect()
 
