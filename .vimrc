@@ -159,6 +159,9 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray   ctermbg=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=8
 autocmd VimEnter * IndentGuidesEnable
 
+" Associate *.mjs with js filetype
+au BufRead,BufNewFile *.mjs setfiletype javascript
+
 " Associate *.less with css filetype
 au BufRead,BufNewFile *.less setfiletype css
 
