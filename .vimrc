@@ -142,11 +142,15 @@ imap jk <Esc>
 noremap j gj
 noremap k gk
 
-" Associate *.less with css filetype
-au BufRead,BufNewFile *.less setfiletype css
-
 " Pathogen
 execute pathogen#infect()
+
+" Open NERD tree
+map <C-n> :NERDTreeToggle<CR>
+
+" Open NERD tree automatically with `vim`
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Indent guides
 let g:indent_guides_auto_colors = 0
@@ -154,25 +158,11 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray   ctermbg=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=8
 autocmd VimEnter * IndentGuidesEnable
 
-" Nerd Tree Tabs Plugin
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+" Associate *.less with css filetype
+au BufRead,BufNewFile *.less setfiletype css
 
 " Vim-Less (Vim syntax for LESS)
-nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
-
-
-" Color
-" colorscheme delek
-
-" JellyBeans
-" colorscheme jellybeans
-
-" Solarized
-" syntax enable
-" set background=light
-" set background=dark
-" colorscheme solarized
-" call togglebg#map("<F5>")
+" nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
 " Dracula
 colorscheme dracula
