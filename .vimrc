@@ -123,8 +123,7 @@ set formatoptions=qrn1
 set colorcolumn=85
 
 " set list
-" set listchars=tab:▸\ ,eol:¬
-
+set listchars=tab:▸\ ,eol:¬
 
 " So we don't have to press shift when we want to get into command mode
 nnoremap ; :
@@ -133,6 +132,8 @@ vnoremap ; :
 " So we don't have to reach for escape to leave insert mode
 " qwerty
 imap jk <Esc>
+imap Jk <Esc>
+imap JK <Esc>
 
 " dvorak
 " imap ht <Esc>
