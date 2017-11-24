@@ -5,6 +5,10 @@ alias ll='ls -l'
 alias la='ll -a'
 alias grep='grep --color=auto'
 
+# Open daily logbook
+function lb () {
+  vim ~/logbook/$(date '+%Y-%m-%d').md
+}
 
 ######################
 # Show git branch name
