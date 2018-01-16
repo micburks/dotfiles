@@ -33,6 +33,9 @@ set pastetoggle=<leader>v
 " One handed vim exit - particularly for use in ranger
 nnoremap ;; :q
 
+" Set copy buffer to 1000 lines
+set viminfo='20,<1000
+
 " Copy mode - toggle number settings
 nnoremap <leader>c :setlocal number! relativenumber!<cr>
 
