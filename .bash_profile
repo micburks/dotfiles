@@ -60,3 +60,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # JSON tool
 alias json='python -m json.tool'
+
+# Add npm bin to PATH
+alias npm-bin='PATH=$(npm bin):$PATH'
