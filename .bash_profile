@@ -45,16 +45,6 @@ if [ $(uname -s) = 'Darwin' ]; then
     alias ls='ls -G'
 fi
 
-# Aquameta aliases
-if [ -f ~/.aquameta_aliases ]; then
-    source ~/.aquameta_aliases
-fi
-
-# MAB aliases
-if [ -f ~/.mab_aliases ]; then
-    source ~/.mab_aliases
-fi
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
