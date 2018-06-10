@@ -36,11 +36,8 @@ if [ $(uname -s) = 'Darwin' ]; then
     alias dnsflush='sudo discoveryutil udnsflushcaches'
 
     # Postgres config - Mac install of Postgres.App
-    export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
-    export PGDATA=/Users/mickey/Library/Application\ Support/Postgres/var-9.4
-
-    # Composer installs - Mac
-    export PATH=$PATH:/Users/mickey/.composer/vendor/bin
+    #export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/{VERSION}/bin
+    #export PGDATA=/Users/mickey/Library/Application\ Support/Postgres/var-{VERSION}
 
     alias ls='ls -G'
 fi
