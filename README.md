@@ -16,7 +16,7 @@
 - Patched fonts for Powerline: https://github.com/powerline/fonts
 - NVM
 - nvm install node && nvm use default node
-- npm i -g vmd
+- npm i -g vmd npx
 - VSCode
 - Spotify
 - Postgres.app, Aquameta
