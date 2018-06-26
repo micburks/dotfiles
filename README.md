@@ -22,3 +22,16 @@
 - Postgres.app, Aquameta
 - Rearrange dock
 - Clean ~/Downloads
+
+#### Chrome Web Dev profile extensions
+- Veggie
+- Browserstack loader
+- EditThisCookie
+- Lastpass
+- Octotree
+- Page ruler
+- Postman interceptor
+- React developer tools
+- Redux devtools
+- Resource override
+- Vue.js devtools
