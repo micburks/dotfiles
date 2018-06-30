@@ -38,6 +38,7 @@ if [ $(uname -s) = 'Darwin' ]; then
     # Postgres config - Mac install of Postgres.App
     #export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/{VERSION}/bin
     #export PGDATA=/Users/mickey/Library/Application\ Support/Postgres/var-{VERSION}
+    #alias pglog='tail -f /Users/mickey/Library/Application\ Support/Postgres/var-{VERSION}/postgresql.log'
 
     alias ls='ls -G'
 fi
