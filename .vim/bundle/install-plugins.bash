@@ -1,5 +1,7 @@
 #!/bin/bash
 git clone https://github.com/dracula/vim.git dracula
+git clone https://github.com/kamwitsta/nordisk
+git clone https://github.com/cocopon/iceberg.vim
 
 git clone https://github.com/scrooloose/nerdtree
 git clone https://github.com/scrooloose/nerdcommenter
