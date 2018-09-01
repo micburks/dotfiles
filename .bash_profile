@@ -33,7 +33,7 @@ PS1="\n$YELLOW[\d] $GREEN\$(parse_git_branch) $BLUE\w $NO_COLOR\n\$ "
 if [ $(uname -s) = 'Darwin' ]; then
 
     # DNS
-    alias dnsflush='sudo discoveryutil udnsflushcaches'
+    #alias dnsflush='sudo discoveryutil udnsflushcaches'
 
     # Postgres config - Mac install of Postgres.App
     #export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/{VERSION}/bin

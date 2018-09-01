@@ -96,9 +96,9 @@ set laststatus=2
 " set undofile
 "   End 
 
-
-nnoremap / /\v
-vnoremap / /\v
+" What were these for?
+"nnoremap / /\v
+"vnoremap / /\v
 
 " Case insensitive search
 set ignorecase
@@ -157,10 +157,10 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Indent guides
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray   ctermbg=0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=8
-autocmd VimEnter * IndentGuidesEnable
+"let g:indent_guides_auto_colors = 0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray   ctermbg=0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=8
+"autocmd VimEnter * IndentGuidesEnable
 
 " Associate *.mjs with js filetype
 au BufRead,BufNewFile *.mjs setfiletype javascript
@@ -172,4 +172,6 @@ au BufRead,BufNewFile *.less setfiletype css
 " nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
 " Dracula
-colorscheme dracula
+" colorscheme dracula
+" colorscheme nordisk
+colorscheme iceberg
