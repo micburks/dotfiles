@@ -1,5 +1,13 @@
 # Dotfiles
 
+#### Run
+
+```bash
+git config --global core.excludesfile ~/.gitignore
+```
+
+TODO - make a script that copies everything to the right place
+
 #### New mac checklist
 - Fix dock, gestures, key repeat, color shift, settings for externals
 - Chrome - log in to chrome and lastpass
