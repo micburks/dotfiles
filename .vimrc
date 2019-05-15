@@ -150,7 +150,12 @@ noremap k gk
 execute pathogen#infect()
 
 " Open NERD tree
-map <C-n> :NERDTreeToggle<CR>
+" map <C-n> :NERDTreeToggle<CR>
+map <Tab> :NERDTreeToggle<CR>
+map <Leader><Tab>l  <C-w>l
+map <Leader><Tab>h  <C-w>h
+map <Leader><Tab>k  <C-w>k
+map <Leader><Tab>j  <C-w>j
 
 " Open NERD tree automatically with `vim`
 autocmd StdinReadPre * let s:std_in=1
