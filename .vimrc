@@ -176,6 +176,16 @@ au BufRead,BufNewFile *.less setfiletype css
 " Vim-Less (Vim syntax for LESS)
 " nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
+
+" visual bells off - important for nordisk theme
+set belloff=all
+
+" Reason language server
+let g:LanguageClient_serverCommands = {
+    \ 'reason': ['/home/mburks/bin/reason-language-server.exe']
+    \ }
+autocmd BufEnter *.re colorscheme dracula
+
 " Dracula
 " colorscheme dracula
 " colorscheme nordisk
