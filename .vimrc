@@ -167,6 +167,11 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=8
 "autocmd VimEnter * IndentGuidesEnable
 
+" For aquameta-sync files
+au BufRead,BufNewFile js setfiletype javascript
+au BufRead,BufNewFile css setfiletype css
+au BufRead,BufNewFile html setfiletype html
+
 " Associate *.mjs with js filetype
 au BufRead,BufNewFile *.mjs setfiletype javascript
 
