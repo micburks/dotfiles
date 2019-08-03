@@ -21,6 +21,9 @@ git clone https://github.com/pangloss/vim-javascript.git
 # git clone https://github.com/othree/es.next.syntax.vim
 # git clone https://github.com/kern/vim-es7
 
+# syntax and lsp support
+git clone https://github.com/dense-analysis/ale.git
+
 # reason
 git clone https://github.com/reasonml-editor/vim-reason-plus.git
 echo "follow instructions for reason here: https://github.com/jaredly/reason-language-server"
