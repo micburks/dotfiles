@@ -41,6 +41,10 @@ if [ $(uname -s) = 'Darwin' ]; then
     #export PGDATA=/Users/mickey/Library/Application\ Support/Postgres/var-{VERSION}
     #alias pglog='tail -f /Users/mickey/Library/Application\ Support/Postgres/var-{VERSION}/postgresql.log'
 
+    export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin/
+    export PGDATA=/Users/mickey/Library/Application\ Support/Postgres/var-10
+    alias pglog="tail -f /Users/mickey/Library/Application\ Support/Postgres/var-10/postgresql.log"
+
     alias ls='ls -G'
 fi
 
@@ -48,6 +52,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 source ~/scripts/node_env
+
+# Emacs
+alias emacs='/usr/local/bin/emacs'
 
 # JSON tool
 alias json='python -m json.tool'
@@ -65,4 +72,8 @@ alias back="cd $OLDPWD"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+
+# User bins
+export PATH=~/bin:$PATH
+export PATH="/usr/local/sbin:$PATH"
 

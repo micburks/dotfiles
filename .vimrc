@@ -171,6 +171,8 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 au BufRead,BufNewFile js setfiletype javascript
 au BufRead,BufNewFile css setfiletype css
 au BufRead,BufNewFile html setfiletype html
+au BufRead,BufNewFile markdown setfiletype markdown
+au BufRead,BufNewFile md setfiletype markdown
 
 " Associate *.mjs with js filetype
 au BufRead,BufNewFile *.mjs setfiletype javascript
