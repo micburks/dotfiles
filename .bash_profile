@@ -1,3 +1,4 @@
+
 # Generic
 alias vi='vim -p'
 alias ls='ls -G'
@@ -46,9 +47,22 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source ~/scripts/node_env
 
 # JSON tool
 alias json='python -m json.tool'
 
-# Add npm bin to PATH
-alias npm-bin='PATH=$(npm bin):$PATH'
+# Ranger
+alias ranger="~/bin/ranger/ranger.py"
+
+# Edit and source bash in one command - useful for testing commands as you write
+alias edit_bash="vi ~/.bash_profile && source ~/.bash_profile"
+
+# cd back to previous directory
+alias back="cd $OLDPWD"
+
+# yarn
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+
