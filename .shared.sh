@@ -51,6 +51,9 @@ alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall 
 # autojump
 [[ -s /Users/mickey/.autojump/etc/profile.d/autojump.sh ]] && source /Users/mickey/.autojump/etc/profile.d/autojump.sh
 
+# fuzzy find with colors
+alias f="fzf --preview 'bat --style=numbers --color=always {}'"
+
 # user bins
 export PATH=~/bin:$PATH
 

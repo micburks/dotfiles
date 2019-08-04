@@ -13,6 +13,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 cd ~/Code/oss/dotfiles
 cp .vimrc ~
 cp .vim/bundle/install-plugins.bash ~/.vim/bundle/
+cp .shared.sh ~
 cp .bash_profile ~
 cp .gitignore ~
 cp .gitconfig ~
@@ -45,4 +46,5 @@ nvm install node && nvm use default node
 install-yarn
 npm i -g vmd npx
 
-brew install fzf
+brew install fzf bat
+
