@@ -18,7 +18,7 @@ function browse() {
   if [[ -n $PR_URL ]] then
     open $PR_URL
   else
-    hub browse -- tree/$(parse_git_branch)
+    hub browse -- tree/$(git-branch)
   fi
 }
 
@@ -31,10 +31,10 @@ function get-pr-number() {
 }
 
 function is-pr() {
-  hub pr list --format='%H %U%n' | awk "\$1==\"$(parse_git_branch)\" {print \$2}"
+  hub pr list --format='%H %U%n' | awk "\$1==\"$(git-branch)\" {print \$2}"
 }
 
 # Show git branch name
-function parse_git_branch () {
+function git-branch () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
