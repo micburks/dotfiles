@@ -6,6 +6,7 @@ mkdir ~/bin
 
 
 # zsh
+cd ~
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 
@@ -13,13 +14,13 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 cd ~/Code/oss/dotfiles
 cp .vimrc ~
 cp .vim/bundle/install-plugins.bash ~/.vim/bundle/
-cp .shared.sh ~
+cat .shared.sh | sed "s/mickey/$(whoami)/g" > ~/.shared.sh
 cp .bash_profile ~
 cp .gitignore ~
 cp .gitconfig ~
 cp .tmux.conf ~
 cp .psqlrc ~
-cp .zshrc ~
+cat .zshrc | sed "s/mickey/$(whoami)/g" > ~/.zshrc
 mkdir -p ~/scripts && cp -R scripts/ ~/scripts/
 cd ~/.vim/bundle/ && ./install-plugins.bash
 
