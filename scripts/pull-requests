@@ -30,7 +30,11 @@ function get-pr-number() {
   hub pr list | fzf | awk '{print substr($1,2)}'
 }
 
-# parse_git_branch comes from zshrc/bash_profile
 function is-pr() {
   hub pr list --format='%H %U%n' | awk "\$1==\"$(parse_git_branch)\" {print \$2}"
+}
+
+# Show git branch name
+function parse_git_branch () {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
