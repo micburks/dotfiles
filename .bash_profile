@@ -1,4 +1,4 @@
-source ~/.gen_shell
+source ~/.shared.sh
 
 ######################
 # Show git branch name
