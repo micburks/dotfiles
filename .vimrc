@@ -193,7 +193,23 @@ let g:LanguageClient_serverCommands = {
     \ }
 autocmd BufEnter *.re colorscheme dracula
 
-" Dracula
+let g:ale_linters = {
+\ 'javascript': ['eslint', 'flow-language-server'],
+\ 'typescript': ['tsserver', 'tslint'],
+\ 'typescript.tsx': ['tsserver', 'tslint'],
+\}
+
+let g:ale_fix_on_save = 1
+let g:ale_sign_column_always = 1
+let g:ale_fixers = {
+\ 'javascript': ['prettier', 'eslint'],
+\ 'scss': ['prettier'],
+\ 'css': ['prettier'],
+\ 'typescript': ['prettier', 'tslint'],
+\}
+
+" Colors
 " colorscheme dracula
 " colorscheme nordisk
-colorscheme iceberg
+" colorscheme iceberg
+colorscheme gruvbox
