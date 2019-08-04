@@ -27,8 +27,8 @@ function parse_git_branch () {
 }
 
 PROMPT='
-$fg[yellow][$(parse_date)] $fg[green]$(parse_git_branch) $fg[blue]$(parse_pwd)
-$reset_color$ '
+%{$fg[yellow]%}[$(parse_date)] %{$fg[green]%}$(parse_git_branch) %{$fg[blue]%}$(parse_pwd)
+%{$reset_color%}$ '
 ######################
 
 
