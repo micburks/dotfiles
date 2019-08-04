@@ -46,5 +46,5 @@ nvm install node && nvm use default node
 install-yarn
 npm i -g vmd npx
 
-brew install fzf bat
+brew install fzf bat fd hub
 
