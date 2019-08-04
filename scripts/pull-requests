@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# interactively find pr and checkout that branch
+function pr-checkout() {
+  get-pr-number | xargs hub pr checkout
+}
+
+# interactively find pr and open in the browser
+function pr-open() {
+  get-pr-number | xargs hub pr show
+}
+
+# open current branch PR in GitHub
+# if no PR, open current branch in GitHub 
+# doesn't work for forks
+function browse() {
+  local PR_URL=$(is-pr)
+  if [[ -n $PR_URL ]] then
+    open $PR_URL
+  else
+    hub browse -- tree/$(parse_git_branch)
+  fi
+}
+
+
+# utility functions
+
+
+function get-pr-number() {
+  hub pr list | fzf | awk '{print substr($1,2)}'
+}
+
+# parse_git_branch comes from zshrc/bash_profile
+function is-pr() {
+  hub pr list --format='%H %U%n' | awk "\$1==\"$(parse_git_branch)\" {print \$2}"
+}
