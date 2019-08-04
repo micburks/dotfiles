@@ -1,7 +1,10 @@
 #!/bin/bash
+
+# colorschemes
 git clone https://github.com/dracula/vim.git dracula
 git clone https://github.com/kamwitsta/nordisk
 git clone https://github.com/cocopon/iceberg.vim
+git clone git@github.com:morhetz/gruvbox.git
 
 git clone https://github.com/scrooloose/nerdtree
 git clone https://github.com/scrooloose/nerdcommenter
@@ -10,6 +13,8 @@ git clone https://github.com/airblade/vim-gitgutter.git
 git clone https://github.com/nathanaelkane/vim-indent-guides.git
 
 git clone https://github.com/easymotion/vim-easymotion.git
+
+git clone https://tpope.io/vim/surround.git
 
 # git clone https://github.com/posva/vim-vue.git
 git clone https://github.com/mxw/vim-jsx.git
