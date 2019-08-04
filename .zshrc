@@ -10,7 +10,7 @@ export ZSH="/Users/mickey/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
 
-source ~/.gen_shell
+source ~/.shared.sh
 
 ######################
 # Show today's date
