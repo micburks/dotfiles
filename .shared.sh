@@ -37,10 +37,18 @@ alias json='python -m json.tool'
 alias ranger="~/bin/ranger/ranger.py"
 
 # Edit and source bash in one command - useful for testing commands as you write
-alias edit_bash="vi ~/.bash_profile && source ~/.bash_profile"
+alias esh="vi ~/.shared.sh && source ~/.shared.sh"
 
 # cd back to previous directory
 alias back="cd $OLDPWD"
+
+function copy() {
+  cat $0 | pbcopy
+}
+
+function paste() {
+  pbpaste > $0
+}
 
 # yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -54,6 +62,7 @@ alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall 
 # fuzzy find with colors
 alias fzp="fzf --preview 'bat --style=numbers --color=always {}'"
 alias fzo='vi $(fzp)'
+export FZF_DEFAULT_COMMAND='fd --type f'
 
 # user bins
 export PATH=~/bin:$PATH
