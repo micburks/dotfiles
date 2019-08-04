@@ -1,3 +1,6 @@
+# If mcahine specific setup
+[ -r ~/machine-specific.sh ] && . ~/machine-specific.sh
+
 alias vi='vim -p'
 alias ls='ls -G'
 alias ll='ls -l'
