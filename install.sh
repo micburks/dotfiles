@@ -5,11 +5,6 @@ mkdir ~/scripts
 mkdir ~/bin
 
 
-# zsh
-cd ~
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-
 # vim/bash/zsh
 cd ~/Code/oss/dotfiles
 cp .vimrc ~
@@ -44,8 +39,9 @@ mv $(ls | grep ranger) ~/bin/ranger
 install-nvm
 source ~/.bash_profile # ?
 nvm install node && nvm use default node
-install-yarn
 npm i -g vmd npx
+install-yarn
+install-zsh
 
 brew install fzf bat fd hub
 
