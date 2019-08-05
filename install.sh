@@ -30,11 +30,7 @@ git clone git://github.com/wting/autojump.git
 cd autojump
 ./install.py
 
-cd ~/Downloads
-wget https://ranger.github.io/ranger-stable.tar.gz
-tar xvf ranger-stable.tar.gz
-rm ranger-stable.tar.gz
-mv $(ls | grep ranger) ~/bin/ranger
+~/scripts/install-ranger
 
 ~/scripts/install-nvm
 source ~/.shared.sh
