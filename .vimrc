@@ -193,14 +193,14 @@ let g:LanguageClient_serverCommands = {
     \ }
 autocmd BufEnter *.re colorscheme dracula
 
+nnoremap go :ALEGoToDefinition<CR>
+let g:ale_fix_on_save = 1
+let g:ale_sign_column_always = 1
 let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow-language-server'],
 \ 'typescript': ['tsserver', 'tslint'],
 \ 'typescript.tsx': ['tsserver', 'tslint'],
 \}
-
-let g:ale_fix_on_save = 1
-let g:ale_sign_column_always = 1
 let g:ale_fixers = {
 \ 'javascript': ['prettier', 'eslint'],
 \ 'scss': ['prettier'],
@@ -213,3 +213,8 @@ let g:ale_fixers = {
 " colorscheme nordisk
 " colorscheme iceberg
 colorscheme gruvbox
+
+
+" Put these lines at the very end of your vimrc file.
+packloadall
+silent! helptags ALL
