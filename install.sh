@@ -36,12 +36,12 @@ tar xvf ranger-stable.tar.gz
 rm ranger-stable.tar.gz
 mv $(ls | grep ranger) ~/bin/ranger
 
-install-nvm
-source ~/.bash_profile # ?
+~/scripts/install-nvm
+source ~/.shared.sh
 nvm install node && nvm use default node
 npm i -g vmd npx
-install-yarn
-install-zsh
+~/scripts/install-yarn
+~/scripts/install-zsh
 
 brew install fzf bat fd hub
 
