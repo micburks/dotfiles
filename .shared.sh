@@ -13,16 +13,14 @@ function lb () {
 
 # If Mac
 if [ $(uname -s) = 'Darwin' ]; then
-    # Postgres config - Mac install of Postgres.App
-    #export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/{VERSION}/bin
-    #export PGDATA=/Users/mickey/Library/Application\ Support/Postgres/var-{VERSION}
-    #alias pglog='tail -f /Users/mickey/Library/Application\ Support/Postgres/var-{VERSION}/postgresql.log'
+  # Postgres config - Mac install of Postgres.App
+  #export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/{VERSION}/bin
+  #export PGDATA=/Users/mickey/Library/Application\ Support/Postgres/var-{VERSION}
+  #alias pglog='tail -f /Users/mickey/Library/Application\ Support/Postgres/var-{VERSION}/postgresql.log'
 
-    export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin/
-    export PGDATA=/Users/mickey/Library/Application\ Support/Postgres/var-10
-    alias pglog="tail -f /Users/mickey/Library/Application\ Support/Postgres/var-10/postgresql.log"
-
-    alias ls='ls -G'
+  export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin/
+  export PGDATA=/Users/mickey/Library/Application\ Support/Postgres/var-10
+  alias pglog="tail -f /Users/mickey/Library/Application\ Support/Postgres/var-10/postgresql.log"
 fi
 
 export NVM_DIR="$HOME/.nvm"
