@@ -194,8 +194,9 @@ let g:LanguageClient_serverCommands = {
 autocmd BufEnter *.re colorscheme dracula
 
 nnoremap go :ALEGoToDefinition<CR>
-let g:ale_fix_on_save = 1
-let g:ale_sign_column_always = 1
+nnoremap fix :ALEFix<CR>
+let g:ale_set_highlights = 0
+" let g:ale_fix_on_save = 1
 let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow-language-server'],
 \ 'typescript': ['tsserver', 'tslint'],
