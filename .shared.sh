@@ -20,6 +20,7 @@ if [ $(uname -s) = 'Darwin' ]; then
 
   export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin/
   export PGDATA=/Users/mickey/Library/Application\ Support/Postgres/var-10
+  alias pglog="tail -f /Users/mickey/Library/Application\ Support/Postgres/var-10/postgresql.log"
 fi
 
 export NVM_DIR="$HOME/.nvm"
