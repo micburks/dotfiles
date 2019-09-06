@@ -30,7 +30,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # source scripts
-source ~/scripts/node_env
+# source ~/scripts/node_env
+source ~/scripts/virtualnode.sh
 source ~/scripts/pull-requests
 
 # Emacs
@@ -59,6 +60,10 @@ function paste() {
 # yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+# yvm
+export YVM_DIR=/Users/mburks/.yvm
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
+
 # show hidden files in finder
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 
@@ -71,5 +76,4 @@ alias fzo='vi $(fzp)'
 export FZF_DEFAULT_COMMAND='fd --type f'
 
 # user bins
-export PATH=~/bin:$PATH
-
+export PATH="~/bin:$PATH"
