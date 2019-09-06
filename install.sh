@@ -20,6 +20,10 @@ mkdir -p ~/scripts && cp -R scripts/ ~/scripts/
 cd ~/.vim/bundle/ && ./install-plugins.bash
 
 
+# yvm
+curl -s https://raw.githubusercontent.com/tophat/yvm/master/scripts/install.js | node
+
+
 # git setup
 git config --global core.excludesfile ~/.gitignore
 
@@ -35,9 +39,9 @@ cd autojump
 ~/scripts/install-nvm
 source ~/.shared.sh
 nvm install node && nvm use default node
-npm i -g vmd npx
+npm i -g vmd npx ndb
 ~/scripts/install-yarn
 ~/scripts/install-zsh
 
-brew install fzf bat fd hub
+brew install fzf bat fd hub tree
 
