@@ -5,6 +5,10 @@ mkdir ~/scripts
 mkdir ~/bin
 
 
+# brew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+
 # vim/bash/zsh
 cd ~/Code/oss/dotfiles
 cp .vimrc ~
@@ -18,6 +22,7 @@ cp .psqlrc ~
 cat .zshrc | sed "s/mickey/$(whoami)/g" > ~/.zshrc
 mkdir -p ~/scripts && cp -R scripts/ ~/scripts/
 cd ~/.vim/bundle/ && ./install-plugins.bash
+brew cask install alacritty
 
 
 # yvm
