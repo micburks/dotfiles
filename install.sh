@@ -23,6 +23,7 @@ cat .zshrc | sed "s/mickey/$(whoami)/g" > ~/.zshrc
 mkdir -p ~/scripts && cp -R scripts/ ~/scripts/
 cd ~/.vim/bundle/ && ./install-plugins.bash
 brew cask install alacritty
+cp alacritty.yml ~/.config/alacritty/alacritty.yml
 
 
 # yvm

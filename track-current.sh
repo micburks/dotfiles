@@ -1,5 +1,6 @@
 #!/bin/bash
 cp ~/.vimrc .
+cp ~/.config/alacritty/alacritty.yml .
 cp ~/.vim/bundle/install-plugins.bash .vim/bundle/
 cp ~/.shared.sh .
 cp ~/.bash_profile .
