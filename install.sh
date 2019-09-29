@@ -44,7 +44,7 @@ cd autojump
 ~/scripts/install-nvm
 source ~/.shared.sh
 nvm install node && nvm use default node
-npm i -g vmd npx ndb
+npm i -g vmd ndb
 ~/scripts/install-yarn
 ~/scripts/install-zsh
 
