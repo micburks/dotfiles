@@ -211,7 +211,7 @@ let g:ale_fixers = {
 
 " Colors
 " colorscheme dracula
-" colorscheme nordisk
+colorscheme nordisk
 " colorscheme iceberg
 colorscheme gruvbox
 
