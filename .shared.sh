@@ -55,6 +55,9 @@ function paste() {
   pbpaste > $0
 }
 
+# colors for tmux
+export TERM=screen-256color
+
 # yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
