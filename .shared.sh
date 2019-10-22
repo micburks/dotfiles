@@ -1,5 +1,5 @@
 # If mcahine specific setup
-[ -r ~/machine-specific.sh ] && . ~/machine-specific.sh
+[ -r ~/.machine-specific.sh ] && . ~/.machine-specific.sh
 
 alias vi='vim -p'
 alias ls='ls -G'
@@ -54,9 +54,6 @@ function copy() {
 function paste() {
   pbpaste > $0
 }
-
-# colors for tmux
-export TERM=screen-256color
 
 # yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

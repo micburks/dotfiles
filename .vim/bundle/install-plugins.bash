@@ -37,3 +37,7 @@ echo "follow instructions for reason here: https://github.com/jaredly/reason-lan
 # git clone https://github.com/altercation/vim-colors-solarized
 # git clone https://github.com/groenewege/vim-less
 # git clone git://github.com/xsbeats/vim-blade.git
+
+# graphql
+git clone https://github.com/jparise/vim-graphql.git
+
