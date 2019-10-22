@@ -10,6 +10,11 @@ function pr-open() {
   get-pr-number | xargs hub pr show
 }
 
+# open `Release` PR in browser
+function pr-release() {
+  hub pr list | fzf -q Release -1 | extract-pr-number | xargs hub pr show
+}
+
 # open current branch PR in GitHub
 # if no PR, open current branch in GitHub 
 # doesn't work for forks
@@ -29,7 +34,13 @@ function browse() {
 # start interactive fuzzy find of current prs
 # return pr number of selected pr
 function get-pr-number() {
-  hub pr list | fzf | awk '{print substr($1,2)}'
+  hub pr list | fzf | extract-pr-number
+}
+
+# input: tabular output of `hub pr list`
+# output: pr number
+function extract-pr-number() {
+  awk '{print substr($1,2)}'
 }
 
 # return
