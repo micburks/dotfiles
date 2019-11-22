@@ -7,8 +7,39 @@ alias ll='ls -l'
 alias la='ll -a'
 alias grep='grep --color=auto'
 
+# git
+alias g='git'
+alias gs='git status'
+alias gcm='git commit -m'
+alias gch='git checkout'
+alias gpu='git pull'
+alias gst='git stash'
+
+function cl () {
+  half=stty size | awk '{print int($1/2)-1;}'
+  for i in `seq ${half}`;
+    do echo ''
+  done
+  tput cup ${half} 0 && tput ed
+}
+
 function lb () {
   vim ~/logbook/$(date '+%Y-%m-%d').md
+}
+
+function each () {
+  local path=$1;
+  shift;
+  for i in $path/*; do
+    $@ "$i";
+  done
+}
+
+# doesnt work
+function eachf () {
+  for i in $1/*; do
+    test -f "$i" && echo "$i"
+  done
 }
 
 # If Mac
@@ -75,3 +106,6 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 
 # user bins
 export PATH="~/bin:$PATH"
+
+# rust bins
+export PATH="~/.cargo/bin:$PATH"
