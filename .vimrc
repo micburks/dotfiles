@@ -174,8 +174,10 @@ au BufRead,BufNewFile html setfiletype html
 au BufRead,BufNewFile markdown setfiletype markdown
 au BufRead,BufNewFile md setfiletype markdown
 
-" Associate *.mjs with js filetype
+" Associate *.[m|c|t]js with js filetype
 au BufRead,BufNewFile *.mjs setfiletype javascript
+au BufRead,BufNewFile *.cjs setfiletype javascript
+au BufRead,BufNewFile *.ts setfiletype javascript
 
 " Associate *.less with css filetype
 au BufRead,BufNewFile *.less setfiletype css

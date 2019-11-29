@@ -26,6 +26,9 @@ git clone https://github.com/pangloss/vim-javascript.git
 # git clone https://github.com/othree/es.next.syntax.vim
 # git clone https://github.com/kern/vim-es7
 
+# typescript
+git clone https://github.com/leafgarland/typescript-vim
+
 # syntax and lsp support
 git clone https://github.com/dense-analysis/ale.git
 
