@@ -1,4 +1,4 @@
 #!/bin/bash
-if [[ $(command -v nvm) != "" ]]; then
+if [[ $(command -v nvm) == "" ]]; then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
 fi
