@@ -8,6 +8,8 @@ alias ll='ls -l'
 alias la='ll -a'
 alias grep='grep --color=auto'
 
+alias vn='virtualnode'
+
 [ "$(alias gcm)" != "" ] && unalias gcm
 [ "$(alias gl)" != "" ] && unalias gl
 [ "$(alias ga)" != "" ] && unalias ga
