@@ -10,8 +10,6 @@ export ZSH="/Users/mickey/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
 
-source ~/.shared.sh
-
 ######################
 # Show today's date
 function parse_date() {
@@ -93,6 +91,9 @@ PROMPT='
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+
+# source my setup after zsh
+source ~/.shared.sh
 
 # User configuration
 
