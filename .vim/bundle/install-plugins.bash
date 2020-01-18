@@ -44,3 +44,5 @@ echo "follow instructions for reason here: https://github.com/jaredly/reason-lan
 # graphql
 git clone https://github.com/jparise/vim-graphql.git
 
+# terminal integration
+git clone https://github.com/kassio/neoterm
