@@ -31,7 +31,7 @@ let mapleader = ","
 set pastetoggle=<leader>v
 
 " One handed vim exit - particularly for use in ranger
-nnoremap ;; :q
+nnoremap ;; :q<Enter>
 
 " Set copy buffer to 1000 lines
 set viminfo='20,<1000
@@ -44,7 +44,7 @@ nnoremap <leader>y :!cat "%" \| pbcopy<cr>q
 
 " Easy quit
 " qwerty 
-nnoremap df :q
+" nnoremap df :q
 " dvorak 
 " nnoremap eu :q
 
