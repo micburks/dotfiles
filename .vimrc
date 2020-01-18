@@ -161,6 +161,8 @@ map <Leader><Tab>j  <C-w>j
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+let NERDTreeShowHidden=1
+
 " Indent guides
 "let g:indent_guides_auto_colors = 0
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray   ctermbg=0
@@ -196,8 +198,11 @@ let g:LanguageClient_serverCommands = {
 autocmd BufEnter *.re colorscheme dracula
 
 nnoremap go :ALEGoToDefinition<CR>
+nnoremap gb :pop<CR>
 nnoremap fix :ALEFix<CR>
 let g:ale_set_highlights = 0
+let g:ale_completion_enabled = 1
+set completeopt=menu,menuone,preview,noselect,noinsert
 " let g:ale_fix_on_save = 1
 let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow-language-server'],
