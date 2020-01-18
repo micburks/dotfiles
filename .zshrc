@@ -120,3 +120,6 @@ source ~/.shared.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Don't share history between shells
+setopt nosharehistory
