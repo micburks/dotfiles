@@ -1,0 +1,3 @@
+zoom = 1.2
+highlight.theme = monokai
+styles.extra = /Users/MICKEY/scripts/custom-vmd-styles.css
