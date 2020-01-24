@@ -1,11 +1,11 @@
 #!/bin/bash
-$USER="MICKEY"
+USER="MICKEY"
 
 cat ~/.bash_profile | sed "s/$(whoami)/$USER/g" > .bash_profile
 cat ~/.gitconfig | sed "s/$(whoami)/$USER/g" > .gitconfig
 cat ~/.shared.sh | sed "s/$(whoami)/$USER/g" > .shared.sh
-cat ~/.vimrc | sed "s/$USER/$(whoami)/g" > .vimrc
-cat ~/.zshrc | sed "s/$USER/$(whoami)/g" > .zshrc
+cat ~/.vimrc | sed "s/$(whoami)/$USER/g" > .vimrc
+cat ~/.zshrc | sed "s/$(whoami)/$USER/g" > .zshrc
 cat ~/.config/vmd | sed "s/$(whoami)/$USER/g" > vmd
 cp ~/.config/alacritty/alacritty.yml .
 cp ~/.vim/bundle/install-plugins.bash .vim/bundle/

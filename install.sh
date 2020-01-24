@@ -1,5 +1,5 @@
 #!/bin/bash
-$USER="MICKEY"
+USER="MICKEY"
 
 mkdir -p ~/Code/oss
 mkdir -p ~/Code/utilities
