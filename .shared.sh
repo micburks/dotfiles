@@ -133,6 +133,8 @@ alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall 
 alias fzp="fzf --preview 'bat --style=numbers --color=always {}'"
 alias fzo='vi $(fzp)'
 
+alias vmd="vmd --styles-extra=$HOME/scripts/custom-vmd-styles.css"
+
 # fzf options
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --type f'
