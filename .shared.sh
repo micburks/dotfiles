@@ -109,11 +109,11 @@ alias esh="vi ~/.shared.sh && source ~/.shared.sh"
 alias back="cd $OLDPWD"
 
 function copy() {
-  cat $0 | pbcopy
+  cat $1 | pbcopy
 }
 
 function paste() {
-  pbpaste > $0
+  pbpaste > $1
 }
 
 # yarn
