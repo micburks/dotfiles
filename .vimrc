@@ -164,10 +164,10 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeShowHidden=1
 
 " Indent guides
-"let g:indent_guides_auto_colors = 0
+" let g:indent_guides_auto_colors = 0
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray   ctermbg=0
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=8
-"autocmd VimEnter * IndentGuidesEnable
+" autocmd VimEnter * IndentGuidesEnable
 
 " For aquameta-sync files
 au BufRead,BufNewFile js setfiletype javascript
@@ -193,16 +193,20 @@ set belloff=all
 
 " Reason language server
 let g:LanguageClient_serverCommands = {
-    \ 'reason': ['/home/mburks/bin/reason-language-server.exe']
-    \ }
+\ 'reason': ['/home/mburks/bin/reason-language-server.exe']
+\ }
 autocmd BufEnter *.re colorscheme dracula
 
+" gutentags
+call pathogen#helptags()
+
+" Ale completion is no good
+let g:ale_completion_enabled = 1
+set completeopt=menu,menuone,preview,noselect,noinsert
 nnoremap go :ALEGoToDefinition<CR>
 nnoremap gb :pop<CR>
 nnoremap fix :ALEFix<CR>
 let g:ale_set_highlights = 0
-let g:ale_completion_enabled = 1
-set completeopt=menu,menuone,preview,noselect,noinsert
 " let g:ale_fix_on_save = 1
 let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow-language-server'],
@@ -215,6 +219,16 @@ let g:ale_fixers = {
 \ 'css': ['prettier'],
 \ 'typescript': ['prettier', 'tslint'],
 \}
+" Use deoplete instead
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+\ 'auto_complete_delay': 200,
+\ 'smart_case': v:true,
+\ })
+" Use ALE and also some plugin 'foobar' as completion sources for all code.
+call deoplete#custom#option('sources', {
+\ '_': ['ale'],
+\})
 
 " Colors
 " colorscheme dracula
