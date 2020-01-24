@@ -193,7 +193,7 @@ set belloff=all
 
 " Reason language server
 let g:LanguageClient_serverCommands = {
-\ 'reason': ['/home/mburks/bin/reason-language-server.exe']
+\ 'reason': ['/home/MICKEY/bin/reason-language-server.exe']
 \ }
 autocmd BufEnter *.re colorscheme dracula
 

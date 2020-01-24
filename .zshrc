@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/mickey/.oh-my-zsh"
+export ZSH="/Users/MICKEY/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -17,7 +17,7 @@ function parse_date() {
 }
 # Show pwd
 function parse_pwd () {
-  echo $(pwd) | sed -e 's/^\/Users\/mickey\(.*\)$/~\1/'
+  echo $(pwd) | sed -e 's/^\/Users\/MICKEY\(.*\)$/~\1/'
 }
 # Show git branch name
 function parse_git_branch () {
@@ -123,3 +123,10 @@ source ~/.shared.sh
 
 # Don't share history between shells
 setopt nosharehistory
+
+export YVM_DIR=/Users/MICKEY/.yvm
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[[ -f /Users/MICKEY/Code/oss/mark/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /Users/MICKEY/Code/oss/mark/node_modules/tabtab/.completions/electron-forge.zsh

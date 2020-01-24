@@ -69,12 +69,12 @@ function eachf () {
 if [ $(uname -s) = 'Darwin' ]; then
   # Postgres config - Mac install of Postgres.App
   #export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/{VERSION}/bin
-  #export PGDATA=/Users/mburks/Library/Application\ Support/Postgres/var-{VERSION}
-  #alias pglog='tail -f /Users/mburks/Library/Application\ Support/Postgres/var-{VERSION}/postgresql.log'
+  #export PGDATA=/Users/MICKEY/Library/Application\ Support/Postgres/var-{VERSION}
+  #alias pglog='tail -f /Users/MICKEY/Library/Application\ Support/Postgres/var-{VERSION}/postgresql.log'
 
   export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin/
-  export PGDATA=/Users/mburks/Library/Application\ Support/Postgres/var-10
-  alias pglog="tail -f /Users/mburks/Library/Application\ Support/Postgres/var-10/postgresql.log"
+  export PGDATA=/Users/MICKEY/Library/Application\ Support/Postgres/var-10
+  alias pglog="tail -f /Users/MICKEY/Library/Application\ Support/Postgres/var-10/postgresql.log"
 fi
 
 # nvm
@@ -120,14 +120,14 @@ function paste() {
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # yvm
-export YVM_DIR=/Users/mburks/.yvm
+export YVM_DIR=/Users/MICKEY/.yvm
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
 
 # show hidden files in finder
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 
 # autojump
-[[ -s /Users/mickey/.autojump/etc/profile.d/autojump.sh ]] && source /Users/mickey/.autojump/etc/profile.d/autojump.sh
+[[ -s /Users/MICKEY/.autojump/etc/profile.d/autojump.sh ]] && source /Users/MICKEY/.autojump/etc/profile.d/autojump.sh
 
 # fuzzy find with colors
 alias fzp="fzf --preview 'bat --style=numbers --color=always {}'"
@@ -141,4 +141,4 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 export PATH="~/bin:$PATH"
 
 # rust bins
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="~/.cargo/bin:$PATH"
