@@ -1,4 +1,6 @@
 #!/bin/bash
+$USER="MICKEY"
+
 mkdir -p ~/Code/oss
 mkdir -p ~/Code/utilities
 mkdir ~/scripts
@@ -8,19 +10,19 @@ mkdir ~/bin
 # brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-
 # vim/bash/zsh
 cd ~/Code/oss/dotfiles
-cp .vimrc ~
-cp .vim/bundle/install-plugins.bash ~/.vim/bundle/
-cat .shared.sh | sed "s/mickey/$(whoami)/g" > ~/.shared.sh
-cp .bash_profile ~
+cat .bash_profile | sed "s/$USER/$(whoami)/g" > ~/.bash_profile
+cat .gitconfig | sed "s/$USER/$(whoami)/g" > ~/.gitconfig
+cat .shared.sh | sed "s/$USER/$(whoami)/g" > ~/.shared.sh
+cp .vimrc | sed "s/$USER/$(whoami)/g" > ~/.vimrc
+cat .zshrc | sed "s/$USER/$(whoami)/g" > ~/.zshrc
+cat vmd | sed "s/$USER/$(whoami)/g" > ~/.config/vmd
 cp .gitignore ~
-cp .gitconfig ~
 cp .tmux.conf ~
 cp .psqlrc ~
-cat .zshrc | sed "s/mickey/$(whoami)/g" > ~/.zshrc
 mkdir -p ~/scripts && cp -R scripts/ ~/scripts/
+cp .vim/bundle/install-plugins.bash ~/.vim/bundle/
 cd ~/.vim/bundle/ && ./install-plugins.bash
 brew cask install alacritty
 cp alacritty.yml ~/.config/alacritty/alacritty.yml
