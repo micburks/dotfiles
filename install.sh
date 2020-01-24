@@ -16,7 +16,7 @@ cd ~/Code/oss/dotfiles
 cat .bash_profile | sed "s/$USER/$(whoami)/g" > ~/.bash_profile
 cat .gitconfig | sed "s/$USER/$(whoami)/g" > ~/.gitconfig
 cat .shared.sh | sed "s/$USER/$(whoami)/g" > ~/.shared.sh
-cp .vimrc | sed "s/$USER/$(whoami)/g" > ~/.vimrc
+cat .vimrc | sed "s/$USER/$(whoami)/g" > ~/.vimrc
 cat .zshrc | sed "s/$USER/$(whoami)/g" > ~/.zshrc
 cat vmd | sed "s/$USER/$(whoami)/g" > ~/.config/vmd
 cp .gitignore ~
