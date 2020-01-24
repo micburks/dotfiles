@@ -19,5 +19,3 @@ PS1="\n$YELLOW[\d] $GREEN\$(parse_git_branch) $BLUE\w $NO_COLOR\n\$ "
 
 ######################
 [ -r /Users/MICKEY/.profile_lda ] && . /Users/MICKEY/.profile_lda
-
-export PATH="$HOME/.cargo/bin:$PATH"

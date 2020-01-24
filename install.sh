@@ -4,6 +4,7 @@ USER="MICKEY"
 mkdir -p ~/Code/oss
 mkdir -p ~/Code/utilities
 mkdir ~/scripts
+mkdir ~/machine-specific-scripts
 mkdir ~/bin
 
 
