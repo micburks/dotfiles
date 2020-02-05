@@ -38,9 +38,8 @@ git config --global core.excludesfile ~/.gitignore
 
 
 # utilities
-cd ~/Code/utilities
-git clone git://github.com/wting/autojump.git
-cd autojump
+git clone git://github.com/wting/autojump.git ~/Code/utilities
+cd ~/Code/utilities/autojump
 ./install.py
 
 ~/scripts/install-ranger
@@ -51,6 +50,11 @@ nvm install node && nvm use default node
 npm i -g vmd ndb
 ~/scripts/install-yarn
 ~/scripts/install-zsh
+
+git clone git://github.com/micburks/codemod.git ~/machine-specific-scripts
+~/machine-specific-scripts/codemod
+yarn
+cd ~
 
 brew install fzf bat fd hub tree
 
