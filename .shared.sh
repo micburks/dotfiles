@@ -140,5 +140,8 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 # user bins
 export PATH="~/bin:$PATH"
 
+# user scripts
+export PATH="$HOME/machine-specific-scripts:$HOME/scripts:$PATH"
+
 # rust bins
 export PATH="~/.cargo/bin:$PATH"

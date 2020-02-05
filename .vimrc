@@ -206,6 +206,7 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 nnoremap go :ALEGoToDefinition<CR>
 nnoremap gb :pop<CR>
 nnoremap fix :ALEFix<CR>
+nnoremap more :ALEDetail<CR>
 let g:ale_set_highlights = 0
 " let g:ale_fix_on_save = 1
 let g:ale_linters = {
@@ -229,6 +230,8 @@ call deoplete#custom#option({
 call deoplete#custom#option('sources', {
 \ '_': ['ale'],
 \})
+" vim-js-file-import
+let g:js_file_import_strip_file_extension = 0
 
 " Colors
 " colorscheme dracula
