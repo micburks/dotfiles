@@ -1,6 +1,8 @@
 # If mcahine specific setup
 [ -r ~/.machine-specific.sh ] && . ~/.machine-specific.sh
 
+export EDITOR=vim
+
 # utils
 alias vi='vim -p'
 alias ls='ls -G'
