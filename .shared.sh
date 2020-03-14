@@ -101,6 +101,7 @@ alias json='python -m json.tool'
 
 # Ranger
 alias ranger="~/bin/ranger/ranger.py"
+alias r="ranger"
 
 # Edit and source bash in one command - useful for testing commands as you write
 alias esh="vi ~/.shared.sh && source ~/.shared.sh"
