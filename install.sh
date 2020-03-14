@@ -56,5 +56,5 @@ git clone git://github.com/micburks/codemod.git ~/machine-specific-scripts
 yarn
 cd ~
 
-brew install fzf bat fd hub tree comby
+brew install jq fzf bat fd hub tree comby
 
