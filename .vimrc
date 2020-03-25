@@ -16,6 +16,8 @@ let g:jsx_ext_required = 0
 " set autoindent      " Match indents on new lines
 " Filetype based indenting
 filetype off
+" neoterm
+let &runtimepath.=',~/.vim/bundle/neoterm'
 filetype plugin indent on
 
 " Not compatible with vi
@@ -232,6 +234,11 @@ call deoplete#custom#option('sources', {
 \})
 " vim-js-file-import
 let g:js_file_import_strip_file_extension = 0
+
+" neoterm
+let g:neoterm_autoinsert = 0 " default
+let g:neoterm_default_mod = 'rightbelow'
+nnoremap <leader>t :T 
 
 " Colors
 " colorscheme dracula
