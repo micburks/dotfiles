@@ -51,8 +51,8 @@ npm i -g vmd ndb
 ~/scripts/install-yarn
 ~/scripts/install-zsh
 
-git clone git://github.com/micburks/codemod.git ~/machine-specific-scripts
-~/machine-specific-scripts/codemod
+git clone git@github.com:micburks/codemod.git ~/machine-specific-scripts/codemod
+cd ~/machine-specific-scripts/codemod
 yarn
 cd ~
 
