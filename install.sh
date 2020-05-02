@@ -3,9 +3,9 @@ USER="MICKEY"
 
 mkdir -p ~/Code/oss
 mkdir -p ~/Code/utilities
-mkdir ~/scripts
-mkdir ~/machine-specific-scripts
-mkdir ~/bin
+mkdir -p ~/scripts
+mkdir -p ~/machine-specific-scripts
+mkdir -p ~/bin
 
 
 # brew
