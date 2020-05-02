@@ -9,7 +9,7 @@ mkdir -p ~/bin
 
 
 # brew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # vim/bash/zsh
 cd ~/Code/oss/dotfiles
