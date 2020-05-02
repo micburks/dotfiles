@@ -48,10 +48,10 @@ git clone https://github.com/roxma/nvim-yarp
 git clone https://github.com/roxma/vim-hug-neovim-rpc
 
 # manage universal ctags
-git clone https://github.com/universal-ctags/ctags
-cd ctags && ./autogen.sh && ./configure && make && sudo make install
-cd ~/.vim/bundle/
-git clone https://github.com/ludovicchabant/vim-gutentags.git
+# git clone https://github.com/universal-ctags/ctags
+# cd ctags && ./autogen.sh && ./configure && make && sudo make install
+# cd ~/.vim/bundle/
+# git clone https://github.com/ludovicchabant/vim-gutentags.git
 
 # js imports
 git clone https://github.com/kristijanhusak/vim-js-file-import

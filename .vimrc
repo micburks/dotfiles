@@ -223,15 +223,15 @@ let g:ale_fixers = {
 \ 'typescript': ['prettier', 'tslint'],
 \}
 " Use deoplete instead
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option({
-\ 'auto_complete_delay': 200,
-\ 'smart_case': v:true,
-\ })
+" let g:deoplete#enable_at_startup = 1
+" call deoplete#custom#option({
+" \ 'auto_complete_delay': 200,
+" \ 'smart_case': v:true,
+" \ })
 " Use ALE and also some plugin 'foobar' as completion sources for all code.
-call deoplete#custom#option('sources', {
-\ '_': ['ale'],
-\})
+" call deoplete#custom#option('sources', {
+" \ '_': ['ale'],
+" \})
 " vim-js-file-import
 let g:js_file_import_strip_file_extension = 0
 
