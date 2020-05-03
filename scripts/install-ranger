@@ -6,6 +6,6 @@ if [[ ! -e ~/bin/ranger ]]; then
   rm ranger-stable.tar.gz
   mv $(ls | grep ranger) ~/bin/ranger
   # rifle handle sql files
-  echo 'ext sql = ${VISUAL:-$EDITOR} -- "$@".' >> ~/bin/ranger/ranger/config/rifle.conf
+  echo 'ext sql = vim -- "$1"' >> ~/bin/ranger/ranger/config/rifle.conf
 fi
 
