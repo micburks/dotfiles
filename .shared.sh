@@ -157,3 +157,6 @@ export PATH="$HOME/machine-specific-scripts:$HOME/scripts:$PATH"
 
 # rust bins
 export PATH="~/.cargo/bin:$PATH"
+
+# nix
+if [ -e /Users/mburks/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/mburks/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

@@ -56,7 +56,6 @@ cd ~/machine-specific-scripts/codemod
 yarn
 cd ~
 
-brew install jq fzf bat fd hub tree comby the_silver_searcher
-
-# rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+brew install jq comby
+# installed by nix
+# brew install fzf bat fd hub tree the_silver_searcher
