@@ -33,6 +33,15 @@ function gchi () {
 }
 
 # util
+function uu() {
+  if [ -s ".git" ]; then
+    return
+  else
+    cd ..
+    uu
+  fi
+}
+
 function i () {
   local get=$1;
   shift;
