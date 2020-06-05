@@ -88,7 +88,7 @@ export NVM_DIR="$HOME/.nvm"
 alias n8='nvm exec 8'
 alias n10='nvm exec 10'
 alias n12='nvm exec 12'
-alias n13='nvm exec 13'
+alias n14='nvm exec 14'
 
 # source scripts
 # source ~/scripts/node_env
