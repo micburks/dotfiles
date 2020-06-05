@@ -115,6 +115,10 @@ set showmatch
 " Highlight matches
 set hlsearch
 
+" Use "//" to search for currently selected text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
+
 " Clear highlighting
 nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
