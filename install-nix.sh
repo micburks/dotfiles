@@ -17,7 +17,8 @@ nix-env -iA nixpkgs.jq \
   nixpkgs.ranger \
   nixpkgs.zsh \
   nixpkgs.yarn \
-  nixpkgs.alacritty
+  nixpkgs.alacritty \
+  nixpkgs.rustup
 
 nix-env -i -f nix/ls-colors.nix
 
