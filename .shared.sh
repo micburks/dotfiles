@@ -127,4 +127,4 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 export PATH="$HOME/bin:$HOME/machine-specific-scripts:$HOME/scripts:$PATH"
 
 # nix
-if [ -e /Users/mburks/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/mburks/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e /Users/MICKEY/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/MICKEY/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
