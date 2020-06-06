@@ -100,6 +100,7 @@ alias emacs='/usr/local/bin/emacs'
 alias json='python -m json.tool'
 
 # Ranger
+alias ranger="~/bin/ranger/ranger.py"
 alias r="ranger"
 
 # Edit and source bash in one command - useful for testing commands as you write
@@ -111,6 +112,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # yvm
 export YVM_DIR=/Users/MICKEY/.yvm
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
+
+# autojump
+[[ -s /Users/MICKEY/.autojump/etc/profile.d/autojump.sh ]] && source /Users/MICKEY/.autojump/etc/profile.d/autojump.sh
 
 # show hidden files in finder
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
