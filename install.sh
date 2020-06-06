@@ -9,6 +9,17 @@ mkdir -p ~/scripts
 mkdir -p ~/machine-specific-scripts
 mkdir -p ~/bin
 
+# brew - some nix packages are broken
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+# autojump - broken in nix
+git clone git://github.com/wting/autojump.git ~/Code/utilities
+cd ~/Code/utilities/autojump
+./install.py
+
+# ranger - broken in nix
+~/scripts/install-ranger
+
 cd ~/Code/oss/dotfiles
 
 # configs

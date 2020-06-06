@@ -13,12 +13,12 @@ nix-env -iA nixpkgs.jq \
   nixpkgs.gitAndTools.hub \
   nixpkgs.tree \
   nixpkgs.silver-searcher \
-  nixpkgs.autojump \
-  nixpkgs.ranger \
   nixpkgs.zsh \
   nixpkgs.yarn \
   nixpkgs.alacritty \
   nixpkgs.rustup
+  #nixpkgs.autojump \
+  #nixpkgs.ranger \
 
 nix-env -i -f nix/ls-colors.nix
 
