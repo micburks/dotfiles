@@ -7,10 +7,9 @@ export EDITOR=vim
 eval $(dircolors ~/.nix-profile/share/LS_COLORS)
 
 # utils
+alias v='vim -p'
 alias vi='vim -p'
 alias ls='ls --color=auto -F'
-alias grep='grep --color=auto'
-
 alias vn='virtualnode'
 
 [ "$(alias gcm)" != "" ] && unalias gcm
@@ -29,12 +28,9 @@ function gcm () { git commit -m $@ }
 function gps () { git push $@ }
 function gpl () { git pull $@ }
 
-function gchi () {
-  i gb git checkout
-}
-
-# util
+# utils
 function uu() {
+  # go to root directory of current git repo
   if [ -s ".git" ]; then
     return
   else
@@ -62,19 +58,12 @@ function lb () {
   vim ~/logbook/$(date '+%Y-%m-%d').md
 }
 
-function each () {
-  local path=$1;
-  shift;
-  for i in $path/*; do
-    $@ "$i";
-  done
+function copy() {
+  cat $1 | pbcopy
 }
 
-# doesnt work
-function eachf () {
-  for i in $1/*; do
-    test -f "$i" && echo "$i"
-  done
+function paste() {
+  pbpaste > $1
 }
 
 # If Mac
@@ -101,7 +90,6 @@ alias n12='nvm exec 12'
 alias n14='nvm exec 14'
 
 # source scripts
-# source ~/scripts/node_env
 source ~/scripts/virtualnode.sh
 source ~/scripts/pull-requests
 
@@ -112,22 +100,10 @@ alias emacs='/usr/local/bin/emacs'
 alias json='python -m json.tool'
 
 # Ranger
-alias ranger="~/bin/ranger/ranger.py"
 alias r="ranger"
 
 # Edit and source bash in one command - useful for testing commands as you write
 alias esh="vi ~/.shared.sh && source ~/.shared.sh"
-
-# cd back to previous directory
-alias back="cd $OLDPWD"
-
-function copy() {
-  cat $1 | pbcopy
-}
-
-function paste() {
-  pbpaste > $1
-}
 
 # yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -139,9 +115,6 @@ export YVM_DIR=/Users/MICKEY/.yvm
 # show hidden files in finder
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 
-# autojump
-[[ -s /Users/MICKEY/.autojump/etc/profile.d/autojump.sh ]] && source /Users/MICKEY/.autojump/etc/profile.d/autojump.sh
-
 # fuzzy find with colors
 alias fzp="fzf --preview 'bat --style=numbers --color=always {}'"
 alias fzo='vi $(fzp)'
@@ -150,14 +123,8 @@ alias fzo='vi $(fzp)'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --type f'
 
-# user bins
-export PATH="~/bin:$PATH"
-
 # user scripts
-export PATH="$HOME/machine-specific-scripts:$HOME/scripts:$PATH"
-
-# rust bins
-export PATH="~/.cargo/bin:$PATH"
+export PATH="$HOME/bin:$HOME/machine-specific-scripts:$HOME/scripts:$PATH"
 
 # nix
 if [ -e /Users/mburks/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/mburks/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
