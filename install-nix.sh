@@ -15,3 +15,6 @@ nix-env -iA nixpkgs.jq \
   nixpkgs.silver-searcher
 
 nix-env -i -f nix/ls-colors.nix
+
+git clone git@github.com:Shopify/comma.git tmp/comma
+nix-env -i -f tmp/comma
