@@ -3,11 +3,12 @@
 
 export EDITOR=vim
 
+# ls colors
+eval $(dircolors ~/.nix-profile/share/LS_COLORS)
+
 # utils
 alias vi='vim -p'
-alias ls='ls -G'
-alias ll='ls -l'
-alias la='ll -a'
+alias ls='ls --color=auto -F'
 alias grep='grep --color=auto'
 
 alias vn='virtualnode'

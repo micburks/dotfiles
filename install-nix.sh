@@ -13,3 +13,5 @@ nix-env -iA nixpkgs.jq \
   nixpkgs.gitAndTools.hub \
   nixpkgs.tree \
   nixpkgs.silver-searcher
+
+nix-env -i -f nix/ls-colors.nix
