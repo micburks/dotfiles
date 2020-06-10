@@ -58,3 +58,5 @@ cd ~
 
 brew install jq fzf bat fd hub tree comby the_silver_searcher
 
+# rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
