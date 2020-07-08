@@ -25,6 +25,10 @@ git clone https://tpope.io/vim/surround.git
 git clone https://github.com/mxw/vim-jsx.git
 git clone https://github.com/pangloss/vim-javascript.git
 
+# html/jsx
+git clonehttps://github.com/alvan/vim-closetag.git
+git clone https://github.com/AndrewRadev/tagalong.vim.git
+
 # flow
 # git clone https://github.com/othree/es.next.syntax.vim
 # git clone https://github.com/kern/vim-es7
