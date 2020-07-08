@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # colorschemes
-git clone https://github.com/dracula/vim.git dracula
 git clone https://github.com/kamwitsta/nordisk
 git clone https://github.com/cocopon/iceberg.vim
 git clone git@github.com:morhetz/gruvbox.git
+# git clone https://github.com/dracula/vim.git dracula
 # git clone https://github.com/nanotech/jellybeans.vim
 # git clone https://github.com/altercation/vim-colors-solarized
+# commented out - too many colors
 
 # utils
 git clone https://github.com/scrooloose/nerdtree
@@ -17,7 +18,8 @@ git clone https://github.com/easymotion/vim-easymotion.git
 git clone https://tpope.io/vim/surround.git
 
 # terminal integration
-git clone https://github.com/kassio/neoterm
+# git clone https://github.com/kassio/neoterm
+# commented out - tmux works fine for this
 
 # js
 git clone https://github.com/mxw/vim-jsx.git
@@ -52,6 +54,7 @@ git clone https://github.com/roxma/vim-hug-neovim-rpc
 # cd ctags && ./autogen.sh && ./configure && make && sudo make install
 # cd ~/.vim/bundle/
 # git clone https://github.com/ludovicchabant/vim-gutentags.git
+# commented out - i think this was all broken
 
 # js imports
 git clone https://github.com/kristijanhusak/vim-js-file-import
