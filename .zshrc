@@ -92,7 +92,7 @@ plugins=(
   git
   fzf
   fd
-  zsh-autosuggestions
+  autojump
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -134,4 +134,3 @@ export YVM_DIR=/Users/MICKEY/.yvm
 
 # fzf autocomplete for zsh
 export FZF_BASE=/Users/MICKEY/.nix-profile/bin/fzf
-
