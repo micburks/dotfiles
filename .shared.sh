@@ -21,6 +21,7 @@ alias gd='git diff'
 alias gb='git branch'
 alias gl='git log'
 alias gch='git checkout'
+alias gcm='git commit -m'
 alias gps='git push'
 alias gpl='git pull'
 
