@@ -47,14 +47,65 @@ alias n14='nvm exec 14'
 
 # -------------------------------
 #
+# vim
+#
+# -------------------------------
+### v/vi/vim    - vim (wrapped): prevent implicitly opening new files
+export EDITOR=vim
+alias v='vim'
+alias vi='vim'
+function vim() {
+  local original_args=("$@")
+  local vim_args=()
+  local filtered_vim_args=()
+  local new=0
+  local fail=0
+
+  # check for "--new"
+  for arg in "${original_args[@]}"; do
+    if [[ "$arg" == "--new" || "$arg" == "-n" ]]; then
+      new=1
+    else
+      vim_args+=( "$arg" )
+    fi
+  done
+
+  if (( new )); then
+    # if "--new", let vim create new files
+    command vim -p "${vim_args[@]}"
+  else
+    # if not "--new", filter non-existant files
+    for file in "${vim_args[@]}"; do
+      # ignore options
+      [[ $file = -* ]] && continue
+
+      if ! [[ -e $file ]]; then
+        printf 'vim wrapper ignored argument "%s" - No such file or directory\n' "$file" >&2
+        fail=1
+      else
+        filtered_vim_args+=( $file )
+      fi
+    done
+
+    if (( fail )); then
+      echo "Non-existant files were filtered out - Use \""-n/--new"\" to create these files"
+    fi
+
+    if [[ "$filtered_vim_args" == "" ]]; then
+      echo "No files to open"
+    else
+      command vim -p "${filtered_vim_args[@]}"
+    fi
+  fi
+}
+
+
+
+# -------------------------------
+#
 # utils
 #
 # -------------------------------
-### v/vi/vim    - vim
-export EDITOR=vim
-alias v='vim -p'
-alias vi='vim -p'
-
 # ls colors
 eval $(dircolors ~/.nix-profile/share/LS_COLORS)
 alias ls='ls --color=auto -F'
