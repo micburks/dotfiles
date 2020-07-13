@@ -18,7 +18,7 @@ alias g='git'
 alias gs='git status'
 alias ga='git add'
 alias gd='git diff'
-alias gb='git branch'
+function gb() { git branch } # function so can be used with "i"
 alias gl='git log'
 alias gch='git checkout'
 alias gcm='git commit -m'
