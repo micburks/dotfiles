@@ -14,16 +14,15 @@ help() {
 [ "$(alias gcm)" != "" ] && unalias gcm
 [ "$(alias gl)" != "" ] && unalias gl
 [ "$(alias ga)" != "" ] && unalias ga
-function g () { git $@ }
-function gs () { git status $@ }
-function ga () { git add $@ }
-function gd () { git diff $@ }
-function gb () { git branch $@ }
-function gl () { git log $@ }
-function gch () { git checkout $@ }
-function gcm () { git commit -m $@ }
-function gps () { git push $@ }
-function gpl () { git pull $@ }
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gd='git diff'
+alias gb='git branch'
+alias gl='git log'
+alias gch='git checkout'
+alias gps='git push'
+alias gpl='git pull'
 
 
 
