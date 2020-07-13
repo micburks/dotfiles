@@ -200,7 +200,7 @@ alias emacs='/usr/local/bin/emacs'
 alias json='python -m json.tool'
 
 ### r/ranger    - ranger file explorer
-alias ranger="~/bin/ranger/ranger.py"
+alias ranger='~/bin/ranger/ranger.py --cmd "set show_hidden=true"'
 alias r="ranger"
 
 # yarn
