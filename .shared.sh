@@ -176,6 +176,8 @@ source ~/scripts/pull-requests
 # Edit and source bash in one command - useful for testing commands as you write
 ### esh         - edit and source shared shell configuration
 alias esh="vi ~/.shared.sh && source ~/.shared.sh"
+### ezsh        - edit and source .zshrc configuration
+alias ezsh="vi ~/.zshrc && source ~/.zshrc"
 
 # user scripts
 export PATH="$HOME/bin:$HOME/machine-specific-scripts:$HOME/scripts:$PATH"
@@ -213,11 +215,13 @@ export YVM_DIR=/Users/MICKEY/.yvm
 
 ### fzf         - fuzzy find files
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 ### fzp         - fuzzy preview files
 alias fzp="fzf --preview 'bat --style=numbers --color=always {}'"
 ### fzo         - fuzzy open files
 alias fzo='vi $(fzp)'
+### fzc         - fuzzy cd
+alias fzc='cd $(fd --type d | fzf --preview "ls {}")'
 
 # nix
 ### ,           - run tool from nix-pkg without installing
