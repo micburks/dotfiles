@@ -91,6 +91,7 @@ PROMPT='
 plugins=(
   git
   fzf
+  fd
 )
 
 source $ZSH/oh-my-zsh.sh
