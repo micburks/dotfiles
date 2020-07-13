@@ -234,7 +234,12 @@ alias fzp="fzf --no-height --preview 'bat --style=numbers --color=always {}'"
 ### fzo         - fuzzy open files
 alias fzo='vi $(fzp)'
 ### c           - fuzzy cd
-alias c='cd $(fd --max-depth 5 --type d | fzf --preview "tree -C {} | head -200")'
+function c() {
+  local target=$(fd --max-depth 5 --type d | fzf --preview "tree -C {} | head -200")
+  if [[ "$target" != "" ]]; then
+    cd $target
+  fi
+}
 
 # nix
 ### ,           - run tool from nix-pkg without installing
