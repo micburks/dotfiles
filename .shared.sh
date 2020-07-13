@@ -217,11 +217,11 @@ export YVM_DIR=/Users/MICKEY/.yvm
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 ### fzp         - fuzzy preview files
-alias fzp="fzf --preview 'bat --style=numbers --color=always {}'"
+alias fzp="fzf --no-height --preview 'bat --style=numbers --color=always {}'"
 ### fzo         - fuzzy open files
 alias fzo='vi $(fzp)'
 ### fzc         - fuzzy cd
-alias fzc='cd $(fd --type d | fzf --preview "ls {}")'
+alias fzc='cd $(fd --type d | fzf --preview "tree -C {} | head -200")'
 
 # nix
 ### ,           - run tool from nix-pkg without installing
