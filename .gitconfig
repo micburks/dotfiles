@@ -1,5 +1,7 @@
 [user]
-	name = Mickey Burks
-	email = brks.mck@gmail.com
+  name = Mickey Burks
+  email = brks.mck@gmail.com
 [core]
-	excludesfile = /Users/MICKEY/.gitignore
+  excludesfile = /Users/MICKEY/.gitignore
+[alias]
+  unstage = reset HEAD --
