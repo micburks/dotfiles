@@ -1,10 +1,22 @@
+# -------------------------------
+#
+# Shell-agnostic configuration (hopefully)
+#
+# -------------------------------
+
+
+
 ### help        - print all help comments
 help() {
   awk -F'###' '/^###/ { print $2 }' ~/.shared.sh
 }
 
+
+
 # If machine specific setup
 [ -r ~/.machine-specific.sh ] && . ~/.machine-specific.sh
+
+
 
 # -------------------------------
 #
@@ -15,10 +27,11 @@ help() {
 [ "$(alias gl)" != "" ] && unalias gl
 [ "$(alias ga)" != "" ] && unalias ga
 alias g='git'
+# these are aliases so autocomplete works
 alias gs='git status'
 alias ga='git add'
 alias gd='git diff'
-function gb() { git branch } # function so can be used with "i"
+function gb() { git branch } # function so can be used with "i" utility
 alias gl='git log'
 alias gch='git checkout'
 alias gcm='git commit -m'
