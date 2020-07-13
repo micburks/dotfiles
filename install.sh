@@ -35,6 +35,9 @@ cp .tmux.conf ~
 cp .psqlrc ~
 cp alacritty.yml ~/.config/alacritty/alacritty.yml
 
+# zsh plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 # user scripts
 mkdir -p ~/scripts && cp -R scripts/ ~/scripts/
 

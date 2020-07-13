@@ -92,6 +92,7 @@ plugins=(
   git
   fzf
   fd
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
