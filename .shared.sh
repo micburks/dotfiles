@@ -137,6 +137,14 @@ function uu() {
   fi
 }
 
+### c           - fuzzy cd
+function c() {
+  local target=$(fd --max-depth 5 --type d | fzf --preview "tree -C {} | head -200")
+  if [[ "$target" != "" ]]; then
+    cd $target
+  fi
+}
+
 ### i           - interactively pipe first command to second command
 function i () {
   local get=$1;
@@ -233,13 +241,6 @@ export FZF_DEFAULT_COMMAND='fd --max-depth 5 --type f --hidden --follow --exclud
 alias fzp="fzf --no-height --preview 'bat --style=numbers --color=always {}'"
 ### fzo         - fuzzy open files
 alias fzo='vi $(fzp)'
-### c           - fuzzy cd
-function c() {
-  local target=$(fd --max-depth 5 --type d | fzf --preview "tree -C {} | head -200")
-  if [[ "$target" != "" ]]; then
-    cd $target
-  fi
-}
 
 # nix
 ### ,           - run tool from nix-pkg without installing
