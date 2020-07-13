@@ -157,16 +157,12 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export YVM_DIR=/Users/MICKEY/.yvm
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
 
-# autojump
 ### j           - autojump
 [[ -s /Users/MICKEY/.autojump/etc/profile.d/autojump.sh ]] && source /Users/MICKEY/.autojump/etc/profile.d/autojump.sh
 
-# fzf options
 ### fzf         - fuzzy find files
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --type f'
-
-# fuzzy find with colors
 ### fzp         - fuzzy preview files
 alias fzp="fzf --preview 'bat --style=numbers --color=always {}'"
 ### fzo         - fuzzy open files
