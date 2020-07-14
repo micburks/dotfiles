@@ -1,20 +1,16 @@
-# -------------------------------
-#
 # Shell-agnostic configuration (hopefully)
+
+
+
+# -------------------------------
+#
+# help
 #
 # -------------------------------
-
-
-
 ### help        - print all help comments
 help() {
   awk -F'###' '/^###/ { print $2 }' ~/.shared.sh
 }
-
-
-
-# If machine specific setup
-[ -r ~/.machine-specific.sh ] && . ~/.machine-specific.sh
 
 
 
@@ -26,17 +22,74 @@ help() {
 [ "$(alias gcm)" != "" ] && unalias gcm
 [ "$(alias gl)" != "" ] && unalias gl
 [ "$(alias ga)" != "" ] && unalias ga
+
+### g/git       - git
 alias g='git'
+
 # these are aliases so autocomplete works
 alias gs='git status'
 alias ga='git add'
 alias gd='git diff'
-function gb() { git branch } # function so can be used with "i" utility
+alias gb='git branch'
 alias gl='git log'
 alias gch='git checkout'
 alias gcm='git commit -m'
 alias gps='git push'
 alias gpl='git pull'
+
+### pr-checkout - interactively find pr and checkout that branch
+function pr-checkout() {
+  get-pr-number | xargs hub pr checkout
+}
+
+### pr-open     - interactively find pr and open in the browser
+function pr-open() {
+  get-pr-number | xargs hub pr show
+}
+
+### pr-release  - open `Release` PR in browser
+function pr-release() {
+  hub pr list | fzf -q Release -1 | extract-pr-number | xargs hub pr show
+}
+
+### browse      - open current branch or branch PR in GitHub
+function browse() {
+  # open current branch PR in GitHub
+  # if no PR, open current branch in GitHub 
+  # doesn't work for forks
+  local PR_URL=$(get-pr-url-for-branch)
+  if [[ -n $PR_URL ]] then
+    open $PR_URL
+  else
+    hub browse -- tree/$(get-branch-name)
+  fi
+}
+
+# utility functions
+
+# start interactive fuzzy find of current prs
+# return pr number of selected pr
+function get-pr-number() {
+  hub pr list | fzf | extract-pr-number
+}
+
+# input: tabular output of `hub pr list`
+# output: pr number
+function extract-pr-number() {
+  awk '{print substr($1,2)}'
+}
+
+# return
+# - url of open pr for current branch
+# - void otherwise
+function get-pr-url-for-branch() {
+  hub pr list --format='%H %U%n' | awk "\$1==\"$(get-branch-name)\" {print \$2}"
+}
+
+# return name of current branch
+function get-branch-name () {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
 
 
 
@@ -51,10 +104,40 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ### nX          - run node using specific version (8/10/12/14)
-alias n8='nvm exec 8'
-alias n10='nvm exec 10'
-alias n12='nvm exec 12'
-alias n14='nvm exec 14'
+alias n8='nvm exec 8 node'
+alias n10='nvm exec 10 node'
+alias n12='nvm exec 12 node'
+alias n14='nvm exec 14 node'
+
+### vn          - (v)irtual (n)ode - switch to compatible node/yarn versions
+alias vn='virtualnode'
+virtualnode () {
+  if [[ $(node -p -e "require('./package.json').engines") ]]; then
+    nodeengine_nodever=$(node -p -e "require('./package.json').engines.node")
+    echo $nodeengine_nodever
+    sanitized_nodever=$(echo $nodeengine_nodever | tr -d '\>\<\=' | cut -d' ' -f1)
+    if [[ $sanitized_nodever ]]; then
+      echo "Updating node from $(node -v) to $sanitized_nodever..."
+      nvm use $sanitized_nodever
+      #. ~/.nvm/nvm.sh use $sanitized_nodever
+    fi  
+    nodeengine_yarnver=$(node -p -e "require('./package.json').engines.yarn")
+    sanitized_yarnver=$(echo $nodeengine_yarnver | tr -d '\>\<\=' | cut -d' ' -f1) 
+    if [[ $sanitized_yarnver ]]; then
+      echo "Updating yarn from $(yarn -v) to $sanitized_yarnver..."       
+      #yvm install $sanitized_yarnver
+      yvm use $sanitized_yarnver
+      #. ~/.yvm/yvm.sh use $sanitized_yarnver
+    fi      
+  fi
+}
+
+# yarn
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# yvm
+export YVM_DIR=/Users/MICKEY/.yvm
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
 
 
 
@@ -120,20 +203,29 @@ function vim() {
   fi
 }
 
+### r/ranger    - ranger file explorer
+alias ranger='~/bin/ranger/ranger.py --cmd "set show_hidden=true"'
+alias r="ranger"
+
 
 
 # -------------------------------
 #
-# utils
+# ls
 #
 # -------------------------------
 # ls colors
 eval $(dircolors ~/.nix-profile/share/LS_COLORS)
 alias ls='ls --color=auto -F'
 
-### vn          - switch to compatible node/yarn versions
-alias vn='virtualnode'
 
+
+# -------------------------------
+#
+# change directories
+#
+# -------------------------------
+### uu          - (u)p (u)p - cd to root parent `git` directory
 function find_git_root() {
   # go to root directory of current git repo
   if [ -s ".git" ]; then
@@ -165,11 +257,89 @@ function c() {
   fi
 }
 
-### i           - interactively pipe first command to second command
+
+
+# -------------------------------
+#
+# fuzzy find
+#
+# -------------------------------
+### fzf         - fuzzy find files
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_COMMAND='fd --max-depth 5 --type f --hidden --follow --exclude .git'
+
+### fzp         - fuzzy preview files
+alias fzp="fzf --no-height --preview 'bat --style=numbers --color=always {}'"
+
+### fzo         - fuzzy open files
+alias fzo='vi $(fzp)'
+
+
+
+# -------------------------------
+#
+# copy/paste
+#
+# -------------------------------
+### copy FILE   - copy file contents
+function copy() {
+  cat $1 | pbcopy
+}
+
+### paste FILE  - destructively paste clipboard contents to file
+function paste() {
+  pbpaste > $1
+}
+
+
+
+# -------------------------------
+#
+# postgres
+#
+# -------------------------------
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin/
+export PGDATA=/Users/MICKEY/Library/Application\ Support/Postgres/var-10
+
+### pglog       - tail postgres logs
+alias pglog="tail -f /Users/MICKEY/Library/Application\ Support/Postgres/var-10/postgresql.log"
+
+
+
+# -------------------------------
+#
+# edit configuration
+#
+# -------------------------------
+# Edit and source bash in one command - useful for testing commands as you write
+### esh         - edit and source shared shell configuration
+alias esh="vi ~/.shared.sh && source ~/.shared.sh"
+### ezsh        - edit and source .zshrc configuration
+alias ezsh="vi ~/.zshrc && source ~/.zshrc"
+
+
+
+# -------------------------------
+#
+# external scripts
+#
+# -------------------------------
+# machine specific setup
+[ -r ~/.machine-specific.sh ] && . ~/.machine-specific.sh
+
+# user scripts
+export PATH="$HOME/bin:$HOME/machine-specific-scripts:$HOME/scripts:$PATH"
+
+
+
+# -------------------------------
+#
+# miscellaneous utilities
+#
+# -------------------------------
+### i | CMD     - use fzf/xargs to pipe stdin to another command
 function i () {
-  local get=$1;
-  shift;
-  $get | fzf | xargs $@
+  fzf | xargs "$@"
 }
 
 ### cl          - clear half of terminal
@@ -187,43 +357,6 @@ function lb () {
   vim ~/logbook/$(date '+%Y-%m-%d').md
 }
 
-### copy FILE   - copy file contents
-function copy() {
-  cat $1 | pbcopy
-}
-
-### paste FILE  - destructively paste clipboard contents to file
-function paste() {
-  pbpaste > $1
-}
-
-# If Mac
-if [ $(uname -s) = 'Darwin' ]; then
-  # Postgres config - Mac install of Postgres.App
-  #export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/{VERSION}/bin
-  #export PGDATA=/Users/MICKEY/Library/Application\ Support/Postgres/var-{VERSION}
-  #alias pglog='tail -f /Users/MICKEY/Library/Application\ Support/Postgres/var-{VERSION}/postgresql.log'
-
-  export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin/
-  export PGDATA=/Users/MICKEY/Library/Application\ Support/Postgres/var-10
-### pglog       - tail postgres logs
-  alias pglog="tail -f /Users/MICKEY/Library/Application\ Support/Postgres/var-10/postgresql.log"
-fi
-
-# source scripts
-source ~/scripts/virtualnode.sh
-source ~/scripts/pull-requests
-
-# Edit and source bash in one command - useful for testing commands as you write
-### esh         - edit and source shared shell configuration
-alias esh="vi ~/.shared.sh && source ~/.shared.sh"
-### ezsh        - edit and source .zshrc configuration
-alias ezsh="vi ~/.zshrc && source ~/.zshrc"
-
-# user scripts
-export PATH="$HOME/bin:$HOME/machine-specific-scripts:$HOME/scripts:$PATH"
-
-# show hidden files in finder
 ### showFiles   - fix mac finder for hidden files
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 
@@ -231,36 +364,17 @@ alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall 
 
 # -------------------------------
 #
-# 3rd party
+# miscellaneous 3rd party setup
 #
 # -------------------------------
-# Emacs
+# emacs
 alias emacs='/usr/local/bin/emacs'
 
 ### json        - pretty display json dump from stdin
 alias json='python -m json.tool'
 
-### r/ranger    - ranger file explorer
-alias ranger='~/bin/ranger/ranger.py --cmd "set show_hidden=true"'
-alias r="ranger"
-
-# yarn
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# yvm
-export YVM_DIR=/Users/MICKEY/.yvm
-[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
-
 ### j           - autojump
 [[ -s /Users/MICKEY/.autojump/etc/profile.d/autojump.sh ]] && source /Users/MICKEY/.autojump/etc/profile.d/autojump.sh
-
-### fzf         - fuzzy find files
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-export FZF_DEFAULT_COMMAND='fd --max-depth 5 --type f --hidden --follow --exclude .git'
-### fzp         - fuzzy preview files
-alias fzp="fzf --no-height --preview 'bat --style=numbers --color=always {}'"
-### fzo         - fuzzy open files
-alias fzo='vi $(fzp)'
 
 # nix
 ### ,           - run tool from nix-pkg without installing
