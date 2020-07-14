@@ -257,6 +257,11 @@ function c() {
   fi
 }
 
+### cpwd        - copy current working directory
+function cpwd() {
+  echo "cd $pwd" | pbcopy
+}
+
 
 
 # -------------------------------
