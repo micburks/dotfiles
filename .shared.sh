@@ -93,7 +93,10 @@ function vim() {
       [[ $file = -* ]] && continue
 
       if ! [[ -e $file ]]; then
-        printf 'vim wrapper ignored argument "%s" - No such file or directory\n' "$file" >&2
+        printf '[vim wrapper] ignored argument "%s" - no such file or directory\n' "$file" >&2
+        fail=1
+      elif [[ -d $file ]]; then
+        printf '[vim wrapper] ignored argument "%s" - refusing to open directory\n' "$file" >&2
         fail=1
       else
         filtered_vim_args+=( $file )
@@ -101,11 +104,15 @@ function vim() {
     done
 
     if (( fail )); then
-      echo "Non-existant files were filtered out - Use \""-n/--new"\" to create these files"
+      echo -e "[vim wrapper] filtered arguments - force default behavior by using \"--\e[4mn\e[0mew\"\n"
+      echo "  vim $@ -n"
     fi
 
     if [[ "$filtered_vim_args" == "" ]]; then
-      echo "No files to open"
+      if (( fail )); then
+        echo ""
+      fi
+      echo "[vim wrapper] no files to open"
     else
       command vim -p "${filtered_vim_args[@]}"
     fi
