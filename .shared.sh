@@ -226,17 +226,6 @@ alias ls='ls --color=auto -F'
 #
 # -------------------------------
 ### uu          - (u)p (u)p - cd to root parent `git` directory
-function find_git_root() {
-  # go to root directory of current git repo
-  if [ -s ".git" ]; then
-    pwd
-  else
-    cd ..
-    find_git_root
-  fi
-}
-
-### uu          - cd to root parent `git` directory
 function uu() {
   cd $(find_git_root)
 }
@@ -247,6 +236,16 @@ function uud() {
   local root=$(find_git_root)
   cd $cwd
   echo $root
+}
+
+function find_git_root() {
+  # go to root directory of current git repo
+  if [ -s ".git" ]; then
+    pwd
+  else
+    cd ..
+    find_git_root
+  fi
 }
 
 ### c           - fuzzy cd
