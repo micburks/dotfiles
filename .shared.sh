@@ -227,7 +227,7 @@ alias ls='ls --color=auto -F'
 # -------------------------------
 ### uu          - (u)p (u)p - cd to root parent `git` directory
 function uu() {
-  cd $(find_git_root)
+  find_git_root
 }
 
 ### uud         - uu (d)ry run - echo root parent `git` directory
@@ -238,8 +238,9 @@ function uud() {
   echo $root
 }
 
+# prints path at root of current `git` directory
+# contains side-effect of changing to root directory
 function find_git_root() {
-  # go to root directory of current git repo
   if [ -s ".git" ]; then
     pwd
   else
