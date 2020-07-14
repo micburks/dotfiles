@@ -110,6 +110,7 @@ function vim() {
 
     if [[ "$filtered_vim_args" == "" ]]; then
       if (( fail )); then
+        # extra space after previous log
         echo ""
       fi
       echo "[vim wrapper] no files to open"
@@ -133,15 +134,27 @@ alias ls='ls --color=auto -F'
 ### vn          - switch to compatible node/yarn versions
 alias vn='virtualnode'
 
-### uu          - cd to root parent `git` directory
-function uu() {
+function find_git_root() {
   # go to root directory of current git repo
   if [ -s ".git" ]; then
-    return
+    pwd
   else
     cd ..
-    uu
+    find_git_root
   fi
+}
+
+### uu          - cd to root parent `git` directory
+function uu() {
+  cd $(find_git_root)
+}
+
+### uud         - uu (d)ry run - echo root parent `git` directory
+function uud() {
+  local cwd=$(pwd)
+  local root=$(find_git_root)
+  cd $cwd
+  echo $root
 }
 
 ### c           - fuzzy cd
