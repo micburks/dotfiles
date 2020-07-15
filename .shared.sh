@@ -9,7 +9,11 @@
 # -------------------------------
 ### help        - print all help comments
 help() {
-  awk -F'###' '/^###/ { print $2 }' ~/.shared.sh
+  if [[ "$1" == "" ]]; then
+    awk -F'###' '/^###/ { print $2 }' ~/.shared.sh
+  else
+    awk -F'###' '/^###/ { print $2 }' ~/Code/oss/dotfiles/help/$1
+  fi
 }
 
 
