@@ -93,6 +93,7 @@ plugins=(
   fzf
   fd
   autojump
+  man
 )
 
 source $ZSH/oh-my-zsh.sh
