@@ -255,7 +255,7 @@ function find_git_root() {
 
 ### c           - fuzzy cd
 function c() {
-  local target=$(fd --max-depth 5 --type d | fzf --preview "tree -C {} | head -200")
+  local target=$(fd --max-depth 6 --type d | fzf --preview "tree -C {} | head -200")
   if [[ "$target" != "" ]]; then
     cd $target
   fi
@@ -275,7 +275,10 @@ function cpwd() {
 # -------------------------------
 ### fzf         - fuzzy find files
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-export FZF_DEFAULT_COMMAND='fd --max-depth 5 --type f --hidden --follow --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --max-depth 6 --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND='fd --max-depth 7 --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+
 
 ### fzp         - fuzzy preview files
 alias fzp="fzf --no-height --preview 'bat --style=numbers --color=always {}'"
