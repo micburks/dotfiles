@@ -1,3 +1,0 @@
-#!/bin/bash
-git shortlog -sn | awk '{sum+=$1} END {print sum}'
-# git shortlog -sn | awk '{print $1}' | /usr/bin/paste -sd+ - | bc

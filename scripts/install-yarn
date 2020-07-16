@@ -1,4 +1,0 @@
-#!/bin/bash
-if [[ $(which yarn) == "" ]]; then
-  curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version
-fi

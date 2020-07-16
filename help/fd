@@ -1,0 +1,44 @@
+###
+### fd
+
+
+#-----------------------------------
+#
+# Basic
+#
+#-----------------------------------
+###
+### fd                  - Output all files
+### fd PATTERN [PATH]   - Search for files matching PATTERN in optional PATH
+
+#-----------------------------------
+#
+# Limit results
+#
+#-----------------------------------
+###
+### fd -t TYPE          - Limit search to file type (e.g. (f)ile, (d)ir, e(x)ecutable)
+### fd -e EXT           - Limit search to file extension EXT
+### fd --(H)idden       - Include hidden files
+### fd -d               - Max depth
+### fd -X               - Limit to X results
+### fd -E PATTERN       - Exclude files/directories that match PATTERN
+
+#-----------------------------------
+#
+# Execute command
+#
+#-----------------------------------
+###
+### fd -x COMMAND       - Execute COMMAND for each result (placeholders: {}, {/}, {//}, {.}, {/.})
+### fd -X COMMAND       - Execute batch COMMAND for entire set of results (same placeholders)
+
+#-----------------------------------
+#
+# Examples
+#
+#-----------------------------------
+###
+### examples
+###
+### fd PATTERN -t f -X vim -p {}    - Open matching files with vim

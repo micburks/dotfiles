@@ -1,0 +1,59 @@
+###
+### ag
+
+#-----------------------------------
+#
+# Basic
+#
+#-----------------------------------
+###
+### ag (P)ATTERN        - Search current directory
+### ag P (D)IRECTORY    - Search in supplied directory
+
+#-----------------------------------
+#
+# How to search
+#
+#-----------------------------------
+###
+### ag -G REGEX         - Only search files matching PATTERN
+### ag -s               - Case sensitive (Smart-case on by default)
+### ag -Q               - Search for PATTERN literally, do not parse as regex
+
+#-----------------------------------
+#
+# Output
+#
+#-----------------------------------
+### 
+### ag --no-group       - Compact output
+### ag -l               - Output file name only
+### ag --(c)ount        - Output match count per file only
+
+###
+### ag --depth X        - Max search depth
+### ag -m X             - Max search results
+
+###
+### ag --(B)efore X     - Lines before (default: 2)
+### ag --(A)fter X      - Lines after (default: 2)
+### ag --(C)ontext X    - Lines before and after (default: 2)
+
+#-----------------------------------
+#
+# What to search
+#
+#-----------------------------------
+###
+### ag --hidden         - Search hidden files
+### ag --ignore D       - Ignore files/directories matching this pattern
+### ag -U               - Skip VCS ignore files (e.g. .gitignore)
+
+#-----------------------------------
+#
+# Examples
+#
+#-----------------------------------
+###
+### examples
+###

@@ -88,7 +88,13 @@ PROMPT='
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  git
+  fzf
+  fd
+  autojump
+  man
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -127,6 +133,5 @@ setopt nosharehistory
 export YVM_DIR=/Users/MICKEY/.yvm
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
 
-# tabtab source for electron-forge package
-# uninstall by removing these lines or running `tabtab uninstall electron-forge`
-[[ -f /Users/MICKEY/Code/oss/mark/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /Users/MICKEY/Code/oss/mark/node_modules/tabtab/.completions/electron-forge.zsh
+# fzf autocomplete for zsh
+export FZF_BASE=/Users/MICKEY/.nix-profile/bin/fzf
