@@ -48,3 +48,12 @@
 ### ag --hidden         - Search hidden files
 ### ag --ignore D       - Ignore files/directories matching this pattern
 ### ag -U               - Skip VCS ignore files (e.g. .gitignore)
+
+#-----------------------------------
+#
+# Examples
+#
+#-----------------------------------
+###
+### examples
+###
