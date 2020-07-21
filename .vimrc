@@ -1,3 +1,8 @@
+
+" Custom help
+" ### help      - print this help
+nnoremap help :echo system("awk -F'\" ###' '/^\" ###/ { print $2 }' ~/.vimrc")<CR>
+
 " show current line number
 set number
 " changes Vim’s line number column to display how far away each line is from the current one
@@ -8,9 +13,6 @@ set relativenumber
 " mapping on insert and command line modes
 " set paste
 syntax on
-
-" JSX highlighting in JS files
-let g:jsx_ext_required = 0
 
 " Indenting
 " set autoindent      " Match indents on new lines
@@ -25,40 +27,46 @@ set nocompatible
 " Don't look for modelines
 set modelines=0
 
+" -------------------
 
+" General help info
+"
+" -------------------
+" ###
+" ### ,         - leader
 " Remap leader
 let mapleader = ","
 
-" Paste toggle
-set pastetoggle=<leader>v
+" Buffers
+" ###
+" ### :e        - edit file
+" ### :new      - new buffer
+" ### :w NAME   - save buffer as NAME
+" ### :ls       - list buffers
 
 " One handed vim exit - particularly for use in ranger
 nnoremap ;; :q<Enter>
 
+" Copying
+" ###
+" ### ,c        - Copy mode (remove number settings)
+nnoremap <leader>c :setlocal number! relativenumber!<cr>
+" ### ,y        - Copy entire file
+nnoremap <leader>y :!cat "%" \| pbcopy<cr>q
+" ### ,v        - Toggle 'paste' mode
+set pastetoggle=<leader>v
+
 " Set copy buffer to 1000 lines
 set viminfo='20,<1000
 
-" Copy mode - toggle number settings
-nnoremap <leader>c :setlocal number! relativenumber!<cr>
-
-" Copy entire file
-nnoremap <leader>y :!cat "%" \| pbcopy<cr>q
-
-" Easy quit
-" qwerty 
-" nnoremap df :q
-" dvorak 
-" nnoremap eu :q
-
 " Quick way to add empty lines
+" ### ,O        - New line above without entering insert
 nnoremap <leader>O O<ESC>
+" ### ,o        - New line below without entering insert
 nnoremap <leader>o o<ESC>
 
-" For most filetypes
-" <leader>d comment single line
-" <leader>f comment multiple selected lines
-
 " Then <leader>s commented line to add long lines above and below for marking
+" ### ,s        - Add long '---' lines before/after current line
 nnoremap <leader>s yyPVr-yyjp
 
 set tabstop=2
@@ -96,7 +104,7 @@ set laststatus=2
 
 "tells Vim to create <FILENAME>.un~ 'undo' files whenever you edit a file
 " set undofile
-"   End 
+"   End
 
 " What were these for?
 "nnoremap / /\v
@@ -117,7 +125,6 @@ set hlsearch
 
 " Use "//" to search for currently selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
-
 
 " Clear highlighting
 nnoremap <leader><space> :noh<cr>
@@ -143,9 +150,6 @@ vnoremap ; :
 imap jk <Esc>
 imap Jk <Esc>
 imap JK <Esc>
-
-" dvorak
-" imap ht <Esc>
 
 " Visual line nav, not real line nav
 " If you wrap lines, vim by default won't let you move down one line to the wrapped portion. This fixes that.
@@ -190,10 +194,6 @@ au BufRead,BufNewFile *.ts setfiletype javascript
 " Associate *.less with css filetype
 au BufRead,BufNewFile *.less setfiletype css
 
-" Vim-Less (Vim syntax for LESS)
-" nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
-
-
 " visual bells off - important for nordisk theme
 set belloff=all
 
@@ -206,12 +206,20 @@ autocmd BufEnter *.re colorscheme dracula
 " gutentags
 call pathogen#helptags()
 
+" JSX highlighting in JS files
+let g:jsx_ext_required = 0
+
 " Ale completion is no good
 let g:ale_completion_enabled = 1
 set completeopt=menu,menuone,preview,noselect,noinsert
+" ###
+" ### go        - go to definition
 nnoremap go :ALEGoToDefinition<CR>
+" ### gb        - (g)o (b)ack
 nnoremap gb :pop<CR>
+" ### fix       - use ale to auto-fix lint
 nnoremap fix :ALEFix<CR>
+" ### more      - show lint/type issues with current line
 nnoremap more :ALEDetail<CR>
 let g:ale_set_highlights = 0
 " let g:ale_fix_on_save = 1
@@ -242,6 +250,8 @@ let g:js_file_import_strip_file_extension = 0
 " neoterm
 let g:neoterm_autoinsert = 0 " default
 let g:neoterm_default_mod = 'rightbelow'
+" ###
+" ### ,t        - Start neoterm command
 nnoremap <leader>t :T 
 
 " Colors
@@ -249,7 +259,6 @@ nnoremap <leader>t :T
 colorscheme nordisk
 " colorscheme iceberg
 colorscheme gruvbox
-
 
 " Put these lines at the very end of your vimrc file.
 packloadall
