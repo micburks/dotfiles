@@ -42,8 +42,11 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 mkdir -p ~/scripts && cp -R scripts/ ~/scripts/
 
 # vim plugins
-cp .vim/bundle/install-plugins.bash ~/.vim/bundle/
-cd ~/.vim/bundle/ && ./install-plugins.bash
+# vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#cp .vim/bundle/install-plugins.bash ~/.vim/bundle/
+#cd ~/.vim/bundle/ && ./install-plugins.bash
 
 # yvm
 curl -s https://raw.githubusercontent.com/tophat/yvm/master/scripts/install.js | node
