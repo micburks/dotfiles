@@ -269,7 +269,28 @@ Plug 'junegunn/goyo.vim'
 " ### :Limelight    - Toggle limelight
 Plug 'junegunn/limelight.vim'
 
+" spell checking
+Plug 'kamykn/spelunker.vim'
+
+" End of plugins
 call plug#end()
+
+
+
+" ----------------------------------------------------------------------------
+"
+" ###
+" ### --- spelunker ---
+"
+" ----------------------------------------------------------------------------
+set nospell
+
+" ### Zl            - Suggest correction for current word
+" ### ZL            - Suggest correction for all occurrences of current word
+" ### ZN            - (N)ext misspelled word
+" ### ZP            - (P)revious misspelled word
+" ### ZC            - (C)orrect all occurrences of current misspelled word
+" ### ZT            - (T)oggle spelunker
 
 
 
