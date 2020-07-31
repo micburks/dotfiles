@@ -199,7 +199,7 @@ noremap k gk
 " ----------------------------------------------------------------------------
 "
 " ###
-" ### --- Plugins ---
+" ### --- vim-plug ---
 "
 " ----------------------------------------------------------------------------
 " ### :PlugInstall  - Install plugins from ~/.vimrc
@@ -213,7 +213,7 @@ Plug 'cocopon/iceberg.vim'
 Plug 'morhetz/gruvbox'
 
 " utils
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'preservim/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -266,16 +266,61 @@ Plug 'dense-analysis/ale'
 " Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 
 " markdown
-" ### :Goyo         - Toggle goyo
-Plug 'junegunn/goyo.vim'
-" ### :Limelight    - Toggle limelight
-Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim', { 'for': ['markdown', 'text'] }
+Plug 'junegunn/limelight.vim', { 'for': ['markdown', 'text'] }
 
 " spell checking
-Plug 'kamykn/spelunker.vim'
+Plug 'kamykn/spelunker.vim', { 'on': 'Spelling' }
 
 " End of plugins
 call plug#end()
+
+
+
+" ----------------------------------------------------------------------------
+"
+" ###
+" ### --- goyo/limelight ---
+"
+" ----------------------------------------------------------------------------
+" ### :Goyo         - Toggle goyo
+" TODO: Figure out what is wrong with TERM in alacritty
+" ### :Limelight    - Toggle limelight
+
+
+
+" ----------------------------------------------------------------------------
+"
+" ###
+" ### --- easymotion ---
+"
+" ----------------------------------------------------------------------------
+" ### ,,<MOVE>      - easymotion: jump for any movement
+
+
+
+" ----------------------------------------------------------------------------
+"
+" ###
+" ### --- splitjoin ---
+"
+" ----------------------------------------------------------------------------
+" ### gS            - splitjoin: 1 -> many lines
+" ### gJ            - splitjoin: many -> 1 line
+
+
+
+" ----------------------------------------------------------------------------
+"
+" ###
+" ### --- surround ---
+" - Text object selection
+" ### '"`[({<wWsbBpt
+"
+" ----------------------------------------------------------------------------
+" ### ys<1><2>      - (y)ou (s)urround - add surround
+" ### cs<1><2>      - (c)hange (s)urround
+" ### ds<1>         - (d)elete (s)urround
 
 
 
@@ -415,10 +460,10 @@ nnoremap <leader>t :T
 map <Tab> :NERDTreeToggle<CR>
 
 " ### ,<TAB>[hjkl]  - Move to corresponding split
-map <Leader><Tab>l  <C-w>l
-map <Leader><Tab>h  <C-w>h
-map <Leader><Tab>k  <C-w>k
-map <Leader><Tab>j  <C-w>j
+map <leader><Tab>l  <C-w>l
+map <leader><Tab>h  <C-w>h
+map <leader><Tab>k  <C-w>k
+map <leader><Tab>j  <C-w>j
 
 " Open NERD tree automatically with `vim`
 autocmd StdinReadPre * let s:std_in=1
