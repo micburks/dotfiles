@@ -7,7 +7,7 @@
 # help
 #
 # -------------------------------
-### help        - print all help comments
+### help        - print all help comments or help for specific binaries (e.g. ag, fd, git, etc.)
 help() {
   if [[ "$1" == "" ]]; then
     awk -F'###' '/^###/ { print $2 }' ~/.shared.sh
@@ -349,7 +349,7 @@ export PATH="$HOME/bin:$HOME/machine-specific-scripts:$HOME/scripts:$PATH"
 # miscellaneous utilities
 #
 # -------------------------------
-### i | CMD     - use fzf/xargs to pipe stdin to another command
+### CMD | i CMD - use fzf/xargs to pipe stdin to another command
 function i () {
   fzf | xargs "$@"
 }
