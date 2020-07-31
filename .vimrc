@@ -219,6 +219,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
+Plug 'andrewradev/splitjoin.vim'
 
 " terminal integration
 " Plug 'kassio/neoterm'
