@@ -1,7 +1,8 @@
 
 " Custom help
-" ### help          - print this help
-nnoremap help :echo system("awk -F'\" ###' '/^\" ###/ { print $2 }' ~/.vimrc")<CR>
+" ### :Help          - print this help
+command! -nargs=? -bar -bang Help echo system("awk -F'\" ###' '/^\" ###/ { print $2 }' ~/.vimrc")
+
 
 " ----------------------------------------------------------------------------
 
@@ -356,11 +357,22 @@ nnoremap go :ALEGoToDefinition<CR>
 " ### gb            - (g)o (b)ack
 nnoremap gb :pop<CR>
 
-" ### fix           - use ale to auto-fix lint
-nnoremap fix :ALEFix<CR>
+" ### ,p            - previous error
+nmap <leader>p <Plug>(ale_previous_wrap)
 
-" ### more          - show lint/type issues with current line
-nnoremap more :ALEDetail<CR>
+" ### ,n            - next error
+nmap <leader>n <Plug>(ale_next_wrap)
+
+" ### ,<Enter>      - show hover details
+nmap <leader><Enter> <Plug>(ale_hover)
+
+" ### :Fix          - use ale to auto-fix lint
+" Copied from ale source code - called Fix rather than ALEFix
+command! -bar -nargs=* -complete=customlist,ale#fix#registry#CompleteFixers Fix :call ale#fix#Fix(bufnr(''), '', <f-args>)
+
+" ### :More         - show lint/type issues with current line
+" Copied from ale source code - called More rather than ALEDetail
+command! -bar More :call ale#cursor#ShowCursorDetail()
 
 let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow-language-server'],
