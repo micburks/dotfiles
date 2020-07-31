@@ -286,6 +286,11 @@ alias fzp="fzf --no-height --preview 'bat --style=numbers --color=always {}'"
 ### fzo         - fuzzy open files
 alias fzo='vi $(fzp)'
 
+### smth        - find some file somewhere
+function smth() {
+  fd . ~/Code -H -d 9 -E node_modules | fzf
+}
+
 
 
 # -------------------------------
