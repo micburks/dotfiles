@@ -270,7 +270,7 @@ Plug 'junegunn/goyo.vim', { 'for': ['markdown', 'text'] }
 Plug 'junegunn/limelight.vim', { 'for': ['markdown', 'text'] }
 
 " spell checking
-Plug 'kamykn/spelunker.vim', { 'on': 'Spelling' }
+Plug 'kamykn/spelunker.vim'
 
 " End of plugins
 call plug#end()
@@ -331,6 +331,11 @@ call plug#end()
 "
 " ----------------------------------------------------------------------------
 set nospell
+
+" Initially off
+" spelunker drastically reduces performance when opening large files
+let g:enable_spelunker_vim = 0
+
 
 " ### Zl            - Suggest correction for current word
 " ### ZL            - Suggest correction for all occurrences of current word
