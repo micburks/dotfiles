@@ -10,7 +10,7 @@
 ### help        - print all help comments or help for specific binaries (e.g. ag, fd, git, etc.)
 help() {
   if [[ "$1" == "" ]]; then
-    awk -F'###' '/^###/ { print $2 }' ~/.shared.sh
+    awk -F'###' '/^###/ { print $2 }' ~/.shared.sh | sort
   else
     awk -F'###' '/^###/ { print $2 }' ~/Code/oss/dotfiles/help/$1
   fi
