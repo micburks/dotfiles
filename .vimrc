@@ -217,9 +217,12 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'preservim/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'andrewradev/splitjoin.vim'
+
+" movement
+Plug 'easymotion/vim-easymotion'
+Plug 'unblevable/quick-scope'
 
 " terminal integration
 " Plug 'kassio/neoterm'
@@ -463,7 +466,8 @@ let g:jsx_ext_required = 0
 " Ale completion is no good
 let g:ale_completion_enabled = 1
 
-let g:ale_set_highlights = 0
+" Ale warning highlights
+let g:ale_set_highlights = 1
 
 let g:js_file_import_strip_file_extension = 0
 
@@ -485,10 +489,12 @@ nmap <leader><Enter> <Plug>(ale_hover)
 " ### :Fix          - use ale to auto-fix lint
 " Copied from ale source code - called Fix rather than ALEFix
 command! -bar -nargs=* -complete=customlist,ale#fix#registry#CompleteFixers Fix :call ale#fix#Fix(bufnr(''), '', <f-args>)
+nmap <leader>gf :Fix<Enter>
 
 " ### :More         - show lint/type issues with current line
 " Copied from ale source code - called More rather than ALEDetail
 command! -bar More :call ale#cursor#ShowCursorDetail()
+nmap <leader>gm :More<Enter>
 
 let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow-language-server'],
