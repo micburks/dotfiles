@@ -265,7 +265,7 @@ function c() {
 
 ### cpwd        - copy current working directory
 function cpwd() {
-  echo "cd $pwd" | pbcopy
+  echo "cd $(pwd)" | pbcopy
 }
 
 
