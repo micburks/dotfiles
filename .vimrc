@@ -277,6 +277,32 @@ call plug#end()
 
 
 
+
+" ----------------------------------------------------------------------------
+"
+" --- Colors ---
+"
+" ----------------------------------------------------------------------------
+" Enable true color
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+" colorscheme gruvbox
+" colorscheme dracula
+colorscheme nordisk
+" colorscheme iceberg
+" --- Note ---
+"
+" All settings that change highlights must come after colorscheme settings
+"
+" ------------
+hi ALEError term=reverse cterm=underline ctermfg=0 ctermbg=3 guifg=#d18a75 guibg=bg
+hi link SpelunkerSpellBad SpellBad
+
+
 " ----------------------------------------------------------------------------
 "
 " ###
@@ -476,18 +502,6 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 let NERDTreeShowHidden=1
-
-
-
-" ----------------------------------------------------------------------------
-"
-" --- Colors ---
-"
-" ----------------------------------------------------------------------------
-" colorscheme dracula
-colorscheme nordisk
-" colorscheme iceberg
-" colorscheme gruvbox
 
 
 

@@ -49,14 +49,14 @@
 
 all bindings begin with `C-b`
 
-##### sessions
+### sessions
 
 - `d` - detach from session
 - `s` - list-sessions
 - `$` - rename current session
 
 
-##### windows
+### windows
 
 - `c` - create new window
 - `&` - kill current window
@@ -66,7 +66,7 @@ all bindings begin with `C-b`
 - `p` - move to previous window
 
 
-##### panes
+### panes
 
 - `|` - split pane vertically (personally remapped)
 - `-` - split pane horizontally (personally remapped)
