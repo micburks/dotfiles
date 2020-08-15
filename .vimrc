@@ -127,6 +127,23 @@ set hlsearch
 " ### //            - Search for currently selected text (all characters)
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
+
+
+" ----------------------------------------------------------------------------
+"
+" ###
+" ### --- Folds ---
+"
+" ----------------------------------------------------------------------------
+set fdm=syntax
+" ### :set fdm      - set fold method [manual, syntax, indent]
+" ### zo            - (o)pen fold
+" ### zr            - open all folds one level (R for all levels)
+" ### zc            - (c)lose fold
+" ### zm            - close all folds one level (M for all levels)
+
+
+
 " ----------------------------------------------------------------------------
 "
 " ###
