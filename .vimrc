@@ -386,10 +386,16 @@ autocmd! User GoyoLeave call <SID>goyo_leave()
 " ----------------------------------------------------------------------------
 "
 " ###
-" ### --- easymotion ---
+" ### --- movement ---
 "
 " ----------------------------------------------------------------------------
-" ### ,,<MOVE>      - easymotion: jump for any movement
+" Switch 0 and ^
+" Go to the first non-blank character of a line
+noremap 0 ^
+" Just in case you need to go to the very beginning of a line
+noremap ^ 0
+
+" ### \\<MOVE>      - easymotion: jump for any movement
 
 
 
