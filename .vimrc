@@ -4,15 +4,23 @@
 command! -nargs=? -bar -bang Help echo system("awk -F'\" ###' '/^\" ###/ { print $2 }' ~/.vimrc")
 
 
+" TODO - better scheme for nmap
+" <leaderfX for general things
+" <leader>gX for syntax things
+" idk
+
 " ----------------------------------------------------------------------------
 
 " ###
 " ### --- General ---
 "
 " ----------------------------------------------------------------------------
-" ### ,             - leader
+" ### \             - leader
 " Remap leader
-let mapleader = ","
+" let mapleader = ","
+
+" ### \q           - leader
+nnoremap <leader>q :tabf 
 
 " show current line number
 set number
@@ -131,7 +139,7 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " ### :ls           - list buffers
 
 " One handed vim exit - particularly for use in ranger
-nnoremap ;; :q<Enter>
+" nnoremap ;; :q<Enter>
 
 
 
@@ -141,28 +149,28 @@ nnoremap ;; :q<Enter>
 " ### --- Copy/Paste ---
 "
 " ----------------------------------------------------------------------------
-" ### ,c            - Copy mode (remove number settings)
+" ### \c            - Copy mode (remove number settings)
 nnoremap <leader>c :setlocal number! relativenumber!<cr>
 
-" ### ,y            - Copy entire file
-nnoremap <leader>y :!cat "%" \| pbcopy<cr>q
+" ### \y            - Copy entire file
+nnoremap <leader>y :!cat "%" \| pbcopy<cr>
 
 " `set paste` ruins everything
 " it disables a bunch of things including insert mapping and command line modes
-" ### ,v            - Toggle 'paste' mode
+" ### \v            - Toggle 'paste' mode
 set pastetoggle=<leader>v
 
 " Set copy buffer to 1000 lines
 set viminfo='20,<1000
 
 " Quick way to add empty lines
-" ### ,O            - New line above without entering insert
+" ### \O            - New line above without entering insert
 nnoremap <leader>O O<ESC>
-" ### ,o            - New line below without entering insert
+" ### \o            - New line below without entering insert
 nnoremap <leader>o o<ESC>
 
 " Then <leader>s commented line to add long lines above and below for marking
-" ### ,s            - Add same length '---' lines before/after current line
+" ### \s            - Add same length '---' lines before/after current line
 nnoremap <leader>s yyPVr-yyjp
 
 
@@ -179,14 +187,14 @@ nnoremap <tab> %
 vnoremap <tab> %
 
 " So we don't have to press shift when we want to get into command mode
-nnoremap ; :
-vnoremap ; :
+" nnoremap ; :
+" vnoremap ; :
 
 " So we don't have to reach for escape to leave insert mode
 " qwerty
-imap jk <Esc>
-imap Jk <Esc>
-imap JK <Esc>
+" imap jk <Esc>
+" imap Jk <Esc>
+" imap JK <Esc>
 
 " Visual line nav, not real line nav
 " If you wrap lines, vim by default won't let you move down one line to the
@@ -477,13 +485,13 @@ nnoremap go :ALEGoToDefinition<CR>
 " ### gb            - (g)o (b)ack
 nnoremap gb :pop<CR>
 
-" ### ,p            - previous error
+" ### \p            - previous error
 nmap <leader>p <Plug>(ale_previous_wrap)
 
-" ### ,n            - next error
+" ### \n            - next error
 nmap <leader>n <Plug>(ale_next_wrap)
 
-" ### ,<Enter>      - show hover details
+" ### \<Enter>      - show hover details
 nmap <leader><Enter> <Plug>(ale_hover)
 
 " ### :Fix          - use ale to auto-fix lint
@@ -521,7 +529,7 @@ let g:neoterm_autoinsert = 0 " default
 
 let g:neoterm_default_mod = 'rightbelow'
 
-" ### ,t            - Start neoterm command
+" ### \t            - Start neoterm command
 nnoremap <leader>t :T 
 
 
@@ -535,7 +543,7 @@ nnoremap <leader>t :T
 " ### <TAB>         - Open NERD tree
 map <Tab> :NERDTreeToggle<CR>
 
-" ### ,<TAB>[hjkl]  - Move to corresponding split
+" ### \<TAB>[hjkl]  - Move to corresponding split
 map <leader><Tab>l  <C-w>l
 map <leader><Tab>h  <C-w>h
 map <leader><Tab>k  <C-w>k
