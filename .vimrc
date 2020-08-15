@@ -20,7 +20,7 @@ command! -nargs=? -bar -bang Help echo system("awk -F'\" ###' '/^\" ###/ { print
 " let mapleader = ","
 
 " ### \q           - leader
-nnoremap <leader>q :tabf 
+nnoremap <leader>q :tabf ~/.vimrc
 
 " show current line number
 set number
@@ -142,6 +142,12 @@ set fdm=syntax
 " ### zc            - (c)lose fold
 " ### zm            - close all folds one level (M for all levels)
 
+" Start with 1 level unfolded
+autocmd Syntax json normal zr
+
+" Start with 1 level unfolded
+autocmd Syntax conf setlocal fdm=indent
+
 
 
 " ----------------------------------------------------------------------------
@@ -236,6 +242,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'kamwitsta/nordisk'
 Plug 'cocopon/iceberg.vim'
 Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'pgavlin/pulumi.vim'
+Plug 'jnurmine/Zenburn'
+
 
 " utils
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -319,15 +329,19 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+set background=dark
+" ### colo ARG      - colorscheme [gruvbox,dracula,iceberg,nordisk,pulumi,zenburn]
+
 " colorscheme gruvbox
 " colorscheme dracula
-colorscheme nordisk
+" colorscheme nordisk
 " colorscheme iceberg
-" --- Note ---
+colorscheme pulumi
+" colorscheme zenburn
+
 "
-" All settings that change highlights must come after colorscheme settings
+" --- Note --- All settings that change highlights must come after colorscheme settings
 "
-" ------------
 hi ALEError term=reverse cterm=underline ctermfg=0 ctermbg=3 guifg=#d18a75 guibg=bg
 hi link SpelunkerSpellBad SpellBad
 
@@ -467,9 +481,10 @@ let g:enable_spelunker_vim = 0
 " --- Indent guides ---
 "
 " ----------------------------------------------------------------------------
-" let g:indent_guides_auto_colors = 0
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray   ctermbg=0
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=8
+" Just get rid of this. It's overkill
+" let g:indent_guides_auto_colors = 1
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray   ctermbg=0
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven term=reverse
 " autocmd VimEnter * IndentGuidesEnable
 
 
@@ -533,6 +548,9 @@ nmap <leader>n <Plug>(ale_next_wrap)
 
 " ### \<Enter>      - show hover details
 nmap <leader><Enter> <Plug>(ale_hover)
+
+" ### \gg           - Reformat file
+nmap <leader>gg mggg=G`g
 
 " ### :Fix          - use ale to auto-fix lint
 " Copied from ale source code - called Fix rather than ALEFix
