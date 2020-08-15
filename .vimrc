@@ -296,6 +296,7 @@ Plug 'dense-analysis/ale'
 " markdown
 Plug 'junegunn/goyo.vim', { 'for': ['markdown', 'text'] }
 Plug 'junegunn/limelight.vim', { 'for': ['markdown', 'text'] }
+Plug 'SidOfc/mkdx', { 'for': ['markdown'] }
 
 " spell checking
 Plug 'kamykn/spelunker.vim'
@@ -414,6 +415,22 @@ autocmd! User GoyoLeave call <SID>goyo_leave()
 " ### ys<1><2>      - (y)ou (s)urround - add surround
 " ### cs<1><2>      - (c)hange (s)urround
 " ### ds<1>         - (d)elete (s)urround
+
+
+
+" ----------------------------------------------------------------------------
+"
+" --- mkdx ---
+"
+" ----------------------------------------------------------------------------
+let g:mkdx#settings     = { 'highlight': { 'enable': 1 },
+      \ 'enter': { 'shift': 1 },
+      \ 'links': { 'external': { 'enable': 1 } },
+      \ 'toc': { 'text': 'Table of Contents', 'update_on_write': 1 },
+      \ 'fold': { 'enable': 1 } }
+let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
+" plugin which unfortunately interferes with mkdx list indentation.
+
 
 
 
