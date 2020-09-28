@@ -19,8 +19,8 @@ command! -nargs=? -bar -bang Help echo system("awk -F'\" ###' '/^\" ###/ { print
 " Remap leader
 " let mapleader = ","
 
-" ### \q           - leader
-nnoremap <leader>q :tabf ~/.vimrc
+" ### \q            - open vimrc in tab
+nnoremap <leader>q :tabf ~/.vimrc<Enter>
 
 " show current line number
 set number
@@ -246,23 +246,20 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'pgavlin/pulumi.vim'
 Plug 'jnurmine/Zenburn'
 
+" highlights
+Plug 'RRethy/vim-illuminate' " highlight word occurrences
+Plug 'airblade/vim-gitgutter' " git
+Plug 'kamykn/spelunker.vim' " spell checking
 
-" utils
+" utilities
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'preservim/nerdcommenter'
-Plug 'airblade/vim-gitgutter'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-surround'
 Plug 'andrewradev/splitjoin.vim'
 
 " movement
 Plug 'easymotion/vim-easymotion'
 Plug 'unblevable/quick-scope'
-
-" terminal integration
-" Plug 'kassio/neoterm'
-" git clone https://github.com/kassio/neoterm
-" commented out - tmux works fine for this
 
 " js
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
@@ -308,9 +305,6 @@ Plug 'junegunn/goyo.vim', { 'for': ['markdown', 'text'] }
 Plug 'junegunn/limelight.vim', { 'for': ['markdown', 'text'] }
 Plug 'SidOfc/mkdx', { 'for': ['markdown'] }
 
-" spell checking
-Plug 'kamykn/spelunker.vim'
-
 " End of plugins
 call plug#end()
 
@@ -344,6 +338,7 @@ colorscheme pulumi
 "
 hi ALEError term=reverse cterm=underline ctermfg=0 ctermbg=3 guifg=#d18a75 guibg=bg
 hi link SpelunkerSpellBad SpellBad
+hi illuminatedWord cterm=underline gui=underline
 
 
 " ----------------------------------------------------------------------------
@@ -478,19 +473,6 @@ let g:enable_spelunker_vim = 0
 
 " ----------------------------------------------------------------------------
 "
-" --- Indent guides ---
-"
-" ----------------------------------------------------------------------------
-" Just get rid of this. It's overkill
-" let g:indent_guides_auto_colors = 1
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray   ctermbg=0
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven term=reverse
-" autocmd VimEnter * IndentGuidesEnable
-
-
-
-" ----------------------------------------------------------------------------
-"
 " --- File types ---
 "
 " ----------------------------------------------------------------------------
@@ -534,30 +516,33 @@ let g:ale_set_highlights = 1
 
 let g:js_file_import_strip_file_extension = 0
 
-" ### go            - go to definition
-nnoremap go :ALEGoToDefinition<CR>
+" ### \gt           - toggle ale
+nnoremap <leader>gt :ALEToggle<CR>
 
-" ### gb            - (g)o (b)ack
-nnoremap gb :pop<CR>
+" ### \go           - (g)(o) to definition
+nnoremap <leader>go :ALEGoToDefinition<CR>
 
-" ### \p            - previous error
-nmap <leader>p <Plug>(ale_previous_wrap)
+" ### \gb           - (g)o (b)ack
+nnoremap <leader>gb :pop<CR>
 
-" ### \n            - next error
-nmap <leader>n <Plug>(ale_next_wrap)
+" ### \gp           - previous error
+nnoremap <leader>gp <Plug>(ale_previous_wrap)
+
+" ### \gn           - next error
+nnoremap <leader>gn <Plug>(ale_next_wrap)
 
 " ### \<Enter>      - show hover details
-nmap <leader><Enter> <Plug>(ale_hover)
+nnoremap <leader><Enter> <Plug>(ale_hover)
 
-" ### \gg           - Reformat file
-nmap <leader>gg mggg=G`g
+" ### \gg           - Re-indent file
+nnoremap <leader>gg mggg=G`g
 
-" ### :Fix          - use ale to auto-fix lint
+" ### \gf           - use ale to auto-fix lint
 " Copied from ale source code - called Fix rather than ALEFix
 command! -bar -nargs=* -complete=customlist,ale#fix#registry#CompleteFixers Fix :call ale#fix#Fix(bufnr(''), '', <f-args>)
 nmap <leader>gf :Fix<Enter>
 
-" ### :More         - show lint/type issues with current line
+" ### \gm           - show lint/type issues with current line
 " Copied from ale source code - called More rather than ALEDetail
 command! -bar More :call ale#cursor#ShowCursorDetail()
 nmap <leader>gm :More<Enter>
@@ -574,21 +559,6 @@ let g:ale_fixers = {
 \ 'css': ['prettier'],
 \ 'typescript': ['prettier', 'tslint'],
 \}
-
-
-
-" ----------------------------------------------------------------------------
-"
-" ###
-" ### --- neoterm ---
-"
-" ----------------------------------------------------------------------------
-let g:neoterm_autoinsert = 0 " default
-
-let g:neoterm_default_mod = 'rightbelow'
-
-" ### \t            - Start neoterm command
-nnoremap <leader>t :T 
 
 
 
