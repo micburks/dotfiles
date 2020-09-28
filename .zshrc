@@ -130,8 +130,5 @@ source ~/.shared.sh
 # Don't share history between shells
 setopt nosharehistory
 
-export YVM_DIR=/Users/MICKEY/.yvm
-[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
-
 # fzf autocomplete for zsh
 export FZF_BASE=/Users/MICKEY/.nix-profile/bin/fzf
