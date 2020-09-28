@@ -1,0 +1,14 @@
+
+###
+### sed
+
+###
+### sed -E CMD FILE     - basic usage
+
+###
+### sed -E              - use (E)xtended/modern regular expressions
+### sed -i ''           - edit files (i)n-place. '' means no backups
+
+###
+### successful sed
+### grep -lR PATTERN DIR | xargs sed -i '' -E "s/FROM/TO/g"

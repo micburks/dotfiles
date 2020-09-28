@@ -23,6 +23,7 @@
 ### fd -d               - Max depth
 ### fd -X               - Limit to X results
 ### fd -E PATTERN       - Exclude files/directories that match PATTERN
+### fd -I               - Do not use ignore files (.gitignore, etc.)
 
 #-----------------------------------
 #
