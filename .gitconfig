@@ -5,3 +5,5 @@
   excludesfile = /Users/MICKEY/.gitignore
 [alias]
   unstage = reset HEAD --
+[pull]
+	rebase = true
