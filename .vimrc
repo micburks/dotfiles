@@ -169,6 +169,44 @@ autocmd Syntax conf setlocal fdm=indent
 " ----------------------------------------------------------------------------
 "
 " ###
+" ### --- Registers ---
+"
+" ----------------------------------------------------------------------------
+" ### :reg          - see all registers
+" ### :let @a=@b    - write to a register
+" ### ".            - last entered text register (read-only)
+" ### ":            - last executed command register (read-only)
+" ### "%            - current file name register (read-only)
+" ### "+            - clipboard register
+" ### "=            - last expression register
+" ### "/            - last search register
+" ### "0            - last yanked text register
+" ### "1-9          - last deleted text registers
+" ### "ry           - (normal) copy selected text into register 'r'
+" ### "rp           - (normal) paste text from register 'r'
+" ### <ctrl-r> r    - (insert/command) paste register 'r'
+" ### :let @+=@%    - copy current file path to clipboard
+" ### :let @R=''    - append text to register 'r' (uppercase makes it append)
+" ### @:            - execute last command
+" ### @+            - execute clipboard as command
+" ### @r            - execute register 'r' as macro
+" ### qr            - record macro into register 'r'
+
+
+
+" ----------------------------------------------------------------------------
+"
+" ###
+" ### --- Marks ---
+"
+" ----------------------------------------------------------------------------
+" ### TODO
+
+
+
+" ----------------------------------------------------------------------------
+"
+" ###
 " ### --- Copy/Paste ---
 "
 " ----------------------------------------------------------------------------
