@@ -387,8 +387,8 @@ function lb () {
   vim ~/logbook/$(date '+%Y-%m-%d').md
 }
 
-### showFiles   - fix mac finder for hidden files
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+### show-files  - fix mac finder for hidden files
+alias show-files='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 
 
 
