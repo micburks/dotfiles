@@ -210,29 +210,29 @@ autocmd Syntax conf setlocal fdm=indent
 " ### --- Copy/Paste ---
 "
 " ----------------------------------------------------------------------------
-" ### \c            - Copy mode (remove number settings)
-nnoremap <leader>c :setlocal number! relativenumber!<cr>
+" ### \vc           - Copy mode (remove number settings)
+nnoremap <leader>vc :setlocal number! relativenumber!<cr>
 
-" ### \y            - Copy entire file
-nnoremap <leader>y :!cat "%" \| pbcopy<cr>
+" ### \vy           - Copy entire file
+nnoremap <leader>vy :!cat "%" \| pbcopy<cr>
 
 " `set paste` ruins everything
 " it disables a bunch of things including insert mapping and command line modes
-" ### \v            - Toggle 'paste' mode
-set pastetoggle=<leader>v
+" ### \vv           - Toggle 'paste' mode
+set pastetoggle=<leader>vv
 
 " Set copy buffer to 1000 lines
 set viminfo='20,<1000
 
 " Quick way to add empty lines
-" ### \O            - New line above without entering insert
-nnoremap <leader>O O<ESC>
-" ### \o            - New line below without entering insert
-nnoremap <leader>o o<ESC>
+" ### \vO           - New line above without entering insert
+nnoremap <leader>vO O<ESC>
+" ### \vo           - New line below without entering insert
+nnoremap <leader>vo o<ESC>
 
 " Then <leader>s commented line to add long lines above and below for marking
-" ### \s            - Add same length '---' lines before/after current line
-nnoremap <leader>s yyPVr-yyjp
+" ### \vs           - Add same length '---' lines before/after current line
+nnoremap <leader>vs yyPVr-yyjp
 
 
 
@@ -569,8 +569,8 @@ nnoremap <leader>gp <Plug>(ale_previous_wrap)
 " ### \gn           - next error
 nnoremap <leader>gn <Plug>(ale_next_wrap)
 
-" ### \<Enter>      - show hover details
-nnoremap <leader><Enter> <Plug>(ale_hover)
+" ### \gh      - show hover details
+nnoremap <leader>gh <Plug>(ale_hover)
 
 " ### \gg           - Re-indent file
 nnoremap <leader>gg mggg=G`g
