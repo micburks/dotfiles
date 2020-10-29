@@ -11,6 +11,7 @@ nix-env -iA nixpkgs.jq \
   nixpkgs.bat \
   nixpkgs.fd \
   nixpkgs.gitAndTools.hub \
+  nixpkgs.gitAndTools.delta \
   nixpkgs.tree \
   nixpkgs.silver-searcher \
   nixpkgs.zsh \
