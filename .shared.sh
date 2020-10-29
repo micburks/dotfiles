@@ -238,7 +238,7 @@ alias ls='ls --color=auto -F'
 function uu() {
   local cwd=$(pwd)
   local root=$(find_git_root)
-  if [[ "$(pwd)" == "/" ]]; then
+  if [[ "$root" == "/" ]]; then
     cd $cwd
     echo "No root found"
   else
