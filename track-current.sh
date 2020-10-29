@@ -8,6 +8,7 @@ cat ~/.vimrc | sed "s/$(whoami)/$USER/g" > .vimrc
 cat ~/.zshrc | sed "s/$(whoami)/$USER/g" > .zshrc
 cat ~/.config/vmd | sed "s/$(whoami)/$USER/g" > vmd
 cp ~/.config/alacritty/alacritty.yml .
+cp ~/.config/bat/config bat-config
 # cp ~/.vim/bundle/install-plugins.bash .vim/bundle/
 cp ~/.gitignore .
 cp ~/.tmux.conf .

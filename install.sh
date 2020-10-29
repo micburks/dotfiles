@@ -37,6 +37,8 @@ cp .gitignore ~
 cp .tmux.conf ~
 cp .psqlrc ~
 cp alacritty.yml ~/.config/alacritty/alacritty.yml
+mkdir -p ~/.config/bat
+cp bat-config ~/.config/bat/config
 
 # zsh plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
