@@ -12,6 +12,9 @@ mkdir -p ~/bin
 # brew - some nix packages are broken
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
+# nix pkg for delta is outdated
+brew install git-delta
+
 # autojump - broken in nix
 git clone git://github.com/wting/autojump.git ~/Code/utilities
 cd ~/Code/utilities/autojump
