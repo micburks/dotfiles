@@ -16,7 +16,8 @@ nix-env -iA nixpkgs.jq \
   nixpkgs.zsh \
   nixpkgs.yarn \
   nixpkgs.alacritty \
-  nixpkgs.rustup
+  nixpkgs.rustup \
+  nixpkgs.go
   #nixpkgs.autojump \
   #nixpkgs.ranger \
 
