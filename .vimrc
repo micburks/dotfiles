@@ -143,7 +143,8 @@ set fdm=syntax
 " ### zm            - close all folds one level (M for all levels)
 
 " Start with 1 level unfolded
-autocmd Syntax json normal zr
+" autocmd Syntax json normal zr
+autocmd Syntax * normal zr
 
 " Start with 1 level unfolded
 autocmd Syntax conf setlocal fdm=indent
@@ -316,6 +317,9 @@ Plug 'reasonml-editor/vim-reason', { 'for': ['reason'] }
 " graphql
 Plug 'jparise/vim-graphql'
 
+" go
+Plug 'fatih/vim-go'
+
 " syntax and lsp support
 Plug 'dense-analysis/ale'
 
@@ -366,9 +370,9 @@ set background=dark
 
 " colorscheme gruvbox
 " colorscheme dracula
-" colorscheme nordisk
+colorscheme nordisk
 " colorscheme iceberg
-colorscheme pulumi
+" colorscheme pulumi
 " colorscheme zenburn
 
 "
@@ -564,13 +568,13 @@ nnoremap <leader>go :ALEGoToDefinition<CR>
 nnoremap <leader>gb :pop<CR>
 
 " ### \gp           - previous error
-nnoremap <leader>gp <Plug>(ale_previous_wrap)
+nnoremap <leader>gp :ALEPreviousWrap<CR>
 
 " ### \gn           - next error
-nnoremap <leader>gn <Plug>(ale_next_wrap)
+nnoremap <leader>gn :ALENextWrap<CR>
 
-" ### \gh      - show hover details
-nnoremap <leader>gh <Plug>(ale_hover)
+" ### \gh           - show hover details
+nnoremap <leader>gh :ALEHover<CR>
 
 " ### \gg           - Re-indent file
 nnoremap <leader>gg mggg=G`g
