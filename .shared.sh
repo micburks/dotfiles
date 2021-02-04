@@ -304,6 +304,18 @@ function smth() {
   fd . ~/Code -H -d 9 -E node_modules | fzf
 }
 
+### kill-smth   - fzf kill something
+function kill-smth() {
+  kill -9 $(ps aux | fzf | awk 'NR<2 {print $2}')
+}
+
+### kill-grep   - kill anything that matches a string using grep
+function kill-grep() {
+  local all=$(ps aux | grep $1 | awk 'NR<2 {print $2}')
+  echo $all
+  kill -9 $all
+}
+
 
 
 # -------------------------------
