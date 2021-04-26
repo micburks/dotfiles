@@ -10,29 +10,32 @@ mkdir -p ~/machine-specific-scripts
 mkdir -p ~/bin
 
 # brew - some nix packages are broken
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # nix pkg for delta is outdated
-brew install git-delta
+# brew install git-delta
 
 # autojump - broken in nix
-git clone git://github.com/wting/autojump.git ~/Code/utilities
-cd ~/Code/utilities/autojump
-./install.py
+# git clone git://github.com/wting/autojump.git ~/Code/utilities
+# cd ~/Code/utilities/autojump
+# ./install.py
 
 # ranger - broken in nix
-~/scripts/install-ranger
+# ~/scripts/install-ranger
 
-cd ~/Code/oss/dotfiles
+pushd ~/Code/oss/dotfiles || exit
 
+function change-user() {
+  sed "s/$USER/$(whoami)/g" "$1"
+}
 # configs
 git config --global core.excludesfile ~/.gitignore
-cat .bash_profile | sed "s/$USER/$(whoami)/g" > ~/.bash_profile
-cat .gitconfig | sed "s/$USER/$(whoami)/g" > ~/.gitconfig
-cat .shared.sh | sed "s/$USER/$(whoami)/g" > ~/.shared.sh
-cat .vimrc | sed "s/$USER/$(whoami)/g" > ~/.vimrc
-cat .zshrc | sed "s/$USER/$(whoami)/g" > ~/.zshrc
-cat vmd | sed "s/$USER/$(whoami)/g" > ~/.config/vmd
+change-user .bash_profile > ~/.bash_profile
+change-user .gitconfig > ~/.gitconfig
+change-user .shared.sh > ~/.shared.sh
+change-user .vimrc > ~/.vimrc
+change-user .zshrc > ~/.zshrc
+change-user vmd > ~/.config/vmd
 cp .gitignore ~
 cp .tmux.conf ~
 cp .psqlrc ~

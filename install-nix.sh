@@ -1,6 +1,8 @@
 #!/bin/bash
 
-NIX_INSTALLER_NO_MODIFY_PROFILE=1 sh <(curl https://nixos.org/nix/install) --no-daemon --darwin-use-unencrypted-nix-store-volume
+if [[ "$(which nix-env)" == "" ]]; then
+  NIX_INSTALLER_NO_MODIFY_PROFILE=1 sh <(curl https://nixos.org/nix/install) --no-daemon --darwin-use-unencrypted-nix-store-volume
+fi
 
 # keep up to date
 nix-channel --update nixpkgs
@@ -17,9 +19,12 @@ nix-env -iA nixpkgs.jq \
   nixpkgs.yarn \
   nixpkgs.alacritty \
   nixpkgs.rustup \
-  nixpkgs.go
-  #nixpkgs.autojump \
-  #nixpkgs.ranger \
+  nixpkgs.go \
+  nixpkgs.delta \
+  nixpkgs.tmux \
+  nixpkgs.tmuxp \
+  nixpkgs.ranger \
+  nixpkgs.autojump
 
 nix-env -i -f nix/ls-colors.nix
 
