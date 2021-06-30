@@ -161,6 +161,7 @@ export YVM_DIR=/Users/MICKEY/.yvm
 export EDITOR=vim
 # Necessary for colors to work in tmux
 export TERM=xterm-256color
+export XDG_CONFIG_HOME=$HOME/.config
 alias v='vim'
 alias vi='vim'
 function vim() {
