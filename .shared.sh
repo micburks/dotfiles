@@ -422,6 +422,14 @@ alias json='python -m json.tool'
 ### j           - autojump
 [[ -s /Users/MICKEY/.autojump/etc/profile.d/autojump.sh ]] && source /Users/MICKEY/.autojump/etc/profile.d/autojump.sh
 
+### jd          - j (d)ry run - echo first result from autojump
+function jd() {
+  local cwd=$(pwd)
+  local root=$(j $1)
+  cd $cwd
+  echo $root
+}
+
 # nix
 ### ,           - run tool from nix-pkg without installing
 if [ -e /Users/MICKEY/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/MICKEY/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
