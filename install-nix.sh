@@ -24,7 +24,8 @@ nix-env -iA nixpkgs.jq \
   nixpkgs.tmux \
   nixpkgs.tmuxp \
   nixpkgs.ranger \
-  nixpkgs.autojump
+  nixpkgs.autojump \
+  nixpkgs.neovim
 
 nix-env -i -f nix/ls-colors.nix
 

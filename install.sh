@@ -34,6 +34,7 @@ change-user .bash_profile > ~/.bash_profile
 change-user .gitconfig > ~/.gitconfig
 change-user .shared.sh > ~/.shared.sh
 change-user .vimrc > ~/.vimrc
+change-user .nvimrc > ~/.nvimrc
 change-user .zshrc > ~/.zshrc
 change-user vmd > ~/.config/vmd
 cp .gitignore ~

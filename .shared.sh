@@ -218,8 +218,7 @@ function vim() {
 }
 
 ### r/ranger    - ranger file explorer
-alias ranger='~/bin/ranger/ranger.py --cmd "set show_hidden=true"'
-alias r="ranger"
+alias r='ranger --cmd "set show_hidden=true"'
 
 
 
