@@ -14,6 +14,10 @@ help() {
     awk -F'###' '/^###/ { print $2 }' ~/.shared.sh | sort
     echo "\n machine-specific\n ----------------"
     awk -F'###' '/^###/ { print $2 }' ~/.machine-specific.sh | sort
+  elif [[ "$1" == "help" ]]; then
+    awk -F'###' '/^###/ { print $2 }' ~/Code/oss/dotfiles/help/$1
+    echo ""
+    echo "$(ls ~/Code/oss/dotfiles/help)"
   else
     awk -F'###' '/^###/ { print $2 }' ~/Code/oss/dotfiles/help/$1
   fi

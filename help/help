@@ -1,0 +1,7 @@
+###
+### help
+
+###
+### help            - Show help from ~/.shared.sh
+### help [COMMAND]  - Show custom help file for a given command
+### help help       - Show this help file and all other current help files
