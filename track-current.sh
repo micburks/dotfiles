@@ -15,3 +15,9 @@ cp ~/.tmux.conf .
 cp ~/.psqlrc .
 rsync -av --exclude='node_modules' ~/scripts/ ./scripts
 
+
+# nix
+cp ~/.config/nixpkgs/home.nix .
+
+# nvim
+cat ~/.nvimrc | sed "s/$(whoami)/$USER/g" > .nvimrc

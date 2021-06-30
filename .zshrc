@@ -13,7 +13,7 @@ export ZSH="/Users/MICKEY/.oh-my-zsh"
 ######################
 # Show today's date
 function parse_date() {
-  date -j +'%a %b %d'
+  date +'%a %b %d'
 }
 # Show pwd
 function parse_pwd () {

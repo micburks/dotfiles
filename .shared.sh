@@ -228,9 +228,9 @@ alias r='ranger --cmd "set show_hidden=true"'
 #
 # -------------------------------
 # ls colors
-eval $(dircolors ~/.nix-profile/share/LS_COLORS)
-alias ls='ls --color=auto -F'
-
+# eval $(dircolors ~/.nix-profile/share/LS_COLORS)
+alias ls='ls -Ggl --group-directories-first --color'
+export LS_COLORS="$(vivid generate molokai)"
 
 
 # -------------------------------
