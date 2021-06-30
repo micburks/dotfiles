@@ -313,14 +313,12 @@ Plug 'kyazdani42/nvim-tree.lua'
 " syntax
 " https://github.com/nvim-treesitter/nvim-treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/playground'
 " https://github.com/neovim/nvim-lspconfig
 Plug 'neovim/nvim-lspconfig'
 
 " Dependencies
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
 
 " fuzzy find
 " https://github.com/nvim-telescope/telescope.nvim
@@ -329,13 +327,7 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " Show diagnostics
 " https://github.com/folke/trouble.nvim
-" Depends on nvim-web-devicons
 Plug 'folke/trouble.nvim'
-
-" git
-" https://github.com/TimUntersberger/neogit
-" Depends on plenary
-Plug 'TimUntersberger/neogit'
 
 " autocomplete
 " https://github.com/hrsh7th/nvim-compe
@@ -377,24 +369,6 @@ require("nvim-treesitter.configs").setup {
   highlight = {enable = {enabled = true, use_languagetree = true}},
   autotag = {enable = true},
   indent = {enable = true},
-  playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false, -- Whether the query persists across vim sessions
-    keybindings = {
-      toggle_query_editor = 'o',
-      toggle_hl_groups = 'i',
-      toggle_injected_languages = 't',
-      toggle_anonymous_nodes = 'a',
-      toggle_language_display = 'I',
-      focus_language = 'f',
-      unfocus_language = 'F',
-      update = 'R',
-      goto_node = '<cr>',
-      show_help = '?',
-    },
-  }
 }
 
 -- nvim-telescope
@@ -463,9 +437,6 @@ require('nvim_comment').setup({
     operator_mapping = "<C-_>"
 })
 
--- neogit
-require('neogit').setup {}
-
 -- nvim_tree
 vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_auto_open = 1
@@ -515,12 +486,11 @@ require("toggleterm").setup{
   close_on_exit = true, -- close the terminal window when the process exits
   shell = vim.o.shell, -- change the default shell
 }
-EOF
 
-" nvim-lspconfig
-" lua <<EOF
-" require'lspconfig'.flow.setup{}
-" EOF
+-- nvim-lspconfig
+require'lspconfig'.flow.setup{}
+
+EOF
 
 " nvim-compe
 let g:compe = {}
@@ -662,20 +632,6 @@ noremap ^ 0
 " ----------------------------------------------------------------------------
 " ### gS            - splitjoin: 1 -> many lines
 " ### gJ            - splitjoin: many -> 1 line
-
-
-" ----------------------------------------------------------------------------
-"
-" --- mkdx ---
-"
-" ----------------------------------------------------------------------------
-let g:mkdx#settings     = { 'highlight': { 'enable': 1 },
-      \ 'enter': { 'shift': 1 },
-      \ 'links': { 'external': { 'enable': 1 } },
-      \ 'toc': { 'text': 'Table of Contents', 'update_on_write': 1 },
-      \ 'fold': { 'enable': 1 } }
-let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
-" plugin which unfortunately interferes with mkdx list indentation.
 
 
 "" ### \gt           - toggle ale
