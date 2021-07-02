@@ -35,6 +35,7 @@ set autoindent
 
 " filetype detection
 filetype plugin indent on
+au BufRead,BufNewFile *.nix		setfiletype nix
 
 " Not compatible with vi
 set nocompatible
