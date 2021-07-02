@@ -270,75 +270,79 @@ noremap k gk
 " ### :PlugUpdate   - Update plugins from ~/.vimrc
 
 " Begin vim-plug plugins
-call plug#begin('~/.vim/plugged')
-
-Plug 'kamwitsta/nordisk'
-Plug 'cocopon/iceberg.vim'
-Plug 'morhetz/gruvbox'
-Plug 'pgavlin/pulumi.vim'
-Plug 'jnurmine/Zenburn'
-
-" highlights
-Plug 'RRethy/vim-illuminate' " highlight word occurrences
-Plug 'airblade/vim-gitgutter' " git
-" So many false positives with spelunker
-" Plug 'kamykn/spelunker.vim' " spell checking
-" https://github.com/norcalli/nvim-colorizer.lua
-Plug 'norcalli/nvim-colorizer.lua'
-" https://github.com/sunjon/Shade.nvim
-Plug 'sunjon/shade.nvim'
-
-" utilities
-Plug 'andrewradev/splitjoin.vim'
-" https://github.com/terrortylor/nvim-comment
-Plug 'terrortylor/nvim-comment'
-
-" movement
-Plug 'easymotion/vim-easymotion'
-Plug 'unblevable/quick-scope'
-" https://github.com/nacro90/numb.nvim
-Plug 'nacro90/numb.nvim'
-
-" tmux
-" https://github.com/hkupty/nvimux
-" Plug 'hkupty/nvimux'
-
-" terminal
-" https://github.com/akinsho/nvim-toggleterm.lua
-Plug 'akinsho/nvim-toggleterm.lua'
-
-" tree
-Plug 'kyazdani42/nvim-tree.lua'
-
-" syntax
-" https://github.com/nvim-treesitter/nvim-treesitter
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" https://github.com/neovim/nvim-lspconfig
-Plug 'neovim/nvim-lspconfig'
-
-" Dependencies
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-
-" fuzzy find
-" https://github.com/nvim-telescope/telescope.nvim
-" Depends on plenary, popup
-Plug 'nvim-telescope/telescope.nvim'
-
-" Show diagnostics
-" https://github.com/folke/trouble.nvim
-Plug 'folke/trouble.nvim'
-
-" autocomplete
-" https://github.com/hrsh7th/nvim-compe
-Plug 'hrsh7th/nvim-compe'
-
-" End of plugins
-call plug#end()
+" call plug#begin('~/.vim/plugged')
+" 
+" Plug 'kamwitsta/nordisk'
+" Plug 'cocopon/iceberg.vim'
+" Plug 'morhetz/gruvbox'
+" Plug 'pgavlin/pulumi.vim'
+" Plug 'jnurmine/Zenburn'
+" 
+" " highlights
+" Plug 'RRethy/vim-illuminate' " highlight word occurrences
+" Plug 'airblade/vim-gitgutter' " git
+" " So many false positives with spelunker
+" " Plug 'kamykn/spelunker.vim' " spell checking
+" " https://github.com/norcalli/nvim-colorizer.lua
+" Plug 'norcalli/nvim-colorizer.lua' " show hex code colors
+" " https://github.com/sunjon/Shade.nvim
+" Plug 'sunjon/shade.nvim' " dim non-active splits
+" 
+" " utilities
+" Plug 'andrewradev/splitjoin.vim'
+" " https://github.com/terrortylor/nvim-comment
+" " Plug 'terrortylor/nvim-comment'
+" 
+" " movement
+" Plug 'easymotion/vim-easymotion'
+" Plug 'unblevable/quick-scope' " f/F/t/T movements highlighted
+" " https://github.com/nacro90/numb.nvim 
+" Plug 'nacro90/numb.nvim' " line buffer peek
+" 
+" " tmux
+" " https://github.com/hkupty/nvimux
+" " Plug 'hkupty/nvimux'
+" 
+" " terminal
+" " https://github.com/akinsho/nvim-toggleterm.lua
+" Plug 'akinsho/nvim-toggleterm.lua'
+" 
+" " tree
+" Plug 'kyazdani42/nvim-tree.lua'
+" 
+" " syntax
+" " https://github.com/nvim-treesitter/nvim-treesitter
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" " https://github.com/neovim/nvim-lspconfig
+" Plug 'neovim/nvim-lspconfig'
+" 
+" " Dependencies
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'folke/lsp-colors.nvim'
+" " Can't use nvim-web-devicons until I figure out why my patched font won't work with Alacritty
+" " Plug 'kyazdani42/nvim-web-devicons'
+" 
+" " fuzzy find
+" " https://github.com/nvim-telescope/telescope.nvim
+" " Depends on plenary, popup
+" Plug 'nvim-telescope/telescope.nvim' " fuzzy find
+" 
+" " Show diagnostics
+" " https://github.com/folke/trouble.nvim
+" " Depends on lsp-colors, nvim-web-devicons
+" Plug 'folke/trouble.nvim' " show diagnostics inline
+" 
+" " autocomplete
+" " https://github.com/hrsh7th/nvim-compe
+" Plug 'hrsh7th/nvim-compe'
+" 
+" " End of plugins
+" call plug#end()
 
 lua <<EOF
 -- numb
-require('numb').setup{}
+--  require('numb').setup{}
 
 --  treesitter
 require("nvim-treesitter.configs").setup {
@@ -423,19 +427,10 @@ require('telescope').setup{
 }
 
 -- trouble
--- require("trouble").setup {
---   -- your configuration comes here
---   -- or leave it empty to use the default settings
---   -- refer to the configuration section below
--- }
+require("trouble").setup {}
 
 -- nvim-comment
-require('nvim_comment').setup({
-    marker_padding = true,
-    comment_empty = false,
-    line_mapping = "<C-_>",
-    operator_mapping = "<C-_>"
-})
+-- require('nvim_comment').setup{}
 
 -- nvim_tree
 vim.g.nvim_tree_width = 40
@@ -488,7 +483,18 @@ require("toggleterm").setup{
 }
 
 -- nvim-lspconfig
+require'lspconfig'.bashls.setup{}
+require('lspconfig').cssls.setup{}
 require'lspconfig'.flow.setup{}
+require('lspconfig').graphql.setup{}
+require'lspconfig'.html.setup{}
+require('lspconfig').jsonls.setup{}
+require('lspconfig').rust_analyzer.setup{}
+require('lspconfig').tsserver.setup{}
+require'lspconfig'.vimls.setup{}
+
+-- npm i -g bash-language-server graphql-language-service-cli flow-bin typescript-language-server vscode-langservers-extracted vim-language-server
+-- 
 
 EOF
 

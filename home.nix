@@ -16,13 +16,14 @@
     bat
     coreutils
     delta
-    fzf
     fd
+    fzf
+    fontforge
     gitAndTools.hub
     go
     jq
-    neovim
     ranger
+    rust-analyzer
     rustup
     silver-searcher
     tmux
@@ -38,8 +39,40 @@
     }))
   ];
 
+  # Can't use nvim-web-devicons until I figure out why my patched font won't work with Alacritty
+  # kyazdani42/nvim-web-devicons
+  # kamwitsta/nordisk
+  # pgavlin/pulumi.vim
+  # terrortylor/nvim-comment
+  # nacro90/numb.nvim
+  # hkupty/nvimux
+
   programs.neovim = {
-    plugins = [
+    enable = true;
+    vimAlias = true;
+    extraConfig = (builtins.readFile ~/.nvimrc);
+    plugins = with pkgs.vimPlugins; [
+      gruvbox-nvim
+      iceberg-vim
+      lsp-colors-nvim
+      lush-nvim
+      nvim-colorizer-lua
+      nvim-compe
+      nvim-lspconfig
+      nvim-toggleterm-lua
+      nvim-tree-lua
+      nvim-treesitter
+      plenary-nvim
+      popup-nvim
+      quick-scope
+      Shade-nvim
+      splitjoin-vim
+      telescope-nvim
+      trouble-nvim
+      vim-easymotion
+      vim-gitgutter
+      vim-illuminate
+      zenburn
     ];
   };
 }
