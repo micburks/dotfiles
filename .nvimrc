@@ -355,7 +355,11 @@ require('telescope').setup{
 }
 
 -- trouble
-require("trouble").setup {}
+require("trouble").setup{}
+
+-- hop
+require('hop').setup{}
+vim.api.nvim_set_keymap('n', '<leader><leader>', "<cmd>lua require'hop'.hint_words()<cr>", {})
 
 -- nvim-comment
 -- require('nvim_comment').setup{}
@@ -554,7 +558,7 @@ noremap 0 ^
 " Just in case you need to go to the very beginning of a line
 noremap ^ 0
 
-" ### \\<MOVE>      - easymotion: jump for any movement
+" ### \\<MOVE>      - hop: jump words
 
 
 

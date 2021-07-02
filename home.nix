@@ -53,6 +53,7 @@
     extraConfig = (builtins.readFile ~/.nvimrc);
     plugins = with pkgs.vimPlugins; [
       gruvbox-nvim
+      hop-nvim
       iceberg-vim
       lsp-colors-nvim
       lush-nvim
@@ -69,7 +70,6 @@
       splitjoin-vim
       telescope-nvim
       trouble-nvim
-      vim-easymotion
       vim-gitgutter
       vim-illuminate
       zenburn
