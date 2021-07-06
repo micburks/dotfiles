@@ -7,6 +7,8 @@
   home.username = "$USER";
   home.homeDirectory = "/Users/$USER";
 
+  xdg.enable = true;
+
   nixpkgs.config.allowUnfree = true;
   fonts.fontconfig.enable = true;
 
@@ -16,6 +18,7 @@
     bat
     coreutils
     delta
+    exa
     fd
     fzf
     fontforge
@@ -32,6 +35,67 @@
     yarn
     zsh
   ];
+
+  programs.git = {
+    enable = true;
+    userName = "Mickey Burks";
+    userEmail = "brks.mck@gmail.com";
+    aliases = {
+      unstage = "reset HEAD --";
+    };
+    delta = {
+      enable = true;
+      options = {
+        features = "side-by-side line-numbers decorations";
+        syntax-theme = "Nord";
+        side-by-side = true;
+      };
+    };
+    extraConfig = {
+      core = {
+        excludesfile = "/Users/$USER/.gitignore";
+      };
+      pull = {
+        rebase = true;
+      };
+    };
+  };
+
+  programs.exa = {
+    enable = true;
+    enableAliases = true;
+  };
+    
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableAutosuggestions = true;
+    enableSyntaxHighlighting = true;
+    initExtra = ''
+      ######################
+      # Show today's date
+      function parse_date() {
+        date +'%a %b %d'
+      }
+      # Show pwd
+      function parse_pwd () {
+        echo $(pwd) | sed -e 's/^\/Users\/mburks\(.*\)$/~\1/'
+      }
+      # Show git branch name
+      function parse_git_branch () {
+        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+      }
+      
+      PROMPT='
+      %{$fg[yellow]%}[$(parse_date)] %{$fg[green]%}$(parse_git_branch) %{$fg[blue]%}$(parse_pwd)
+      %{$reset_color%}$ '
+      ######################
+
+      ${builtins.readFile ~/.shared.sh}
+    '';
+    history.share = false;
+    oh-my-zsh.enable = true;
+  };
 
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
@@ -50,7 +114,7 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
-    extraConfig = (builtins.readFile ~/.nvimrc);
+    extraConfig = builtins.readFile ~/.nvimrc;
     plugins = with pkgs.vimPlugins; [
       gruvbox-nvim
       hop-nvim
