@@ -1,7 +1,7 @@
 
 " Custom help
 " ### :Help          - print this help
-command! -nargs=? -bar -bang Help echo system("awk -F'\" ###' '/^\" ###/ { print $2 }' ~/.vimrc")
+command! -nargs=? -bar -bang Help echo system("awk -F'\" ###' '/^\" ###/ { print $2 }' ~/.nvimrc")
 
 
 " TODO - better scheme for nmap
@@ -268,191 +268,47 @@ noremap k gk
 "
 " ----------------------------------------------------------------------------
 lua <<EOF
--- numb
 --  require('numb').setup{}
+require('compe').setup{}
+require('hop').setup{}
+vim.api.nvim_set_keymap('n', '<leader><leader>', "<cmd>lua require'hop'.hint_words()<cr>", {})
+-- require('nvim_comment').setup{}
+require('shade').setup({
+  overlay_opacity = 70,
+})
+require('telescope').setup{}
+require("toggleterm").setup{
+  open_mapping = "\\t",
+  direction = 'float',
+}
+require("trouble").setup{}
 
 --  treesitter
 require("nvim-treesitter.configs").setup {
   ensure_installed = "all",
   ignore_install = { "haskell" },
-  rainbow = {
-      enable = true,
-      extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-      max_file_lines = 1000 -- Do not enable for files with more than 1000 lines, int
-  },
-  refactor = {
-      highlight_definitions = {enable = true},
-      highlight_current_scope = {enable = true},
-      smart_rename = {
-          enable = true,
-          keymaps = {smart_rename = "grr"},
-          navigation = {
-              enable = true,
-              keymaps = {
-                  goto_definition = "gnd",
-                  list_definitions = "gnD",
-                  list_definitions_toc = "gO",
-                  goto_next_usage = "<a-*>",
-                  goto_previous_usage = "<a-#>"
-              }
-          }
-      }
-  },
   highlight = {enable = {enabled = true, use_languagetree = true}},
   autotag = {enable = true},
   indent = {enable = true},
 }
 
--- nvim-telescope
-require('telescope').setup{
-  defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case'
-    },
-    prompt_position = "top",
-    prompt_prefix = "> ",
-    selection_caret = "> ",
-    entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "ascending",
-    layout_strategy = "horizontal",
-    layout_defaults = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
-    },
-    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-    file_ignore_patterns = {},
-    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    shorten_path = true,
-    winblend = 0,
-    width = 0.75,
-    preview_cutoff = 120,
-    results_height = 1,
-    results_width = 0.8,
-    border = {},
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    color_devicons = true,
-    use_less = true,
-    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-
-    -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
-  }
-}
-
--- trouble
-require("trouble").setup{}
-
--- hop
-require('hop').setup{}
-vim.api.nvim_set_keymap('n', '<leader><leader>', "<cmd>lua require'hop'.hint_words()<cr>", {})
-
--- nvim-comment
--- require('nvim_comment').setup{}
-
 -- nvim_tree
 vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_auto_open = 1
-vim.g.nvim_tree_auto_close = 1
-vim.g.nvim_tree_width_allow_resize = 1
-vim.g.nvim_tree_gitignore = 1
-vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_lsp_diagnostics = 1
-
--- nvimux
--- local nvimux = require('nvimux')
--- 
--- -- Nvimux configuration
--- nvimux.config.set_all{
---   prefix = '<C-z>',
---   new_window = 'enew', -- Use 'term' if you want to open a new term for every new window
---   new_tab = nil, -- Defaults to new_window. Set to 'term' if you want a new term for every new tab
---   new_window_buffer = 'single',
---   quickterm_direction = 'botright',
---   quickterm_orientation = 'vertical',
---   quickterm_scope = 't', -- Use 'g' for global quickterm
---   quickterm_size = '80',
--- }
--- 
--- -- Nvimux custom bindings
--- nvimux.bindings.bind_all{
---   {'s', ':NvimuxHorizontalSplit', {'n', 'v', 'i', 't'}},
---   {'v', ':NvimuxVerticalSplit', {'n', 'v', 'i', 't'}},
--- }
--- 
--- -- Required so nvimux sets the mappings correctly
--- nvimux.bootstrap()
-
--- shade
-require'shade'.setup({
-  overlay_opacity = 70,
-})
-
--- toggleterm
-require("toggleterm").setup{
-  -- size can be a number or function which is passed the current terminal
-  open_mapping = "\\t",
-  hide_numbers = true, -- hide the number column in toggleterm buffers
-  start_in_insert = true,
-  persist_size = true,
-  direction = 'float',
-  close_on_exit = true, -- close the terminal window when the process exits
-  shell = vim.o.shell, -- change the default shell
-}
 
 -- nvim-lspconfig
-require'lspconfig'.bashls.setup{}
+-- npm i -g bash-language-server graphql-language-service-cli flow-bin typescript-language-server vscode-langservers-extracted vim-language-server
+require('lspconfig').bashls.setup{}
 require('lspconfig').cssls.setup{}
-require'lspconfig'.flow.setup{}
+require('lspconfig').flow.setup{}
 require('lspconfig').graphql.setup{}
-require'lspconfig'.html.setup{}
+require('lspconfig').html.setup{}
 require('lspconfig').jsonls.setup{}
 require('lspconfig').rust_analyzer.setup{}
 require('lspconfig').tsserver.setup{}
-require'lspconfig'.vimls.setup{}
-
--- npm i -g bash-language-server graphql-language-service-cli flow-bin typescript-language-server vscode-langservers-extracted vim-language-server
--- 
+require('lspconfig').vimls.setup{}
 
 EOF
-
-" nvim-compe
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
-let g:compe.documentation = v:true
-
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:true
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-let g:compe.source.vsnip = v:true
-let g:compe.source.ultisnips = v:true
 
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
@@ -461,9 +317,8 @@ inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " nvim_tree
-" ### <TAB>         - Open file tree
-nnoremap <tab> :NvimTreeToggle<CR>
-nnoremap <leader>n :NvimTreeFindFile<CR>
+" ### \e            - Open file tree
+nnoremap <leader>e :NvimTreeToggle<CR>
 
 " ### \<TAB>[hjkl]  - Move to corresponding split
 nnoremap <silent> <leader><tab>h <C-w>h
@@ -530,21 +385,6 @@ colorscheme gruvbox
 " colorscheme pulumi
 " colorscheme zenburn
 
-" colorizer
-" lua <<EOF
-" require'colorizer'.setup({'html', 'css', 'javascript'}, {
-"     RGB = true,
-"     RRGGBB = true,
-"     RRGGBBAA = true,
-"     names = true,
-"     rgb_fn = true,
-"     hsl_fn = true,
-"     css = true,
-"     css_fn = true,
-"     mode = 'foreground',
-" })
-" EOF
-
 
 " ----------------------------------------------------------------------------
 "
@@ -558,7 +398,7 @@ noremap 0 ^
 " Just in case you need to go to the very beginning of a line
 noremap ^ 0
 
-" ### \\<MOVE>      - hop: jump words
+" ### \\            - hop: jump words
 
 
 
@@ -572,7 +412,6 @@ noremap ^ 0
 " ### gJ            - splitjoin: many -> 1 line
 
 
-"" ### \gt           - toggle ale
 "" ### \go           - (g)(o) to definition
 "" ### \gb           - (g)o (b)ack
 "" ### \gp           - previous error
