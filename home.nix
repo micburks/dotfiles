@@ -154,9 +154,12 @@
       nvim-toggleterm-lua
       nvim-tree-lua
       nvim-treesitter
+      nvim-treesitter-context
+      nvim-treesitter-refactor
       plenary-nvim
       popup-nvim
       quick-scope
+      registers-nvim
       Shade-nvim
       splitjoin-vim
       telescope-nvim

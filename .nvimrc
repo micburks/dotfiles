@@ -290,6 +290,37 @@ require("nvim-treesitter.configs").setup {
   highlight = {enable = {enabled = true, use_languagetree = true}},
   autotag = {enable = true},
   indent = {enable = true},
+  refactor = {
+    highlight_definitions = { enable = true },
+    -- highlight_current_scope = { enable = true },
+    smart_rename = {
+      enable = true,
+      keymaps = {
+        smart_rename = "<leader>gr",
+      },
+    },
+    navigation = {
+      enable = true,
+      keymaps = {
+        goto_definition = "<leader>go",
+        list_definitions = "<leader>gd",
+        goto_next_usage = "<leader>gn",
+        goto_previous_usage = "<leader>gp",
+      },
+    },
+  },
+}
+-- ### \go           - (g)(o) to definition
+-- ### \gp           - previous usage
+-- ### \gn           - next usage
+-- ### \gg           - Re-indent file
+
+-- ### \gh           - show hover details
+-- ### \gf           - use ale to auto-fix lint
+-- ### \gm           - show lint/type issues with current line
+
+require('treesitter-context.config').setup {
+  enable = true,
 }
 
 -- nvim_tree
@@ -305,7 +336,11 @@ require('lspconfig').graphql.setup{}
 require('lspconfig').html.setup{}
 require('lspconfig').jsonls.setup{}
 require('lspconfig').rust_analyzer.setup{}
-require('lspconfig').tsserver.setup{}
+require('lspconfig').tsserver.setup{
+  -- default
+  -- filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
+}
 require('lspconfig').vimls.setup{}
 
 EOF
@@ -410,16 +445,6 @@ noremap ^ 0
 " ----------------------------------------------------------------------------
 " ### gS            - splitjoin: 1 -> many lines
 " ### gJ            - splitjoin: many -> 1 line
-
-
-"" ### \go           - (g)(o) to definition
-"" ### \gb           - (g)o (b)ack
-"" ### \gp           - previous error
-"" ### \gn           - next error
-"" ### \gh           - show hover details
-"" ### \gg           - Re-indent file
-"" ### \gf           - use ale to auto-fix lint
-"" ### \gm           - show lint/type issues with current line
 
 
 
