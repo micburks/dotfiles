@@ -24,6 +24,7 @@
     fontforge
     gitAndTools.hub
     go
+    highlight
     jq
     ranger
     rust-analyzer
@@ -36,30 +37,30 @@
     zsh
   ];
 
-  programs.git = {
-    enable = true;
-    userName = "Mickey Burks";
-    userEmail = "brks.mck@gmail.com";
-    aliases = {
-      unstage = "reset HEAD --";
-    };
-    delta = {
-      enable = true;
-      options = {
-        features = "side-by-side line-numbers decorations";
-        syntax-theme = "Nord";
-        side-by-side = true;
-      };
-    };
-    extraConfig = {
-      core = {
-        excludesfile = "/Users/$USER/.gitignore";
-      };
-      pull = {
-        rebase = true;
-      };
-    };
-  };
+  # programs.git = {
+  #   enable = true;
+  #   userName = "Mickey Burks";
+  #   userEmail = "brks.mck@gmail.com";
+  #   aliases = {
+  #     unstage = "reset HEAD --";
+  #   };
+  #   delta = {
+  #     enable = true;
+  #     options = {
+  #       features = "side-by-side line-numbers decorations";
+  #       syntax-theme = "Nord";
+  #       side-by-side = true;
+  #     };
+  #   };
+  #   extraConfig = {
+  #     core = {
+  #       excludesfile = "/Users/$USER/.gitignore";
+  #     };
+  #     pull = {
+  #       rebase = true;
+  #     };
+  #   };
+  # };
 
   programs.exa = {
     enable = true;
@@ -95,6 +96,32 @@
     '';
     history.share = false;
     oh-my-zsh.enable = true;
+  };
+
+  programs.autojump = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "Nord";
+    };
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    defaultCommand = "fd --max-depth 6 --type f --hidden --follow --exclude .git";
+    defaultOptions = ["--height 40%" "--layout=reverse" "--border"];
+    fileWidgetCommand = "fd --max-depth 7 --type f --hidden --follow --exclude .git";
+    fileWidgetOptions = ["--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"];
+    historyWidgetOptions = ["--sort" "--exact"];
+    tmux = {
+      enableShellIntegration = true;
+      shellIntegrationOptions = ["-d 40%"];
+    };
   };
 
   nixpkgs.overlays = [

@@ -1,8 +1,8 @@
 # Shell-agnostic configuration (hopefully)
 
-if [[ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]]; then
-  . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-fi
+# if [[ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]]; then
+#   . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+# fi
 
 
 # -------------------------------
@@ -294,10 +294,10 @@ function cpwd() {
 #
 # -------------------------------
 ### fzf         - fuzzy find files
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-export FZF_DEFAULT_COMMAND='fd --max-depth 6 --type f --hidden --follow --exclude .git'
-export FZF_CTRL_T_COMMAND='fd --max-depth 7 --type f --hidden --follow --exclude .git'
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+#export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+#export FZF_DEFAULT_COMMAND='fd --max-depth 6 --type f --hidden --follow --exclude .git'
+#export FZF_CTRL_T_COMMAND='fd --max-depth 7 --type f --hidden --follow --exclude .git'
+#export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 
 
 ### fzp         - fuzzy preview files
