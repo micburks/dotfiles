@@ -2,7 +2,7 @@
 USER="MICKEY"
 
 #cat ~/.bash_profile | sed "s/$(whoami)/$USER/g" > .bash_profile
-#cat ~/.gitconfig | sed "s/$(whoami)/$USER/g" > .gitconfig
+cat ~/.gitconfig | sed "s/$(whoami)/$USER/g" > .gitconfig
 cat ~/.shared.sh | sed "s/$(whoami)/$USER/g" > .shared.sh
 #cat ~/.vimrc | sed "s/$(whoami)/$USER/g" > .vimrc
 #cat ~/.zshrc | sed "s/$(whoami)/$USER/g" > .zshrc
@@ -20,4 +20,4 @@ rsync -av --exclude='node_modules' ~/scripts/ ./scripts
 cp ~/.config/nixpkgs/home.nix .
 
 # nvim
-#cat ~/.nvimrc | sed "s/$(whoami)/$USER/g" > .nvimrc
+cat ~/.nvimrc | sed "s/$(whoami)/$USER/g" > .nvimrc
