@@ -64,7 +64,6 @@
 
   programs.exa = {
     enable = true;
-    enableAliases = true;
   };
     
   programs.zsh = {
@@ -93,6 +92,13 @@
       ######################
 
       ${builtins.readFile ~/.shared.sh}
+
+      export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate molokai)"
+
+      alias ls="${pkgs.exa}/bin/exa"
+      alias la="${pkgs.exa}/bin/exa -a"
+      alias ll="${pkgs.exa}/bin/exa -la --git"
+      alias lt="${pkgs.exa}/bin/exa --tree"
     '';
     history.share = false;
     oh-my-zsh.enable = true;
