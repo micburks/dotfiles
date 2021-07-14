@@ -273,9 +273,10 @@ require('compe').setup{}
 require('hop').setup{}
 vim.api.nvim_set_keymap('n', '<leader><leader>', "<cmd>lua require'hop'.hint_words()<cr>", {})
 -- require('nvim_comment').setup{}
-require('shade').setup({
-  overlay_opacity = 70,
-})
+-- some issue with not being able to close the last window
+-- require('shade').setup({
+--   overlay_opacity = 70,
+-- })
 require('telescope').setup{}
 require("toggleterm").setup{
   open_mapping = "\\t",

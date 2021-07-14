@@ -22,6 +22,7 @@ in
   fonts.fontconfig.enable = true;
 
   imports = [
+    ./config/git.nix
     ./config/nvim.nix
     ./config/tmux.nix
     ./config/zsh.nix
@@ -47,37 +48,10 @@ in
     rust-analyzer
     rustup
     silver-searcher
-    # tmux
     tree
     vivid
     yarn
-    # zsh
   ];
-
-  # programs.git = {
-  #   enable = true;
-  #   userName = "Mickey Burks";
-  #   userEmail = "brks.mck@gmail.com";
-  #   aliases = {
-  #     unstage = "reset HEAD --";
-  #   };
-  #   delta = {
-  #     enable = true;
-  #     options = {
-  #       features = "side-by-side line-numbers decorations";
-  #       syntax-theme = "Nord";
-  #       side-by-side = true;
-  #     };
-  #   };
-  #   extraConfig = {
-  #     core = {
-  #       excludesfile = "/Users/$USER/.gitignore";
-  #     };
-  #     pull = {
-  #       rebase = true;
-  #     };
-  #   };
-  # };
 
   programs.exa = {
     enable = true;
