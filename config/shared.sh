@@ -2,7 +2,7 @@
 
 # nix
 ### ,           - run tool from nix-pkg without installing
-if [ -e /Users/$USER/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/$USER/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 ### hm          - home-manager switch
 ### ehm         - home-manager edit && home-manager switch
@@ -19,7 +19,7 @@ alias ehm="home-manager edit && home-manager switch"
 help() {
   if [[ "$1" == "" ]]; then
     echo "\n shared\n ------"
-    awk -F'###' '/^###/ { print $2 }' ~/.zshrc | sort
+    awk -F'###' '/^###/ { print $2 }' ~/.config/nixpkgs/config/shared.sh | sort
     echo "\n machine-specific\n ----------------"
     awk -F'###' '/^###/ { print $2 }' ~/.machine-specific.sh | sort
   elif [[ "$1" == "help" ]]; then
@@ -155,7 +155,7 @@ virtualnode () {
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # yvm
-export YVM_DIR=/Users/$USER/.yvm
+export YVM_DIR=$HOME/.yvm
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
 
 
@@ -346,10 +346,10 @@ function paste() {
 #
 # -------------------------------
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin/
-export PGDATA=/Users/$USER/Library/Application\ Support/Postgres/var-10
+export PGDATA=$HOME/Library/Application\ Support/Postgres/var-10
 
 ### pglog       - tail postgres logs
-alias pglog="tail -f /Users/$USER/Library/Application\ Support/Postgres/var-10/postgresql.log"
+alias pglog="tail -f $HOME/Library/Application\ Support/Postgres/var-10/postgresql.log"
 
 
 
@@ -419,8 +419,6 @@ alias emacs='/usr/local/bin/emacs'
 alias json='python -m json.tool'
 
 ### j           - autojump
-# [[ -s /Users/$USER/.autojump/etc/profile.d/autojump.sh ]] && source /Users/$USER/.autojump/etc/profile.d/autojump.sh
-
 ### jd          - j (d)ry run - echo first result from autojump
 function jd() {
   local cwd=$(pwd)

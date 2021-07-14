@@ -14,7 +14,7 @@
       }
       # Show pwd
       function parse_pwd () {
-        echo $(pwd) | sed -e "s/^\/Users\/$USER\(.*\)$/~\1/"
+        echo $(pwd) | sed -e "s/^$(echo $HOME | sed 's/\//\\\//g')\(.*\)$/~\1/"
       }
       # Show git branch name
       function parse_git_branch () {
