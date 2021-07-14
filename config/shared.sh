@@ -1,8 +1,13 @@
 # Shell-agnostic configuration (hopefully)
 
-# if [[ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]]; then
-#   . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-# fi
+# nix
+### ,           - run tool from nix-pkg without installing
+if [ -e /Users/$USER/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/$USER/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+### hm          - home-manager switch
+### ehm         - home-manager edit
+alias hm="home-manager switch"
+alias ehm="home-manager edit"
 
 
 # -------------------------------
@@ -14,15 +19,15 @@
 help() {
   if [[ "$1" == "" ]]; then
     echo "\n shared\n ------"
-    awk -F'###' '/^###/ { print $2 }' ~/.shared.sh | sort
+    awk -F'###' '/^###/ { print $2 }' ~/.config/nixpkgs/config/shared.sh | sort
     echo "\n machine-specific\n ----------------"
     awk -F'###' '/^###/ { print $2 }' ~/.machine-specific.sh | sort
   elif [[ "$1" == "help" ]]; then
-    awk -F'###' '/^###/ { print $2 }' ~/Code/oss/dotfiles/help/$1
+    awk -F'###' '/^###/ { print $2 }' ~/.config/nixpkgs/help/$1
     echo ""
     echo "$(ls ~/Code/oss/dotfiles/help)"
   else
-    awk -F'###' '/^###/ { print $2 }' ~/Code/oss/dotfiles/help/$1
+    awk -F'###' '/^###/ { print $2 }' ~/.config/nixpkgs/help/$1
   fi
 }
 
@@ -150,7 +155,7 @@ virtualnode () {
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # yvm
-export YVM_DIR=/Users/MICKEY/.yvm
+export YVM_DIR=/Users/$USER/.yvm
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
 
 
@@ -165,10 +170,9 @@ export EDITOR=nvim
 # Necessary for colors to work in tmux
 export TERM=xterm-256color
 export XDG_CONFIG_HOME=$HOME/.config
-alias v='nvim'
-alias vi='nvim'
-alias vim='nvim'
-function nvim() {
+alias v='vim'
+alias vi='vim'
+function vim() {
   local original_args=("$@")
   local vim_args=()
   local filtered_vim_args=()
@@ -186,7 +190,7 @@ function nvim() {
 
   if (( new )); then
     # if "--new", let vim create new files
-    command nvim -p "${vim_args[@]}"
+    nvim -p "${vim_args[@]}"
   else
     # if not "--new", filter non-existant files
     for file in "${vim_args[@]}"; do
@@ -216,7 +220,7 @@ function nvim() {
       fi
       echo "[vim wrapper] no files to open"
     else
-      command nvim -p "${filtered_vim_args[@]}"
+      nvim -p "${filtered_vim_args[@]}"
     fi
   fi
 }
@@ -224,17 +228,6 @@ function nvim() {
 ### r/ranger    - ranger file explorer
 alias r='ranger --cmd "set show_hidden=true"'
 
-
-
-# -------------------------------
-#
-# ls
-#
-# -------------------------------
-# ls colors
-# eval $(dircolors ~/.nix-profile/share/LS_COLORS)
-# alias ls='ls -Ggl --group-directories-first --color'
-# export LS_COLORS="$(vivid generate molokai)"
 
 
 # -------------------------------
@@ -353,10 +346,10 @@ function paste() {
 #
 # -------------------------------
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin/
-export PGDATA=/Users/MICKEY/Library/Application\ Support/Postgres/var-10
+export PGDATA=/Users/$USER/Library/Application\ Support/Postgres/var-10
 
 ### pglog       - tail postgres logs
-alias pglog="tail -f /Users/MICKEY/Library/Application\ Support/Postgres/var-10/postgresql.log"
+alias pglog="tail -f /Users/$USER/Library/Application\ Support/Postgres/var-10/postgresql.log"
 
 
 
@@ -428,7 +421,7 @@ alias emacs='/usr/local/bin/emacs'
 alias json='python -m json.tool'
 
 ### j           - autojump
-[[ -s /Users/MICKEY/.autojump/etc/profile.d/autojump.sh ]] && source /Users/MICKEY/.autojump/etc/profile.d/autojump.sh
+# [[ -s /Users/$USER/.autojump/etc/profile.d/autojump.sh ]] && source /Users/$USER/.autojump/etc/profile.d/autojump.sh
 
 ### jd          - j (d)ry run - echo first result from autojump
 function jd() {
@@ -437,7 +430,3 @@ function jd() {
   cd $cwd
   echo $root
 }
-
-# nix
-### ,           - run tool from nix-pkg without installing
-if [ -e /Users/MICKEY/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/MICKEY/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
