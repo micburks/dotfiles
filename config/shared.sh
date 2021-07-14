@@ -19,7 +19,7 @@ alias ehm="home-manager edit"
 help() {
   if [[ "$1" == "" ]]; then
     echo "\n shared\n ------"
-    awk -F'###' '/^###/ { print $2 }' ~/.config/nixpkgs/config/shared.sh | sort
+    awk -F'###' '/^###/ { print $2 }' ~/.zshrc.sh | sort
     echo "\n machine-specific\n ----------------"
     awk -F'###' '/^###/ { print $2 }' ~/.machine-specific.sh | sort
   elif [[ "$1" == "help" ]]; then
@@ -360,9 +360,7 @@ alias pglog="tail -f /Users/$USER/Library/Application\ Support/Postgres/var-10/p
 # -------------------------------
 # Edit and source bash in one command - useful for testing commands as you write
 ### esh         - edit and source shared shell configuration
-alias esh="vi ~/.shared.sh && source ~/.shared.sh"
-### ezsh        - edit and source .zshrc configuration
-alias ezsh="vi ~/.zshrc && source ~/.zshrc"
+alias esh="vim ~/.config/nixpkgs/config/shared.sh && home-manager switch && source ~/.zshrc"
 
 
 
