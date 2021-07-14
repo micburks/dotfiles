@@ -37,7 +37,6 @@ in
     go
     highlight
     jq
-    #  nerdfonts
     (nerdfonts.override { fonts = [ "RobotoMono" ]; })
     ranger
     rust-analyzer
@@ -92,7 +91,7 @@ in
       }
       # Show pwd
       function parse_pwd () {
-        echo $(pwd) | sed -e 's/^\/Users\/mburks\(.*\)$/~\1/'
+        echo $(pwd) | sed -e 's/^\/Users\/$USER\(.*\)$/~\1/'
       }
       # Show git branch name
       function parse_git_branch () {
@@ -104,7 +103,7 @@ in
       %{$reset_color%}$ '
       ######################
 
-      ${builtins.readFile ~/.shared.sh}
+      ${builtins.readFile ~/.config/nixpkgs/.shared.sh}
 
       export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate molokai)"
 
@@ -202,7 +201,7 @@ in
   programs.neovim = {
     enable = true;
     vimAlias = true;
-    extraConfig = builtins.readFile ~/.nvimrc;
+    extraConfig = builtins.readFile ~/.config/nixpkgs/.nvimrc;
     plugins = with pkgs.vimPlugins; [
       galaxyline-nvim
       gruvbox-nvim

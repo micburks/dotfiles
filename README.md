@@ -1,17 +1,23 @@
 # dotfiles
 
+#### requirements
+
+- git
+- github public key
+- nix
+- home-manager
+
+
 #### clone
 
-Some scripts assume this path
-
 ```bash
-mkdir -p ~/Code/oss
-git clone git@github.com:micburks/dotfiles.git ~/Code/oss/dotfiles
-cd ~/Code/oss/dotfiles
+mkdir -p ~/.config/nixpkgs
+git clone git@github.com:micburks/dotfiles.git ~/.config/nixpkgs
 ```
+
 
 #### install
 
 ```bash
-./install.sh
+home-manager switch
 ```

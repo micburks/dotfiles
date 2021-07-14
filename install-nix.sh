@@ -7,28 +7,3 @@ fi
 # keep up to date
 nix-channel --update nixpkgs
 nix-env -u '*'
-
-nix-env -iA nixpkgs.jq \
-  nixpkgs.fzf \
-  nixpkgs.bat \
-  nixpkgs.fd \
-  nixpkgs.gitAndTools.hub \
-  nixpkgs.tree \
-  nixpkgs.silver-searcher \
-  nixpkgs.zsh \
-  nixpkgs.yarn \
-  nixpkgs.alacritty \
-  nixpkgs.rustup \
-  nixpkgs.go \
-  nixpkgs.delta \
-  nixpkgs.tmux \
-  nixpkgs.tmuxp \
-  nixpkgs.ranger \
-  nixpkgs.autojump \
-  nixpkgs.neovim
-
-nix-env -i -f nix/ls-colors.nix
-
-git clone git@github.com:Shopify/comma.git tmp/comma
-nix-env -i -f tmp/comma
-rm -rf tmp
