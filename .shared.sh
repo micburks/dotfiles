@@ -165,9 +165,10 @@ export EDITOR=vim
 # Necessary for colors to work in tmux
 export TERM=xterm-256color
 export XDG_CONFIG_HOME=$HOME/.config
-alias v='vim'
-alias vi='vim'
-function vim() {
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
+function nvim() {
   local original_args=("$@")
   local vim_args=()
   local filtered_vim_args=()
@@ -185,7 +186,7 @@ function vim() {
 
   if (( new )); then
     # if "--new", let vim create new files
-    command vim -p "${vim_args[@]}"
+    command nvim -p "${vim_args[@]}"
   else
     # if not "--new", filter non-existant files
     for file in "${vim_args[@]}"; do
@@ -215,7 +216,7 @@ function vim() {
       fi
       echo "[vim wrapper] no files to open"
     else
-      command vim -p "${filtered_vim_args[@]}"
+      command nvim -p "${filtered_vim_args[@]}"
     fi
   fi
 }
