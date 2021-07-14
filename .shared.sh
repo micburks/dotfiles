@@ -273,9 +273,13 @@ function find_git_root() {
   fi
 }
 
-### c           - fuzzy cd
+### c [-a]      - fuzzy cd (-a for hidden and ignored files)
 function c() {
-  local target=$(fd --max-depth 6 --type d | fzf --preview "tree -C {} | head -200")
+  FD_CMD="fd --max-depth 6 --type d"
+  if [[ "$@" == *"-a"* ]]; then
+    FD_CMD="fd --max-depth 6 --type d --hidden -I"
+  fi
+  local target=$(eval ${FD_CMD} | fzf --preview "tree -C {} | head -200")
   if [[ "$target" != "" ]]; then
     cd $target
   fi
