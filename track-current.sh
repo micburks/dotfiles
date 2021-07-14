@@ -11,7 +11,7 @@ cat ~/.gitconfig | sed "s/$(whoami)/$USER/g" > .gitconfig
 #cp ~/.config/bat/config bat-config
 # cp ~/.vim/bundle/install-plugins.bash .vim/bundle/
 cp ~/.gitignore .
-cp ~/.tmux.conf .
+# cp ~/.tmux.conf .
 #cp ~/.psqlrc .
 #rsync -av --exclude='node_modules' ~/scripts/ ./scripts
 

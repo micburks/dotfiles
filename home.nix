@@ -7,9 +7,7 @@ let
       rev = "4a62ec17e20ce0e738a8e5126b4298a73903b468";
       sha256 = "0n5a3rnv9qnnsrl76kpi6dmaxmwj1mpdd2g0b4n1wfimqfaz6gi1";
   }) {};
-
 in
-
 {
   programs.home-manager.enable = true;
 
@@ -21,6 +19,11 @@ in
 
   nixpkgs.config.allowUnfree = true;
   fonts.fontconfig.enable = true;
+
+  imports = [
+    ./config/nvim.nix
+    ./config/tmux.nix
+  ];
 
   home.packages = with pkgs; [
     alacritty
@@ -42,11 +45,11 @@ in
     rust-analyzer
     rustup
     silver-searcher
-    tmux
+    # tmux
     tree
     vivid
     yarn
-    zsh
+    # zsh
   ];
 
   # programs.git = {
@@ -142,12 +145,6 @@ in
     };
   };
 
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
-
   programs.alacritty = {
     enable = true;
     settings = {
@@ -190,45 +187,5 @@ in
         foreground = "0xdadfe0";
       };
     };
-  };
-
-  # kamwitsta/nordisk
-  # pgavlin/pulumi.vim
-  # terrortylor/nvim-comment
-  # nacro90/numb.nvim
-  # hkupty/nvimux
-
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
-    extraConfig = builtins.readFile ~/.config/nixpkgs/.nvimrc;
-    plugins = with pkgs.vimPlugins; [
-      galaxyline-nvim
-      gruvbox-nvim
-      hop-nvim
-      iceberg-vim
-      lsp-colors-nvim
-      lush-nvim
-      nvim-colorizer-lua
-      nvim-compe
-      nvim-lspconfig
-      nvim-toggleterm-lua
-      nvim-tree-lua
-      nvim-treesitter
-      nvim-treesitter-context
-      nvim-treesitter-refactor
-      nvim-web-devicons
-      plenary-nvim
-      popup-nvim
-      quick-scope
-      registers-nvim
-      Shade-nvim
-      splitjoin-vim
-      telescope-nvim
-      trouble-nvim
-      vim-gitgutter
-      vim-illuminate
-      zenburn
-    ];
   };
 }
