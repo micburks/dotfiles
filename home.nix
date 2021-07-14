@@ -37,6 +37,8 @@ in
     go
     highlight
     jq
+    #  nerdfonts
+    (nerdfonts.override { fonts = [ "RobotoMono" ]; })
     ranger
     rust-analyzer
     rustup
@@ -147,8 +149,50 @@ in
     }))
   ];
 
-  # Can't use nvim-web-devicons until I figure out why my patched font won't work with Alacritty
-  # kyazdani42/nvim-web-devicons
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      env = {
+        "TERM" = "xterm-256color";
+      };
+      window = {
+        decorations = "none";
+        startup_mode = "Windowed";
+        dimensions = {
+          columns = 0;
+          lines = 0;
+        };
+        padding = {
+          x = 2;
+          y = 0;
+        };
+      };
+      scrolling = {
+        history = 10000;
+        multiplier = 3;
+        faux_multiplier = 3;
+        auto_scroll = false;
+      };
+      font = {
+        size = 12.0;
+        use_thin_strokes = false;
+        offset = {
+          x = 0;
+          y = 2;
+        };
+        normal = {
+          family = "RobotoMono Nerd Font";
+          style = "Regular";
+        };
+      };
+      draw_bold_text_with_bright_colors = true;
+      colors.primary = {
+        background = "0x393a3c";
+        foreground = "0xdadfe0";
+      };
+    };
+  };
+
   # kamwitsta/nordisk
   # pgavlin/pulumi.vim
   # terrortylor/nvim-comment
@@ -160,6 +204,7 @@ in
     vimAlias = true;
     extraConfig = builtins.readFile ~/.nvimrc;
     plugins = with pkgs.vimPlugins; [
+      galaxyline-nvim
       gruvbox-nvim
       hop-nvim
       iceberg-vim
@@ -173,6 +218,7 @@ in
       nvim-treesitter
       nvim-treesitter-context
       nvim-treesitter-refactor
+      nvim-web-devicons
       plenary-nvim
       popup-nvim
       quick-scope
