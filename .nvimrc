@@ -145,9 +145,9 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " ### --- Folds ---
 "
 " ----------------------------------------------------------------------------
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-set foldlevelstart=20
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
+" set foldlevelstart=20
 
 " ### :set fdm      - set fold method [manual, syntax, indent]
 " ### zo            - (o)pen fold
@@ -283,11 +283,20 @@ require("toggleterm").setup{
 }
 require("trouble").setup{}
 
+vim.api.nvim_set_keymap('n', '<leader>gf', '<cmd>vim.lsp.buf.code_action()<cr>', {expr = true, noremap = true})
+-- vim.api.nvim_set_keymap('n', '<leader>gf', 'vim.lsp.buf.range_code_action()', {expr = true, noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>xq", "<cmd>Trouble quickfix<cr>",
+  {silent = true, noremap = true}
+)
+
 --  treesitter
 require("nvim-treesitter.configs").setup {
-  ensure_installed = "all",
-  ignore_install = { "haskell" },
-  highlight = {enable = {enabled = true, use_languagetree = true}},
+  ensure_installed = "maintained",
+  ignore_install = { "haskell" }, -- haskell broken?
+  highlight = {
+    enable = {enabled = true, use_languagetree = true},
+    additional_vim_regex_highlighting = true,
+  },
   autotag = {enable = true},
   indent = {enable = true},
   refactor = {
