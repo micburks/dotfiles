@@ -10,6 +10,7 @@ let
 in
 {
   programs.home-manager.enable = true;
+  news.display = "silent";
 
   home.stateVersion = "21.11";
   home.username = "$USER";

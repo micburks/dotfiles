@@ -5,9 +5,9 @@
 if [ -e /Users/$USER/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/$USER/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 ### hm          - home-manager switch
-### ehm         - home-manager edit
+### ehm         - home-manager edit && home-manager switch
 alias hm="home-manager switch"
-alias ehm="home-manager edit"
+alias ehm="home-manager edit && home-manager switch"
 
 
 # -------------------------------
@@ -19,7 +19,7 @@ alias ehm="home-manager edit"
 help() {
   if [[ "$1" == "" ]]; then
     echo "\n shared\n ------"
-    awk -F'###' '/^###/ { print $2 }' ~/.zshrc.sh | sort
+    awk -F'###' '/^###/ { print $2 }' ~/.zshrc | sort
     echo "\n machine-specific\n ----------------"
     awk -F'###' '/^###/ { print $2 }' ~/.machine-specific.sh | sort
   elif [[ "$1" == "help" ]]; then
