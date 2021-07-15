@@ -1,7 +1,7 @@
 
 " Custom help
 " ### :Help          - print this help
-command! -nargs=? -bar -bang Help echo system("awk -F'\" ###' '/^\" ###/ { print $2 }' ~/.nvimrc")
+command! -nargs=? -bar -bang Help echo system("awk -F'\" ###' '/^\" ###/ { print $2 }' ~/.config/nvim/init.vim")
 
 
 " TODO - better scheme for nmap
@@ -18,9 +18,6 @@ command! -nargs=? -bar -bang Help echo system("awk -F'\" ###' '/^\" ###/ { print
 " ### \             - leader
 " Remap leader
 " let mapleader = ","
-
-" ### \q            - open vimrc in tab
-nnoremap <leader>q :tabf ~/.vimrc<Enter>
 
 " show current line number
 set number
@@ -772,17 +769,17 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 " ### \e            - Open file tree
 nnoremap <leader>e :NvimTreeToggle<CR>
 
-" ### \<TAB>[hjkl]  - Move to corresponding split
-nnoremap <silent> <leader><tab>h <C-w>h
-nnoremap <silent> <leader><tab>j <C-w>j
-nnoremap <silent> <leader><tab>k <C-w>k
-nnoremap <silent> <leader><tab>l <C-w>l
-
 " ### arrow keys    - Move to corresponding split
 nnoremap <silent> <left> <C-w><left><CR>
 nnoremap <silent> <down> <C-w><down><CR>
 nnoremap <silent> <up> <C-w><up><CR>
 nnoremap <silent> <right> <C-w><right><CR>
+
+" ### <leader>arrow - Resize split
+nnoremap <silent> <leader><left> :vertical resize -5<CR>
+nnoremap <silent> <leader><down> :resize -5<CR>
+nnoremap <silent> <leader><up> :resize +5<CR>
+nnoremap <silent> <leader><right> :vertical resize +5<CR>
 
 " sensible splits
 set splitbelow
