@@ -16,7 +16,13 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
-    extraConfig = builtins.readFile ~/.config/nixpkgs/config/init.vim;
+    extraConfig = ''
+      ${builtins.readFile ~/.config/nixpkgs/config/init.vim}
+
+      lua <<EOF
+        ${builtins.readFile ~/.config/nixpkgs/config/nvim/plugins.lua}
+      EOF
+    '';
     plugins = with pkgs.vimPlugins; [
       galaxyline-nvim
       gruvbox-nvim

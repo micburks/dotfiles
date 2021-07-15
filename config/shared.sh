@@ -25,7 +25,7 @@ help() {
   elif [[ "$1" == "help" ]]; then
     awk -F'###' '/^###/ { print $2 }' ~/.config/nixpkgs/help/$1
     echo ""
-    echo "$(ls ~/Code/oss/dotfiles/help)"
+    echo "$(ls ~/.config/nixpkgs/help)"
   else
     awk -F'###' '/^###/ { print $2 }' ~/.config/nixpkgs/help/$1
   fi
