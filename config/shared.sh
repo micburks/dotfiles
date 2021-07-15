@@ -6,8 +6,8 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 
 ### hm          - home-manager switch
 ### ehm         - home-manager edit && home-manager switch
-alias hm="home-manager switch"
-alias ehm="home-manager edit && home-manager switch"
+alias hm="home-manager switch && source ~/.zshrc"
+alias ehm="home-manager edit && hm"
 
 
 # -------------------------------
@@ -237,11 +237,12 @@ alias r='ranger --cmd "set show_hidden=true"'
 # -------------------------------
 ### uu          - (u)p (u)p - cd to root parent `git` directory
 function uu() {
-  local cwd=$(pwd)
-  local root=$(find_git_root)
+  local cwd=$PWD
+  local root=$(find_git_root $PWD)
   if [[ "$root" == "/" ]]; then
-    cd $cwd
     echo "No root found"
+  elif [[ "$root" == "$PWD" ]]; then
+    echo "Already at root!"
   else
     cd $root
     echo "Found $(basename $root)"
@@ -250,20 +251,15 @@ function uu() {
 
 ### uud         - uu (d)ry run - echo root parent `git` directory
 function uud() {
-  local cwd=$(pwd)
-  local root=$(find_git_root)
-  cd $cwd
-  echo $root
+  find_git_root $PWD
 }
 
 # prints path at root of current `git` directory
-# contains side-effect of changing to root directory
 function find_git_root() {
-  if [[ -s ".git" || "$(pwd)" == "/" ]]; then
-    pwd
+  if [[ -s "$1/.git" || "$1" == "/" ]]; then
+    echo "$1"
   else
-    cd ..
-    find_git_root
+    find_git_root "$(dirname "$1")"
   fi
 }
 
@@ -360,7 +356,7 @@ alias pglog="tail -f $HOME/Library/Application\ Support/Postgres/var-10/postgres
 # -------------------------------
 # Edit and source bash in one command - useful for testing commands as you write
 ### esh         - edit and source shared shell configuration
-alias esh="vim ~/.config/nixpkgs/config/shared.sh && home-manager switch && source ~/.zshrc"
+alias esh="vim ~/.config/nixpkgs/config/shared.sh && hm"
 
 
 
