@@ -13,15 +13,14 @@
   # nacro90/numb.nvim
   # hkupty/nvimux
 
+  xdg.configFile."nvim/lua".source = ./nvim/lua;
+
   programs.neovim = {
     enable = true;
     vimAlias = true;
     extraConfig = ''
-      ${builtins.readFile ~/.config/nixpkgs/config/init.vim}
-
-      lua <<EOF
-        ${builtins.readFile ~/.config/nixpkgs/config/nvim/plugins.lua}
-      EOF
+       ${builtins.readFile ~/.config/nixpkgs/config/init.vim}
+       lua require('init')";
     '';
     plugins = with pkgs.vimPlugins; [
       galaxyline-nvim
