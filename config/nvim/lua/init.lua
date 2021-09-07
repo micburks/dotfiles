@@ -14,12 +14,6 @@ require("toggleterm").setup{
 }
 require("trouble").setup{}
 
-vim.api.nvim_set_keymap('n', '<leader>gf', '<cmd>vim.lsp.buf.code_action()<cr>', {expr = true, noremap = true})
--- vim.api.nvim_set_keymap('n', '<leader>gf', 'vim.lsp.buf.range_code_action()', {expr = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<leader>xq", "<cmd>Trouble quickfix<cr>",
-  {silent = true, noremap = true}
-)
-
 --  treesitter
 require("nvim-treesitter.configs").setup {
   ensure_installed = "maintained",
@@ -50,6 +44,7 @@ require("nvim-treesitter.configs").setup {
     },
   },
 }
+
 -- ### \go           - (g)(o) to definition
 -- ### \gp           - previous usage
 -- ### \gn           - next usage
@@ -64,16 +59,8 @@ require('treesitter-context.config').setup {
 }
 
 -- nvim_tree
-    -- default mappings
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_auto_open = 1
-vim.g.nvim_tree_bindings = {
-  -- doesn't work for some reason
-  -- { key = "O", cb = tree_cb("cd") },
-}
-
---- nvim-tree
 --- nvim-tree visibility
 --- <leader>e   - open tree
 --- I           - toggle git hidden files
@@ -106,201 +93,35 @@ vim.g.nvim_tree_bindings = {
 -- brew install efm-langserver
 require('lspconfig').bashls.setup{}
 require('lspconfig').cssls.setup{}
--- local eslint = {
---   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
---   lintStdin = true,
---   lintFormats = {"%f:%l:%c: %m"},
---   lintIgnoreExitCode = true,
---   formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
---   formatStdin = true,
---   rootPatterns = { '.git' },
---   parseJson = {
---     errorsRoot = '[0].messages',
---     line = 'line',
---     column = 'column',
---     endLine = 'endLine',
---     endColumn = 'endColumn',
---     message = '[eslint] ${message} [${ruleId}]',
---     security = 'severity'
--- },
--- }
--- local function eslint_config_exists()
---   local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
---   if not vim.tbl_isempty(eslintrc) then
---     return true
---   end
---   if vim.fn.filereadable("package.json") then
---     if vim.fn.json_decode(vim.fn.readfile("package.json"))["eslintConfig"] then
---       return true
---     end
---   end
---   return false
--- end
--- require('lspconfig').efm.setup {
---   -- on_attach = function(client)
---   --   client.resolved_capabilities.document_formatting = true
---   --   client.resolved_capabilities.goto_definition = false
---   --   -- set_lsp_config(client)
---   -- end,
---   -- root_dir = function()
---   --   if not eslint_config_exists() then
---   --     return nil
---   --   end
---   --   return vim.fn.getcwd()
---   -- end,
---   linters = { eslint },
---   formatters = { eslint },
---   settings = {
---     languages = {
---       javascript = {eslint},
---       javascriptreact = {eslint},
---       ["javascript.jsx"] = {eslint},
---       typescript = {eslint},
---       ["typescript.tsx"] = {eslint},
---       typescriptreact = {eslint}
---     }
---   },
---   filetypes = {
---     "javascript",
---     "javascriptreact",
---     "javascript.jsx",
---     "typescript",
---     "typescript.tsx",
---     "typescriptreact"
---   },
--- }
--- function _lsp_definitions(opts)
---   return list_or_jump('textDocument/definition', 'LSP Definitions', opts)
--- end
--- function _lsp_on_attach(client, bufnr)
---   local function buf_map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
--- 
---   -- Set up keymaps
---   local opts = {noremap = true, silent = true}
---   buf_map('n', '<c-]>', [[<cmd>lua _lsp_definitions()<cr>]], opts)
---   buf_map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
---   buf_map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
---   buf_map('n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
---   buf_map('n', 'gr', [[<cmd>lua require'telescope.builtin'.lsp_references()<cr>]], opts)
--- 
---   buf_map('n', 'K', [[<cmd>lua vim.lsp.buf.hover()<cr>]], opts)
---   buf_map('n', '<space>rn', [[<cmd>lua vim.lsp.buf.rename()<CR>]], opts)
---   buf_map('n', '<leader>ca', [[<cmd>lua vim.lsp.buf.code_action()<cr>]], opts)
--- 
---   -- Navigate diagnostics
---   buf_map('n', '[g', [[<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>]], opts)
---   buf_map('n', ']g', [[<cmd>lua vim.lsp.diagnostic.goto_next()<cr>]], opts)
---   -- Show diagnostics popup with <leader>d
---   buf_map('n', '<leader>d', [[<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'single' })<cr>]], opts)
--- 
---   if client.resolved_capabilities.document_formatting then
---     vim.cmd [[augroup LspFormatting]]
---     vim.cmd [[autocmd! * <buffer>]]
---     vim.cmd [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
---     vim.cmd [[augroup END]]
---   end
--- end
--- 
--- local eslint_lint = {
---   lintCommand = 'eslint_d -f ~/eslint-formatter-vim.js --stdin --stdin-filename ${INPUT}',
---   lintIgnoreExitCode = true,
---   lintStdin = true,
---   lintFormats = {'%f:%l:%c:%t: %m'},
--- }
--- 
--- local eslint_format = {
---   formatCommand = 'eslint_d -f unix --stdin --stdin-filename ${INPUT} --fix-to-stdout',
---   formatStdin = true,
---   FormatStdin = true,
---   ["format-stdin"] = true
--- }
--- 
--- local prettier = {
---   formatCommand = './node_modules/.bin/prettier --stdin-filepath ${INPUT}',
---   formatStdin = true,
--- }
--- 
--- local stylelint = {
---   lintCommand = './node_modules/.bin/stylelint --cache --formatter unix --stdin-filename ${INPUT}',
---   lintIgnoreExitCode = true,
---   lintStdin = true,
---   lintFormats = {'%f:%l:%c: %m [%trror]'}
--- }
--- 
--- local function file_exists(name)
---   local f = io.open(name, 'r')
---   if f ~= nil then
---     io.close(f)
---     return true
---   else
---     return false
---   end
--- end
--- 
--- local eslint_or_prettier_format = file_exists('.eslintrc.js')
---   and eslint_format
---   or prettier
--- 
--- require('lspconfig').efm.setup {
---   on_attach = _lsp_on_attach,
---   root_dir = require('lspconfig').util.root_pattern('package.json'),
---   filetypes = {'typescript', 'typescriptreact', 'vue', 'javascript', 'javascriptreact'},
---   init_options = {
---     documentFormatting = true,
---   },
---   settings = {
---     rootMarkers = {'package.json'},
---     languages = {
---       typescript = {eslint_lint, eslint_or_prettier_format},
---       typescriptreact = {eslint_lint, eslint_or_prettier_format},
---       javascript = {eslint_lint, eslint_or_prettier_format},
---       vue = {eslint_lint, stylelint, prettier},
---       scss = {stylelint, prettier},
---     },
---   },
--- }
-require('lspconfig').flow.setup{
---   on_attach = function(client)
---     if client.config.flags then
---       client.config.flags.allow_incremental_sync = true
---     end
---     client.resolved_capabilities.document_formatting = false
---     -- set_lsp_config(client)
---   end,
-}
+require('lspconfig').flow.setup{}
 require('lspconfig').graphql.setup{}
 require('lspconfig').html.setup{}
 require('lspconfig').jsonls.setup{}
 require('lspconfig').rust_analyzer.setup{}
--- require('lspconfig').tsserver.setup{
---   on_attach = function(client)
---     if client.config.flags then
---       client.config.flags.allow_incremental_sync = true
---     end
---     client.resolved_capabilities.document_formatting = false
---     -- set_lsp_config(client)
---   end,
---   -- default
---   -- filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
---   filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
--- }
+require('lspconfig').tsserver.setup{
+  -- default
+  -- filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" }
+}
 require('lspconfig').vimls.setup{}
 
 
--- statusline attempt
+-- set short list for terminal
+-- function _changeTerminalFileType()
+-- 	vim.api.nvim_command('setlocal filetype=term ')
+-- end
+-- vim.api.nvim_command("autocmd TermOpen * :lua _changeTerminalFileType()")
+
 local cmd = vim.cmd
 local fn = vim.fn
 local gl = require("galaxyline")
 local section = gl.section
-gl.short_line_list = {"LuaTree", "packager", "Floaterm", "coc-explorer"}
-
-local nord_colors = {
+gl.short_line_list = { 'packer', 'NvimTree', "packager", "toggleterm"}
+local colors = {
   bg = "NONE",
-  -- bg = "#2E3440",
   fg = "#81A1C1",
   line_bg = "NONE",
   lbg = "NONE",
-  -- lbg = "#3B4252",
   fg_green = "#8FBCBB",
   yellow = "#EBCB8B",
   cyan = "#A3BE8C",
@@ -313,6 +134,51 @@ local nord_colors = {
   blue = "#5E81AC",
   red = "#BF616A"
 }
+-- " fill it with absolute colors
+-- let s:gb.dark0_hard  = ['#1d2021', 234]     " 29-32-33
+-- let s:gb.dark0       = ['#282828', 235]     " 40-40-40
+-- let s:gb.dark0_soft  = ['#32302f', 236]     " 50-48-47
+-- let s:gb.dark1       = ['#3c3836', 237]     " 60-56-54
+-- let s:gb.dark2       = ['#504945', 239]     " 80-73-69
+-- let s:gb.dark3       = ['#665c54', 241]     " 102-92-84
+-- let s:gb.dark4       = ['#7c6f64', 243]     " 124-111-100
+-- let s:gb.dark4_256   = ['#7c6f64', 243]     " 124-111-100
+-- 
+-- let s:gb.gray_245    = ['#928374', 245]     " 146-131-116
+-- let s:gb.gray_244    = ['#928374', 244]     " 146-131-116
+-- 
+-- let s:gb.light0_hard = ['#f9f5d7', 230]     " 249-245-215
+-- let s:gb.light0      = ['#fbf1c7', 229]     " 253-244-193
+-- let s:gb.light0_soft = ['#f2e5bc', 228]     " 242-229-188
+-- let s:gb.light1      = ['#ebdbb2', 223]     " 235-219-178
+-- let s:gb.light2      = ['#d5c4a1', 250]     " 213-196-161
+-- let s:gb.light3      = ['#bdae93', 248]     " 189-174-147
+-- let s:gb.light4      = ['#a89984', 246]     " 168-153-132
+-- let s:gb.ligh_256  = ['#a89984', 246]     " 168-153-132
+-- 
+-- let s:gb.bright_red     = ['#fb4934', 167]     " 251-73-52
+-- let s:gb.bright_green   = ['#b8bb26', 142]     " 184-187-38
+-- let s:gb.bright_yellow  = ['#fabd2f', 214]     " 250-189-47
+-- let s:gb.bright_blue    = ['#83a598', 109]     " 131-165-152
+-- let s:gb.bright_purple  = ['#d3869b', 175]     " 211-134-155
+-- let s:gb.bright_aqua    = ['#8ec07c', 108]     " 142-192-124
+-- let s:gb.bright_orange  = ['#fe8019', 208]     " 254-128-25
+-- 
+-- let s:gb.neutral_red    = ['#cc241d', 124]     " 204-36-29
+-- let s:gb.neutral_green  = ['#98971a', 106]     " 152-151-26
+-- let s:gb.neutral_yellow = ['#d79921', 172]     " 215-153-33
+-- let s:gb.neutral_blue   = ['#458588', 66]      " 69-133-136
+-- let s:gb.neutral_purple = ['#b16286', 132]     " 177-98-134
+-- let s:gb.neutral_aqua   = ['#689d6a', 72]      " 104-157-106
+-- let s:gb.neutral_orange = ['#d65d0e', 166]     " 214-93-14
+-- 
+-- let s:gb.faded_red      = ['#9d0006', 88]      " 157-0-6
+-- let s:gb.faded_green    = ['#79740e', 100]     " 121-116-14
+-- let s:gb.faded_yellow   = ['#b57614', 136]     " 181-118-20
+-- let s:gb.faded_blue     = ['#076678', 24]      " 7-102-120
+-- let s:gb.faded_purple   = ['#8f3f71', 96]      " 143-63-113
+-- let s:gb.faded_aqua     = ['#427b58', 66]      " 66-123-88
+-- let s:gb.faded_orange   = ['#af3a03', 130]     " 175-58-3
 
 local buffer_not_empty = function()
   if fn.empty(fn.expand("%:t")) ~= 1 then
@@ -320,186 +186,120 @@ local buffer_not_empty = function()
   end
   return false
 end
-
 section.left[1] = {
   FirstElement = {
-    -- provider = function() return '▊ ' end,
-    provider = function()
-      return "  "
-    end,
-    highlight = {nord_colors.blue, nord_colors.line_bg}
+    provider = function() return "  " end,
+    highlight = {colors.blue, colors.line_bg}
   }
 }
 section.left[2] = {
   ViMode = {
     provider = function()
-      -- auto change color according the vim mode
       local mode_color = {
-        n = nord_colors.magenta,
-        i = nord_colors.green,
-        v = nord_colors.blue,
-        [""] = nord_colors.blue,
-        V = nord_colors.blue,
-        c = nord_colors.red,
-        no = nord_colors.magenta,
-        s = nord_colors.orange,
-        S = nord_colors.orange,
-        [""] = nord_colors.orange,
-        ic = nord_colors.yellow,
-        R = nord_colors.purple,
-        Rv = nord_colors.purple,
-        cv = nord_colors.red,
-        ce = nord_colors.red,
-        r = nord_colors.cyan,
-        rm = nord_colors.cyan,
-        ["r?"] = nord_colors.cyan,
-        ["!"] = nord_colors.red,
-        t = nord_colors.red
+        n = colors.magenta,
+        i = colors.green,
+        v = colors.blue,
+        [""] = colors.blue,
+        V = colors.blue,
+        c = colors.red,
+        no = colors.magenta,
+        s = colors.orange,
+        S = colors.orange,
+        [""] = colors.orange,
+        ic = colors.yellow,
+        R = colors.purple,
+        Rv = colors.purple,
+        cv = colors.red,
+        ce = colors.red,
+        r = colors.cyan,
+        rm = colors.cyan,
+        ["r?"] = colors.cyan,
+        ["!"] = colors.red,
+        t = colors.red
       }
+      local alias = {n = 'NORMAL',i = 'INSERT',c= 'COMMAND',v= 'VISUAL',V= 'VISUAL LINE', [''] = 'VISUAL BLOCK',t='TERMINAL'}
       cmd("hi GalaxyViMode guifg=" .. mode_color[fn.mode()])
-      return "     "
+      return alias[fn.mode()]
     end,
-    highlight = {nord_colors.red, nord_colors.line_bg, "bold"}
+    separator = " ",
+    highlight = {colors.red, colors.line_bg, "bold"}
   }
 }
 section.left[3] = {
   FileIcon = {
     provider = "FileIcon",
     condition = buffer_not_empty,
-    highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, nord_colors.line_bg}
+    highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.line_bg}
   }
 }
 section.left[4] = {
   FileName = {
-    -- provider = "FileName",
     provider = function()
       return fn.expand("%:F")
     end,
     condition = buffer_not_empty,
     separator = " ",
-    separator_highlight = {nord_colors.purple, nord_colors.bg},
-    highlight = {nord_colors.purple, nord_colors.line_bg, "bold"}
+    separator_highlight = {colors.purple, colors.bg},
+    highlight = {colors.purple, colors.line_bg, "bold"}
   }
 }
-
 section.right[1] = {
-  GitIcon = {
-    provider = function()
-      return " "
-    end,
-    condition = require("galaxyline.provider_vcs").check_git_workspace,
-    highlight = {nord_colors.orange, nord_colors.line_bg}
-  }
-}
-section.right[2] = {
   GitBranch = {
     provider = "GitBranch",
     condition = require("galaxyline.provider_vcs").check_git_workspace,
-    separator = "",
-    separator_highlight = {nord_colors.purple, nord_colors.bg},
-    highlight = {nord_colors.orange, nord_colors.line_bg, "bold"}
+    separator_highlight = {colors.purple, colors.bg},
+    highlight = {colors.orange, colors.line_bg, "bold"}
   }
 }
-
-local checkwidth = function()
-  local squeeze_width = fn.winwidth(0) / 2
-  if squeeze_width > 40 then
-    return true
-  end
-  return false
-end
-
-section.right[3] = {
-  DiffAdd = {
-    provider = "DiffAdd",
-    condition = checkwidth,
-    icon = " ",
-    highlight = {nord_colors.green, nord_colors.line_bg}
-  }
-}
-section.right[4] = {
-  DiffModified = {
-    provider = "DiffModified",
-    condition = checkwidth,
-    icon = "柳",
-    highlight = {nord_colors.yellow, nord_colors.line_bg}
-  }
-}
-section.right[5] = {
-  DiffRemove = {
-    provider = "DiffRemove",
-    condition = checkwidth,
-    icon = " ",
-    highlight = {nord_colors.red, nord_colors.line_bg}
-  }
-}
-
-section.right[6] = {
+section.right[2] = {
   LineInfo = {
     provider = "LineColumn",
-    separator = "",
-    separator_highlight = {nord_colors.blue, nord_colors.line_bg},
-    highlight = {nord_colors.gray, nord_colors.line_bg}
+    separator = " ",
+    separator_highlight = {colors.blue, colors.line_bg},
+    highlight = {colors.gray, colors.line_bg}
   }
 }
--- section.right[7] = {
---   FileSize = {
---     provider = "FileSize",
---     separator = " ",
---     condition = buffer_not_empty,
---     separator_highlight = {nord_colors.blue, nord_colors.line_bg},
---     highlight = {nord_colors.fg, nord_colors.line_bg}
---   }
--- }
-
-section.right[8] = {
+section.right[3] = {
   DiagnosticError = {
     provider = "DiagnosticError",
     separator = " ",
     icon = " ",
-    highlight = {nord_colors.red, nord_colors.line_bg},
-    separator_highlight = {nord_colors.bg, nord_colors.bg}
+    highlight = {colors.red, colors.line_bg},
+    separator_highlight = {colors.bg, colors.bg}
   }
 }
-section.right[9] = {
+section.right[4] = {
   DiagnosticWarn = {
     provider = "DiagnosticWarn",
-    -- separator = " ",
     icon = " ",
-    highlight = {nord_colors.yellow, nord_colors.line_bg},
-    separator_highlight = {nord_colors.bg, nord_colors.bg}
+    highlight = {colors.yellow, colors.line_bg},
+    separator_highlight = {colors.bg, colors.bg}
   }
 }
-
-section.right[10] = {
+section.right[5] = {
   DiagnosticInfo = {
-    -- separator = " ",
     provider = "DiagnosticInfo",
     icon = " ",
-    highlight = {nord_colors.green, nord_colors.line_bg},
-    separator_highlight = {nord_colors.bg, nord_colors.bg}
+    highlight = {colors.green, colors.line_bg},
+    separator_highlight = {colors.bg, colors.bg}
   }
 }
-
-section.right[11] = {
+section.right[6] = {
   DiagnosticHint = {
     provider = "DiagnosticHint",
-    -- separator = " ",
     icon = " ",
-    highlight = {nord_colors.blue, nord_colors.line_bg},
-    separator_highlight = {nord_colors.bg, nord_colors.bg}
+    highlight = {colors.blue, colors.line_bg},
+    separator_highlight = {colors.bg, colors.bg}
   }
 }
-
 section.short_line_left[1] = {
   BufferType = {
     provider = "FileIcon",
     separator = " ",
-    separator_highlight = {"NONE", nord_colors.lbg},
-    highlight = {nord_colors.blue, nord_colors.lbg, "bold"}
+    separator_highlight = {"NONE", colors.lbg},
+    highlight = {colors.blue, colors.lbg, "bold"}
   }
 }
-
 section.short_line_left[2] = {
   SFileName = {
     provider = function()
@@ -513,14 +313,12 @@ section.short_line_left[2] = {
       return fname
     end,
     condition = buffer_not_empty,
-    highlight = {nord_colors.white, nord_colors.lbg, "bold"}
+    highlight = {colors.white, colors.lbg, "bold"}
   }
 }
-
 section.short_line_right[1] = {
   BufferIcon = {
     provider = "BufferIcon",
-    highlight = {nord_colors.fg, nord_colors.lbg}
+    highlight = {colors.fg, colors.lbg}
   }
 }
-
