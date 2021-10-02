@@ -10,8 +10,10 @@ git clone git@github.com:micburks/dotfiles.git ~/.config/nixpkgs
 
 #### nix
 
+[Good post](https://www.philipp.haussleiter.de/2020/04/fixing-nix-setup-on-macos-catalina/) about setting up an encrypted volume
+
 ```bash
-NIX_INSTALLER_NO_MODIFY_PROFILE=1 sh <(curl https://nixos.org/nix/install) --no-daemon --darwin-use-unencrypted-nix-store-volume
+sh <(curl -L https://nixos.org/nix/install) --daemon
 nix-channel --update nixpkgs
 nix-env -u '*'
 ```

@@ -32,7 +32,6 @@
       nvim-colorizer-lua
       nvim-compe
       nvim-lspconfig
-      nvim-toggleterm-lua
       nvim-tree-lua
       nvim-treesitter
       nvim-treesitter-context
@@ -45,6 +44,7 @@
       Shade-nvim
       splitjoin-vim
       telescope-nvim
+      toggleterm-nvim
       trouble-nvim
       vim-gitgutter
       vim-illuminate
