@@ -20,7 +20,7 @@
     vimAlias = true;
     extraConfig = ''
        ${builtins.readFile ~/.config/nixpkgs/config/init.vim}
-       lua require('init')";
+       lua require('init');
     '';
     plugins = with pkgs.vimPlugins; [
       galaxyline-nvim
