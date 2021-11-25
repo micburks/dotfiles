@@ -2,7 +2,14 @@
 
 # nix
 ### ,           - run tool from nix-pkg without installing
+
+# No idea why home-manager isn't doing this already
+if [[ -e "$HOME/.nix-defexpr/channels" ]]; then
+  export NIX_PATH="$HOME/.nix-defexpr/channels${"${NIX_PATH:+:$NIX_PATH}"}"
+fi
+
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
 
 ### hm          - home-manager switch
 ### ehm         - home-manager edit && home-manager switch
