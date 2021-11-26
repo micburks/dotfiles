@@ -281,34 +281,6 @@ nnoremap <silent> <leader><right> :vertical resize +5<CR>
 set splitbelow
 set splitright
 
-let g:nvim_tree_icons = {
-    \ 'default': '',
-    \ 'symlink': '-',
-    \ 'git': {
-    \   'unstaged': "✗",
-    \   'staged': "✓",
-    \   'unmerged': "ᛥ",
-    \   'renamed': "➜",
-    \   'untracked': "★",
-    \   'deleted': "ᛰ",
-    \   'ignored': "◌"
-    \   },
-    \ 'folder': {
-    \   'default': "ᗒ",
-    \   'open': "ᗐ",
-    \   'empty': "ᗌ",
-    \   'empty_open': "ᗊ",
-    \   'symlink': "ᗘ",
-    \   'symlink_open': "ᗖ",
-    \   },
-    \   'lsp': {
-    \     'hint': "h ",
-    \     'info': "i ",
-    \     'warning': "w ",
-    \     'error': "e ",
-    \   }
-    \ }
-
 " ----------------------------------------------------------------------------
 "
 " --- Colors ---

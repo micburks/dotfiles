@@ -45,6 +45,7 @@ in
     jq
     (nerdfonts.override { fonts = [ "RobotoMono" ]; })
     ranger
+    ripgrep
     rust-analyzer
     rustup
     silver-searcher

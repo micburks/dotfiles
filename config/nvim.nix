@@ -1,11 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball {
+  #     url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+  #   }))
+  # ];
 
   # kamwitsta/nordisk
   # pgavlin/pulumi.vim
@@ -43,6 +43,7 @@
       registers-nvim
       Shade-nvim
       splitjoin-vim
+      telescope-fzf-native-nvim
       telescope-nvim
       toggleterm-nvim
       trouble-nvim
