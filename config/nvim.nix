@@ -37,6 +37,7 @@
       nvim-treesitter-context
       nvim-treesitter-refactor
       nvim-web-devicons
+      packer-nvim
       plenary-nvim
       popup-nvim
       quick-scope
@@ -50,6 +51,11 @@
       vim-gitgutter
       vim-illuminate
       zenburn
+
+      # hrsh7th/nvim-cmp
+      # hrsh7th/cmp-nvim-lsp
+      # saadparwaiz1/cmp_luasnip
+      # L3MON4D3/LuaSnip
     ];
   };
 }
