@@ -29,14 +29,13 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
----
 --- \go           - (g)(o) to definition
 --- \gp           - previous usage
 --- \gn           - next usage
 --- \gd           - list definitions
 --- \gr           - smart rename
 --- \gg           - Re-indent file
-vim.api.nvim_set_keymap('n', '<leader>gg', 'mnggVG=<esc>`n', {expr = true, noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>gg', 'mnggVG=<escape>`n', {noremap = true})
 
 -- - \gh           - show hover details
 -- - \gf           - use ale to auto-fix lint

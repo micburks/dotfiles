@@ -1,3 +1,7 @@
+-- npm i -g bash-language-server graphql-language-service-cli flow-bin typescript-language-server vscode-langservers-extracted vim-language-server eslint_d
+-- brew install efm-langserver
+
+
 -- autocomplete packages
 -- these are not available via nix right now
 local use = require('packer').use
@@ -8,10 +12,12 @@ require('packer').startup(function()
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
 end)
 
+local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+for type, icon in pairs(signs) do
+    local hl = "LspDiagnosticsSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
--- nvim-lspconfig
--- npm i -g bash-language-server graphql-language-service-cli flow-bin typescript-language-server vscode-langservers-extracted vim-language-server eslint_d
--- brew install efm-langserver
 local nvim_lsp = require('lspconfig')
 
 local servers = {

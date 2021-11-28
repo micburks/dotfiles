@@ -47,7 +47,7 @@
       telescope-fzf-native-nvim
       telescope-nvim
       toggleterm-nvim
-      trouble-nvim
+      # trouble-nvim
       vim-gitgutter
       vim-illuminate
       zenburn

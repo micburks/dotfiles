@@ -11,11 +11,12 @@ require('shade').setup({
 require('telescope').setup{}
 require('telescope').load_extension('fzf')
 
+-- \t             - open first terminal
+-- X\t            - open numbered terminal
 require("toggleterm").setup{
   open_mapping = "\\t",
   direction = 'float',
 }
-require("trouble").setup{}
 
 -- nvim_tree
 vim.g.nvim_tree_width = 40
