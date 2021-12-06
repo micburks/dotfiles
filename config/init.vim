@@ -1,7 +1,7 @@
 
-" Custom help
-""" :Help          - print this help
-command! -nargs=? -bar -bang Help echo system("awk -F'[\"-]{3}' '/^[\"-]{3}/ { print $2 }' ~/.config/nvim/{,lua/}init.*")
+""" ... custom help ...
+""" :Help         - print this help
+command! -nargs=? -bar -bang Help echo system("awk -F'[\"-]{3}' '/^[\"-]{3}/ { print $2 }' ~/.config/nvim/{,lua/}*\.(lua|vim)")
 
 
 " TODO - better scheme for nmap
@@ -10,8 +10,9 @@ command! -nargs=? -bar -bang Help echo system("awk -F'[\"-]{3}' '/^[\"-]{3}/ { p
 " idk
 
 " ----------------------------------------------------------------------------
-
-""" ... General ...
+"
+"""
+""" ... general ...
 "
 " ----------------------------------------------------------------------------
 """ \             - leader
@@ -23,6 +24,9 @@ set relativenumber
 
 " syntax highlighting
 syntax on
+
+" spellcheck
+set spell spelllang=en_us
 
 " Match indents on new lines
 set autoindent
@@ -67,13 +71,17 @@ set listchars=tab:▸\ ,eol:¬
 " visual bells off - important for nordisk theme
 set belloff=all
 
-" nvim-compe
-set completeopt=menuone,noselect
+" Switch 0 and ^
+" Go to the first non-blank character of a line
+noremap 0 ^
+" Just in case you need to go to the very beginning of a line
+noremap ^ 0
+
 
 
 " ----------------------------------------------------------------------------
 "
-""" Tabs
+" tabs
 "
 " ----------------------------------------------------------------------------
 set tabstop=2
@@ -98,7 +106,8 @@ set smartindent
 
 " ----------------------------------------------------------------------------
 "
-""" ... Search ...
+"""
+""" ... search ...
 "
 " ----------------------------------------------------------------------------
 " Case insensitive search
@@ -121,20 +130,12 @@ set hlsearch
 """ //            - Search for currently selected text (all characters)
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
-""" \ff           - Telescope find_files
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-""" \fg           - Telescope live_grep
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-""" \fb           - Telescope buffers
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-""" \fh           - Telescope help_tags
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
 
 
 " ----------------------------------------------------------------------------
 "
-""" ... Folds ...
+"""
+""" ... folds ...
 "
 " ----------------------------------------------------------------------------
 " set foldmethod=expr
@@ -150,7 +151,8 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " ----------------------------------------------------------------------------
 "
-""" ... Buffers ...
+"""
+""" ... buffers ...
 "
 " ----------------------------------------------------------------------------
 """ :e            - edit file
@@ -165,7 +167,8 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " ----------------------------------------------------------------------------
 "
-""" ... Registers ...
+"""
+""" ... registers ...
 "
 " ----------------------------------------------------------------------------
 """ :reg          - see all registers
@@ -192,16 +195,21 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " ----------------------------------------------------------------------------
 "
-""" ... Marks ...
+"""
+""" ... marks ... https://vim.fandom.com/wiki/Using_marks
 "
 " ----------------------------------------------------------------------------
-""" TODO
+""" ma            - mark "a"
+""" 'a            - jump to line of mark "a"
+""" `a            - jump to position of mark "a"
+""" ``            - jump to position before last jump
 
 
 
 " ----------------------------------------------------------------------------
 "
-""" ... Copy/Paste ...
+"""
+""" ... copy/paste ...
 "
 " ----------------------------------------------------------------------------
 """ \vc           - Copy mode (remove number settings)
@@ -232,7 +240,7 @@ nnoremap <leader>vs yyPVr-yyjp
 
 " ----------------------------------------------------------------------------
 "
-" --- Convenience ---
+" --- convenience ---
 "
 " ----------------------------------------------------------------------------
 " Clear highlighting
@@ -251,20 +259,10 @@ noremap k gk
 
 " ----------------------------------------------------------------------------
 "
-""" ... Plugin configuration ...
+"""
+""" ... splits ...
 "
 " ----------------------------------------------------------------------------
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-
-" nvim_tree
-""" \e            - Open file tree
-nnoremap <silent> <leader>e :NvimTreeToggle<CR>
-nnoremap <silent> <leader>e :NvimTreeToggle<CR>
-
 """ arrow keys    - Move to corresponding split
 nnoremap <silent> <left> <C-w><left><CR>
 nnoremap <silent> <down> <C-w><down><CR>
@@ -281,9 +279,12 @@ nnoremap <silent> <leader><right> :vertical resize +5<CR>
 set splitbelow
 set splitright
 
+
+
 " ----------------------------------------------------------------------------
 "
-" --- Colors ---
+"""
+""" ... colors ...
 "
 " ----------------------------------------------------------------------------
 " Enable true color
@@ -303,34 +304,10 @@ colorscheme gruvbox
 " colorscheme zenburn
 
 
-" ----------------------------------------------------------------------------
-"
-""" ... movement ...
-"
-" ----------------------------------------------------------------------------
-" Switch 0 and ^
-" Go to the first non-blank character of a line
-noremap 0 ^
-" Just in case you need to go to the very beginning of a line
-noremap ^ 0
-
-""" \\            - hop: jump words
-
-
 
 " ----------------------------------------------------------------------------
 "
-""" ... splitjoin ...
-"
-" ----------------------------------------------------------------------------
-""" gS            - splitjoin: 1 -> many lines
-""" gJ            - splitjoin: many -> 1 line
-
-
-
-" ----------------------------------------------------------------------------
-"
-" --- Help ---
+" ... help ...
 "
 " ----------------------------------------------------------------------------
 silent! helptags ALL

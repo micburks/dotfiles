@@ -29,6 +29,8 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
+---
+--- ... treesitter ...
 --- \go           - (g)(o) to definition
 --- \gp           - previous usage
 --- \gn           - next usage
@@ -37,9 +39,9 @@ require("nvim-treesitter.configs").setup {
 --- \gg           - Re-indent file
 vim.api.nvim_set_keymap('n', '<leader>gg', 'mnggVG=<escape>`n', {noremap = true})
 
--- - \gh           - show hover details
--- - \gf           - use ale to auto-fix lint
--- - \gm           - show lint/type issues with current line
+-- - \gh          - show hover details
+-- - \gf          - use ale to auto-fix lint
+-- - \gm          - show lint/type issues with current line
 
 require('treesitter-context.config').setup {
   enable = true,

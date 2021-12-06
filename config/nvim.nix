@@ -42,7 +42,6 @@
       popup-nvim
       quick-scope
       registers-nvim
-      Shade-nvim
       splitjoin-vim
       telescope-fzf-native-nvim
       telescope-nvim
