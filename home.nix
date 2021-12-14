@@ -35,6 +35,7 @@ in
     comma
     coreutils
     delta
+    efm-langserver
     exa
     fd
     fzf

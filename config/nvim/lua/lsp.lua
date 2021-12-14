@@ -1,6 +1,4 @@
 -- npm i -g bash-language-server graphql-language-service-cli flow-bin typescript-language-server vscode-langservers-extracted vim-language-server eslint_d
--- brew install efm-langserver
-
 
 -- autocomplete packages
 -- these are not available via nix right now
@@ -133,6 +131,8 @@ nvim_lsp.tsserver.setup {
   end
 }
 
+-- note: bug in efm-langserver/neovim/nvm-lspconfig where a directory that ends
+-- with '-2021' will not run eslint. no time to investigate
 nvim_lsp.efm.setup {
   on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = true
