@@ -1,4 +1,4 @@
--- npm i -g bash-language-server graphql-language-service-cli flow-bin typescript-language-server vscode-langservers-extracted vim-language-server eslint_d
+-- npm i -g bash-language-server graphql-language-service-cli flow-bin typescript-language-server vscode-langservers-extracted vim-language-server eslint_d @tailwindcss/language-server
 
 -- autocomplete packages
 -- these are not available via nix right now
@@ -120,6 +120,29 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities
   }
 end
+
+nvim_lsp.tailwindcss.setup {
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  capabilities = capabilities,
+  settings = {
+    tailwindCSS = {
+      classAttributes = { 'class' , 'className' , 'classList' },
+        lint = {
+          cssConflict = "warning",
+          invalidApply = "error",
+          invalidConfigPath = "error",
+          invalidScreen = "error",
+          invalidTailwindDirective = "error",
+          invalidVariant = "error",
+          recommendedVariantOrder = "warning"
+        },
+      validate = true
+    }
+  }
+}
 
 nvim_lsp.tsserver.setup {
   on_attach = function(client, bufnr)
