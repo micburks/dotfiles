@@ -48,23 +48,29 @@ require("toggleterm").setup{
 }
 
 
-
+---
+--- ... nvim-tree help ...
+--- g?            - open help
 ---
 --- ... nvim-tree visibility ...
 --- <leader>e     - open tree
+--- q             - close tree
 --- I             - toggle git hidden files
 --- H             - toggle dotfiles
 --- R             - refresh tree
 ---
 --- ... nvim-tree navigation ...
 --- o             - open file/toggle directory
+--- <BS>          - close directory
+--- P             - jump to parent directory
+--- </>           - jump to prev/next sibling
+--- -             - set parent directory as root
+--- <C-]>         - set directory as root
 --- <TAB>         - preview file
 --- <C-v>         - open in vertical split
 --- <C-x>         - open in horizontal split
 --- <C-t>         - open in new tab
---- <BS>          - close directory
---- -             - nav to parent directory
---- O             - set directory as root
+--- s             - open with system default application
 ---
 --- ... nvim-tree edit tree ...
 --- a             - add file (use trailing slash to create directory)
@@ -82,3 +88,16 @@ require("toggleterm").setup{
 vim.api.nvim_set_keymap('n', '<leader>e', "<cmd>NvimTreeToggle<cr>", {noremap=true, silent=true})
 vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_auto_open = 1
+--  only way to configure nvim-tree bindings but require('nvim-tree') is nil
+--  possible due to home-manager installing it as nvim-tree.lua?
+-- local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+-- require('nvim-tree').setup {
+--   view = {
+--     mappings = {
+--       custom_only = false,
+--       list = {
+--         { key = {"O"},    cb = tree_cb("cd") },
+--       }
+--     }
+--   }
+-- }
