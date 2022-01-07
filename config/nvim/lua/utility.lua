@@ -5,6 +5,10 @@ require('hop').setup{}
 vim.api.nvim_set_keymap('n', '<leader><leader>', "<cmd>lua require'hop'.hint_words()<cr>", {noremap=true})
 
 
+---
+--- closetag
+vim.g.closetag_filetypes = 'html,xhtml,phtml,javascript,javascriptreact,javascript.jsx,typescript.tsx,typescriptreact'
+
 
 -- not available on nix yet
 require('packer').use {

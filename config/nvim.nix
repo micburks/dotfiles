@@ -43,12 +43,15 @@
       quick-scope
       registers-nvim
       splitjoin-vim
+      tagalong-vim
       telescope-fzf-native-nvim
       telescope-nvim
       toggleterm-nvim
       # trouble-nvim
+      vim-closetag
       vim-gitgutter
       vim-illuminate
+      # vim-surround
       zenburn
 
       # hrsh7th/nvim-cmp
