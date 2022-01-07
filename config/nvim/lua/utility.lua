@@ -51,6 +51,15 @@ require("toggleterm").setup{
   direction = 'float',
 }
 
+--- \rg           - lazygit terminal (arrow keys, enter, space, q)
+-- custom terminal for lazygit
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, count = 5 })
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+vim.api.nvim_set_keymap("n", "<leader>rg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+
 
 ---
 --- ... nvim-tree help ...

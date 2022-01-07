@@ -44,6 +44,7 @@ in
     go
     highlight
     jq
+    lazygit
     (nerdfonts.override { fonts = [ "RobotoMono" ]; })
     ranger
     ripgrep
