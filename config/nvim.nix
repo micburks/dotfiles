@@ -29,13 +29,15 @@
       iceberg-vim
       lsp-colors-nvim
       lush-nvim
-      nvim-colorizer-lua
       nvim-compe
+      # nvim-dap
+      # nvim-dap-ui
       nvim-lspconfig
       nvim-tree-lua
       nvim-treesitter
       nvim-treesitter-context
       nvim-treesitter-refactor
+      nvim-treesitter-textobjects
       nvim-web-devicons
       packer-nvim
       plenary-nvim
