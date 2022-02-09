@@ -1,0 +1,30 @@
+###
+### debugging utilities
+
+###
+### help UTIL       - show help doc for one of these utilities
+###     some utils are simple enough that no help doc is included
+
+###
+### dstat           - output network and disk usage every second (linux)
+### strace          - print each system call a program uses (linux)
+### opensnoop       - print each file opened by a program
+
+### 
+### nc              - netcat: open network connections, send packets, listen on ports
+### netstat         - output used ports and the listening programs (linux, lsof on OSX)
+### ngrep           - grep network for requests
+### tcpdump         - save network traffic to packet capture file to be used with wireshark
+### wireshark       - open wireshark GUI with given packet capture file
+
+### 
+### perf            - multitool for performance monitoring (linux)
+
+
+#-----------------------------------
+#
+# Examples
+#
+#-----------------------------------
+#
+# examples

@@ -1,0 +1,33 @@
+###
+### perf
+
+###
+### Reports can be visualized with flamegraph (https://github.com/brendangregg/FlameGraph)
+
+#-----------------------------------
+#
+# Basic
+#
+#-----------------------------------
+
+
+#-----------------------------------
+#
+# Examples
+#
+#-----------------------------------
+###
+### examples
+###
+### # sample profile
+### sudo perf record PROGRAM    - record performance
+### sudo perf report            - show results
+###
+### # output functions ordered by percent of time usage
+### sudo perf top
+###
+### # monitor node performance
+### sudo perf --perf-basic-prof node program.js
+###
+### # output CPU usage data such as L1 cache misses
+### perf stat ls

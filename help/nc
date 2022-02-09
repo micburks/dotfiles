@@ -1,0 +1,28 @@
+###
+### nc
+
+#-----------------------------------
+#
+# Basic
+#
+#-----------------------------------
+
+
+#-----------------------------------
+#
+# Examples
+#
+#-----------------------------------
+###
+### examples
+###
+### # send request
+### echo "GET / HTTP/1.1\nHOST: example.com\nUser-Agent: nc\n\n" > request.txt
+### cat request.txt | nc example.com 80
+###
+### # send large files over local network
+###     # terminal 1 (linux)
+### hostname -I     # get local ip address
+### nc -l 8888 > bigfile
+###     # terminal 2
+### cat file.txt > nc IP 8888
