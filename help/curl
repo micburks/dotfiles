@@ -1,0 +1,67 @@
+###
+### curl
+
+#-----------------------------------
+#
+# change contents of request
+#
+#-----------------------------------
+###
+### request
+### -H        - add header
+### -X        - change method
+### -d        - send data AKA (--data)
+### -d        - send data AKA (--data)
+### -G        - make all data specified with -d be used in an HTTP GET request instead of the POST request
+### -F        - emulate a filled-in form, POSTs data using the Content-Type multipart/form-data
+
+#-----------------------------------
+#
+# auth
+#
+#-----------------------------------
+###
+### auth
+### -k        - insecure, don't verify ssl
+### -u        - set 'username:password' with basic auth
+### --cert    - use client cert for https
+### --key     - private key filename
+
+#-----------------------------------
+#
+# Output
+#
+#-----------------------------------
+###
+### output
+### -i        - show response headers
+### -I        - show ONLY response headers, HEAD request
+### -v        - show request headers
+### -O        - saves output to local file
+
+#-----------------------------------
+#
+# Examples
+#
+#-----------------------------------
+###
+### examples
+###
+### # post json data
+### curl https://httpbin.org -x POST -d '{"name":"value"}' -H "Content-Type:application/json"
+
+###
+### # useful headers
+### curl https://httpbin.org -H "Accept-Encoding:gzip"
+### curl https://httpbin.org -H "Accept:image/png"
+### curl https://httpbin.org -H "User-Agent:chrome"
+### curl https://httpbin.org -H "Accept-Language:es-ES"
+
+###
+### # get request with data
+### curl https://httpbin.org -G -d key=value
+
+###
+### # post as file upload
+### curl https://httpbin.org -d @filename
+### curl https://httpbin.org -F "name=@filename"
