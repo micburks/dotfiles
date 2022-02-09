@@ -9,68 +9,62 @@
 
 #-----------------------------------
 #
+# Details
+#
+#-----------------------------------
+###
+### C-z                 - binding prefix (external keyboard)
+### C-j                 - binding prefix (builtin keyboard)
+#
+###
+### Console commands also be used as arguments to `tmux` cli, i.e.:
+###     tmux new    - new (host terminal)
+###     :new        - new (tmux console)
+###
+### the tmux server has sessions
+### sessions have windows
+### windows have panes
+
+###
+### attach
+### tmux                - create new session
+### tmux a              - attach to session (use `-t NAME` to attach to named session) AKA (attach)
+### tmux kill-server    - kill all sessions
+
+
+#-----------------------------------
+#
 # Basic
 #
 #-----------------------------------
 ###
-### C-z                 - enter tmux console
-###
-### tmux new            - new (host terminal)
-### :new                - new (tmux console)
-
-#-----------------------------------
-#
-# Commands
-#
-#-----------------------------------
-### tmux n -s NAME      - new session
-### tmux new
-### tmux new-session
-### :ls                 - list sessions
-### :list-sessions
-### :rename NEW-NAME    -  rename current session
-###     -t OLD_NAME     - rename specific session
-
-### tmux kill-server    - kill server
-
-
-
-### tmux kill-session   - kill current session
-###     [-t NAME]       - kill specific session
-
-
-
-### tmux a              - attach to session
-### tmux attach
-###     -t NAME         - attach to named session
-
-
-### bindings
-
-all bindings begin with `C-b`
-
 ### sessions
 
-- `d` - detach from session
-- `s` - list-sessions
-- `$` - rename current session
+### :new -s NAME        - new session AKA (new-session)
+### :ls                 - list sessions AKA (list-sessions)
+### s                   - binding for list-sessions
+### :rename NEW         - rename current session from to NEW (use `-t OLD` to rename specific session)
+### $                   - binding for rename-session
+### :kill-session       - kill current session (use `-t NAME` to kill specific session)
+### d                   - detach from session
 
-
+###
 ### windows
 
-- `c` - create new window
-- `&` - kill current window
-- `,` - rename current window
-- `<digit>` - switch to specific window
-- `n` - move to next window
-- `p` - move to previous window
+### c                   - new-window binding
+### w                   - list windows in all sessions
+### &                   - kill-window binding
+### ,                   - rename-window binding
+### <digit>             - switch-window binding
+### n                   - next-window binding
+### p                   - previous-window binding
 
-
+###
 ### panes
 
-- `|` - split pane vertically (personally remapped)
-- `-` - split pane horizontally (personally remapped)
-- `x` - close current pane
-- `[hjkl]` - switch between panes in a window (personally remapped)
-- `[yuio]` - resize a pane (personally remapped)
+### |                   - split pane vertically (custom)
+### -                   - split pane horizontally (custom)
+### x                   - kill-pane without prompt binding (custom)
+### [hjkl]              - switch between panes in a window (custom)
+### [yuio]              - resize a pane (custom)
 
