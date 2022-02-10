@@ -2,6 +2,6 @@
 ### help
 
 ###
-### help            - Show help from ~/.shared.sh
+### help            - Show help for all custom shell utilities
 ### help [COMMAND]  - Show custom help file for a given command
 ### help help       - Show this help file and all other current help files
