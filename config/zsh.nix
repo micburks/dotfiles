@@ -1,6 +1,17 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  shellDir = ~/.config/nixpkgs/config/shell;
+  attrNames = builtins.attrNames (builtins.readDir shellDir);
+  fileNames = map (file:
+    { name = file; value = shellDir + "/${file}"; }
+  ) attrNames;
+  concat = lib.foldr({name, value}: b: (builtins.readFile value) + b) "";
+  shellContents = concat fileNames;
+in
 {
+  xdg.configFile."help".source = ../help;
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -27,7 +38,7 @@
       PROMPT='%{$fg[yellow]%}$(parse_repo_basename)%{$fg[green]%}$(parse_git_branch)%{$fg[blue]%}$(parse_pwd)
       %{$reset_color%}$ '
 
-      ${builtins.readFile ~/.config/nixpkgs/config/shared.sh}
+      ${shellContents}
 
       function chpwd () {
         export GIT_ROOT=$(uud)
