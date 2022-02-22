@@ -40,6 +40,7 @@ in
     comma
     coreutils
     delta
+    direnv
     efm-langserver
     exa
     fd
@@ -132,6 +133,14 @@ in
         background = "0x393a3c";
         foreground = "0xdadfe0";
       };
+    };
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv = {
+      enable = true;
     };
   };
 }
