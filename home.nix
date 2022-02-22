@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  sources ? import ./nix/sources.nix,
+  pkgs ? import sources.nixpkgs {},
+  ...
+}:
 
 let
   comma = import ( pkgs.fetchFromGitHub {
