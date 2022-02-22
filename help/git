@@ -9,4 +9,8 @@
 ###
 ### examples
 ###
-### git rebase -i HEAD~X        - Rebase last X commits
+### # Rebase last X commits
+### git rebase -i HEAD~X
+###
+### # Tag last commit with identical message
+### git tag -a v1.0.0 -m v1.0.0
