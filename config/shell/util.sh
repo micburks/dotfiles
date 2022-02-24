@@ -12,9 +12,7 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 
 
 ### hm          - home-manager switch
-### ehm         - home-manager edit && home-manager switch
 alias hm="home-manager switch && source ~/.zshrc"
-alias ehm="home-manager edit && hm"
 
 
 
