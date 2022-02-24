@@ -22,6 +22,7 @@ in
   home.homeDirectory = "/Users/$USER";
 
   xdg.enable = true;
+  xdg.configFile."nix/nix.conf".source = ./nix/nix.conf;
 
   nixpkgs.config.allowUnfree = true;
   fonts.fontconfig.enable = true;

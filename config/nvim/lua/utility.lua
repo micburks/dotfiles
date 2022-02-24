@@ -98,9 +98,12 @@ vim.api.nvim_set_keymap("n", "<leader>rg", "<cmd>lua _lazygit_toggle()<CR>", {no
 --- y             - add name to copy clipboard
 --- Y             - add relative path to copy clipboard
 --- gy            - add absolute path to copy clipboard
+require'nvim-tree'.setup {
+  open_on_setup = 1
+}
 vim.api.nvim_set_keymap('n', '<leader>e', "<cmd>NvimTreeToggle<cr>", {noremap=true, silent=true})
 vim.g.nvim_tree_width = 40
-vim.g.nvim_tree_auto_open = 1
+
 --  only way to configure nvim-tree bindings but require('nvim-tree') is nil
 --  possible due to home-manager installing it as nvim-tree.lua?
 -- local tree_cb = require'nvim-tree.config'.nvim_tree_callback
