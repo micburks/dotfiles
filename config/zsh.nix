@@ -2,12 +2,10 @@
 
 let
   shellDir = ~/.config/nixpkgs/config/shell;
-  attrNames = builtins.attrNames (builtins.readDir shellDir);
-  fileNames = map (file:
-    { name = file; value = shellDir + "/${file}"; }
-  ) attrNames;
-  concat = lib.foldr({name, value}: b: (builtins.readFile value) + b) "";
-  shellContents = concat fileNames;
+  dirContents = builtins.attrNames (builtins.readDir shellDir);
+  fileNames = map (file: shellDir + "/${file}") dirContents;
+  concatContents = lib.foldr(a: b: (builtins.readFile a) + b) "";
+  shellContents = concatContents fileNames;
 in
 {
   xdg.configFile."help".source = ../help;
