@@ -12,15 +12,24 @@
     plugins = with pkgs.tmuxPlugins; [
     {
       plugin = resurrect;
-      extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+      extraConfig = ''
+        set -g @resurrect-strategy-nvim 'session'
+        set -g @resurrect-capture-pane-contents 'on'
+      '';
     }
+    /*
     {
       plugin = continuum;
       extraConfig = ''
         set -g @continuum-restore 'on'
         set -g @continuum-save-interval '60' # minutes
+
+        set -g @continuum-boot 'on'
+        set -g @continuum-boot-options 'alacritty'
+        set -g @continuum-boot-options 'alacritty,fullscreen'
         '';
     }
+    */
     {
       plugin = extrakto;
       extraConfig = ''
