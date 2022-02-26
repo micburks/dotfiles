@@ -23,10 +23,10 @@ require("nvim-treesitter.configs").setup {
     navigation = {
       enable = true,
       keymaps = {
-        goto_definition = "<leader>go",
-        list_definitions = "<leader>gd",
-        goto_next_usage = "<leader>gn",
-        goto_previous_usage = "<leader>gp",
+        -- goto_definition = "<leader>go",
+        -- list_definitions = "<leader>gd",
+        goto_next_usage = "gn",
+        goto_previous_usage = "gp",
       },
     },
   },
@@ -87,22 +87,22 @@ require("nvim-treesitter.configs").setup {
 
 ---
 --- ... treesitter ...
---- \go           - (g)(o) to definition
---- \gp           - previous usage
---- \gn           - next usage
---- \gd           - list definitions
+-- --- \go           - (g)(o) to definition
+--- gp           - previous usage
+--- gn           - next usage
+-- --- \gd           - list definitions
 -- --- \gr           - smart rename
---- \gg           - Re-indent file
-vim.api.nvim_set_keymap('n', '<leader>gg', 'mnggVG=<escape>`n', {noremap = true})
+-- --- \gg           - Re-indent file
+-- vim.api.nvim_set_keymap('n', '<leader>gg', 'mnggVG=<escape>`n', {noremap = true})
 
---- 
---- ... treesitter textobjects ...
---- [a/i]f        - around/inside function
---- [a/i]c        - around/inside class
---- 
---- ... treesitter swap ...
---- \a            - move parameter to right
---- \A            - move parameter to left
+---
+---     ... textobjects ...
+---     [a/i]f        - around/inside function
+---     [a/i]c        - around/inside class
+---
+---     ... swap ...
+---     \a            - move parameter to right
+---     \A            - move parameter to left
 
 require('treesitter-context.config').setup {
   enable = true,

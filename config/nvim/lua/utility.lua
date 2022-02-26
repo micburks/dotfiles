@@ -5,8 +5,8 @@ require('hop').setup{}
 vim.api.nvim_set_keymap('n', '<leader><leader>', "<cmd>lua require'hop'.hint_words()<cr>", {noremap=true})
 
 
----
---- closetag
+--
+-- ... closetag ...
 vim.g.closetag_filetypes = 'html,xhtml,phtml,javascript,javascriptreact,javascript.jsx,typescript.tsx,typescriptreact'
 
 
@@ -28,7 +28,7 @@ require('packer').use {
 
 
 ---
---- ... telescope
+--- ... telescope ...
 --- \ff           - fuzzy find find_files
 --- \fg           - fuzzy find live_grep
 --- \fb           - fuzzy find buffers
@@ -62,42 +62,42 @@ vim.api.nvim_set_keymap("n", "<leader>rg", "<cmd>lua _lazygit_toggle()<CR>", {no
 
 
 ---
---- ... nvim-tree help ...
+--- ... nvim-tree ...
 --- g?            - open help
 ---
---- ... nvim-tree visibility ...
---- <leader>e     - open tree
---- q             - close tree
---- I             - toggle git hidden files
---- H             - toggle dotfiles
---- R             - refresh tree
+---     ... visibility ...
+---     <leader>e     - open tree
+---     q             - close tree
+---     I             - toggle git hidden files
+---     H             - toggle dotfiles
+---     R             - refresh tree
 ---
---- ... nvim-tree navigation ...
---- o             - open file/toggle directory
---- <BS>          - close directory
---- P             - jump to parent directory
---- </>           - jump to prev/next sibling
---- -             - set parent directory as root
---- <C-]>         - set directory as root
---- <TAB>         - preview file
---- <C-v>         - open in vertical split
---- <C-x>         - open in horizontal split
---- <C-t>         - open in new tab
---- s             - open with system default application
+---     ... navigation ...
+---     o             - open file/toggle directory
+---     <BS>          - close directory
+---     P             - jump to parent directory
+---     </>           - jump to prev/next sibling
+---     -             - set parent directory as root
+---     <C-]>         - set directory as root
+---     <TAB>         - preview file
+---     <C-v>         - open in vertical split
+---     <C-x>         - open in horizontal split
+---     <C-t>         - open in new tab
+---     s             - open with system default application
 ---
---- ... nvim-tree edit tree ...
---- a             - add file (use trailing slash to create directory)
---- r             - rename file
---- <C-r>         - rename file omitting current name
---- d             - delete file
---- x             - add file to cut clipboard
---- c             - add file to copy clipboard
---- p             - paste file from clipboard
+---     ... edit tree ...
+---     a             - add file (use trailing slash to create directory)
+---     r             - rename file
+---     <C-r>         - rename file omitting current name
+---     d             - delete file
+---     x             - add file to cut clipboard
+---     c             - add file to copy clipboard
+---     p             - paste file from clipboard
 ---
---- ... nvim-tree yanking ...
---- y             - add name to copy clipboard
---- Y             - add relative path to copy clipboard
---- gy            - add absolute path to copy clipboard
+---     ... yanking ...
+---     y             - add name to copy clipboard
+---     Y             - add relative path to copy clipboard
+---     gy            - add absolute path to copy clipboard
 require'nvim-tree'.setup {
   open_on_setup = 1,
   view = {
