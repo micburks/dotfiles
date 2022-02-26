@@ -11,12 +11,15 @@ require("nvim-treesitter.configs").setup {
   refactor = {
     highlight_definitions = { enable = true },
     -- highlight_current_scope = { enable = true },
-    smart_rename = {
-      enable = true,
-      keymaps = {
-        smart_rename = "<leader>gr",
-      },
-    },
+    --
+    -- renaming through lsp works across entire workspace
+    -- -- use <space>rn instead
+    -- smart_rename = {
+    --   enable = true,
+    --   keymaps = {
+    --     smart_rename = "<leader>gr",
+    --   },
+    -- },
     navigation = {
       enable = true,
       keymaps = {
@@ -88,7 +91,7 @@ require("nvim-treesitter.configs").setup {
 --- \gp           - previous usage
 --- \gn           - next usage
 --- \gd           - list definitions
---- \gr           - smart rename
+-- --- \gr           - smart rename
 --- \gg           - Re-indent file
 vim.api.nvim_set_keymap('n', '<leader>gg', 'mnggVG=<escape>`n', {noremap = true})
 
