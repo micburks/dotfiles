@@ -1,7 +1,7 @@
 
-""" ... custom help ...
-""" :Help         - print this help
-command! -nargs=? -bar -bang Help echo system("awk -F'[\"-]{3}' '/^[\"-]{3}/ { print $2 }' ~/.config/nvim/{,lua/}*\.(lua|vim)")
+" """ # custom help
+" """ - :Help         - print this help
+" command! -nargs=? -bar -bang Help echo system("awk -F'[\"-]{3}' '/^[\"-]{3}/ { print $2 }' ~/.config/nvim/{,lua/}*\.(lua|vim)")
 
 
 " TODO - better scheme for nmap
@@ -11,11 +11,10 @@ command! -nargs=? -bar -bang Help echo system("awk -F'[\"-]{3}' '/^[\"-]{3}/ { p
 
 " ----------------------------------------------------------------------------
 "
-"""
-""" ... general ...
+""" # general
 "
 " ----------------------------------------------------------------------------
-""" \             - leader
+""" - \             - leader
 
 " show current line number
 set number
@@ -107,7 +106,7 @@ set smartindent
 " ----------------------------------------------------------------------------
 "
 """
-""" ... search ...
+""" # search
 "
 " ----------------------------------------------------------------------------
 " Case insensitive search
@@ -127,7 +126,7 @@ set showmatch
 " Highlight matches
 set hlsearch
 
-""" //            - Search for currently selected text (all characters)
+""" - //            - Search for currently selected text (all characters)
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 
@@ -135,30 +134,30 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " ----------------------------------------------------------------------------
 "
 """
-""" ... folds ...
+""" # folds
 "
 " ----------------------------------------------------------------------------
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
 " set foldlevelstart=20
 
-""" :set fdm      - set fold method [manual, syntax, indent]
-""" zo            - (o)pen fold
-""" zr            - open all folds one level (R for all levels)
-""" zc            - (c)lose fold
-""" zm            - close all folds one level (M for all levels)
+""" - :set fdm      - set fold method [manual, syntax, indent]
+""" - zo            - (o)pen fold
+""" - zr            - open all folds one level (R for all levels)
+""" - zc            - (c)lose fold
+""" - zm            - close all folds one level (M for all levels)
 
 
 " ----------------------------------------------------------------------------
 "
 """
-""" ... buffers ...
+""" # buffers
 "
 " ----------------------------------------------------------------------------
-""" :e            - edit file
-""" :new          - new buffer
-""" :w NAME       - save buffer as NAME
-""" :ls           - list buffers
+""" - :e            - edit file
+""" - :new          - new buffer
+""" - :w NAME       - save buffer as NAME
+""" - :ls           - list buffers
 
 " One handed vim exit - particularly for use in ranger
 " nnoremap ;; :q<Enter>
@@ -168,72 +167,72 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " ----------------------------------------------------------------------------
 "
 """
-""" ... registers ...
+""" # registers
 "
 " ----------------------------------------------------------------------------
-""" :reg          - see all registers
-""" :let @a=@b    - write to a register
-""" ".            - last entered text register (read-only)
-""" ":            - last executed command register (read-only)
-""" "%            - current file name register (read-only)
-""" "+            - clipboard register
-""" "=            - last expression register
-""" "/            - last search register
-""" "0            - last yanked text register
-""" "1-9          - last deleted text registers
-""" "ry           - (normal) copy selected text into register 'r'
-""" "rp           - (normal) paste text from register 'r'
-""" <ctrl-r> r    - (insert/command) paste register 'r'
-""" :let @+=@%    - copy current file path to clipboard
-""" :let @R=''    - append text to register 'r' (uppercase makes it append)
-""" @:            - execute last command
-""" @+            - execute clipboard as command
-""" @r            - execute register 'r' as macro
-""" qr            - record macro into register 'r'
-
-
-
-" ----------------------------------------------------------------------------
-"
-"""
-""" ... marks ... https://vim.fandom.com/wiki/Using_marks
-"
-" ----------------------------------------------------------------------------
-""" ma            - mark "a"
-""" 'a            - jump to line of mark "a"
-""" `a            - jump to position of mark "a"
-""" ``            - jump to position before last jump
+""" - :reg          - see all registers
+""" - :let @a=@b    - write to a register
+""" - ".            - last entered text register (read-only)
+""" - ":            - last executed command register (read-only)
+""" - "%            - current file name register (read-only)
+""" - "+            - clipboard register
+""" - "=            - last expression register
+""" - "/            - last search register
+""" - "0            - last yanked text register
+""" - "1-9          - last deleted text registers
+""" - "ry           - (normal) copy selected text into register 'r'
+""" - "rp           - (normal) paste text from register 'r'
+""" - <ctrl-r> r    - (insert/command) paste register 'r'
+""" - :let @+=@%    - copy current file path to clipboard
+""" - :let @R=''    - append text to register 'r' (uppercase makes it append)
+""" - @:            - execute last command
+""" - @+            - execute clipboard as command
+""" - @r            - execute register 'r' as macro
+""" - qr            - record macro into register 'r'
 
 
 
 " ----------------------------------------------------------------------------
 "
 """
-""" ... copy/paste ...
+""" # marks - [Using marks](https://vim.fandom.com/wiki/Using_marks)
 "
 " ----------------------------------------------------------------------------
-""" \vc           - Copy mode (remove number settings)
+""" - ma            - mark "a"
+""" - 'a            - jump to line of mark "a"
+""" - `a            - jump to position of mark "a"
+""" - ``            - jump to position before last jump
+
+
+
+" ----------------------------------------------------------------------------
+"
+"""
+""" # copy/paste
+"
+" ----------------------------------------------------------------------------
+""" - \vc           - Copy mode (remove number settings)
 nnoremap <leader>vc :setlocal number! relativenumber!<cr>
 
-""" \vy           - Copy entire file
+""" - \vy           - Copy entire file
 nnoremap <leader>vy :!cat "%" \| pbcopy<cr>
 
 " `set paste` ruins everything
 " it disables a bunch of things including insert mapping and command line modes
-""" \vv           - Toggle 'paste' mode
+""" - \vv           - Toggle 'paste' mode
 set pastetoggle=<leader>vv
 
 " Set copy buffer to 1000 lines
 set viminfo='20,<1000
 
 " Quick way to add empty lines
-""" \vO           - New line above without entering insert
+""" - \vO           - New line above without entering insert
 nnoremap <leader>vO O<ESC>
-""" \vo           - New line below without entering insert
+""" - \vo           - New line below without entering insert
 nnoremap <leader>vo o<ESC>
 
 " Then <leader>s commented line to add long lines above and below for marking
-""" \vs           - Add same length '---' lines before/after current line
+""" - \vs           - Add same length '---' lines before/after current line
 nnoremap <leader>vs yyPVr-yyjp
 
 
@@ -260,16 +259,16 @@ noremap k gk
 " ----------------------------------------------------------------------------
 "
 """
-""" ... splits ...
+""" # splits
 "
 " ----------------------------------------------------------------------------
-""" arrow keys    - Move to corresponding split
+""" - arrow keys    - Move to corresponding split
 nnoremap <silent> <left> <C-w><left><CR>
 nnoremap <silent> <down> <C-w><down><CR>
 nnoremap <silent> <up> <C-w><up><CR>
 nnoremap <silent> <right> <C-w><right><CR>
 
-""" <leader>arrow - Resize split
+""" - <leader>arrow - Resize split
 nnoremap <silent> <leader><left> :vertical resize -5<CR>
 nnoremap <silent> <leader><down> :resize -5<CR>
 nnoremap <silent> <leader><up> :resize +5<CR>
@@ -284,7 +283,7 @@ set splitright
 " ----------------------------------------------------------------------------
 "
 """
-""" ... colors ...
+""" # colors
 "
 " ----------------------------------------------------------------------------
 " Enable true color
@@ -295,7 +294,7 @@ if exists('+termguicolors')
 endif
 
 "set background=dark
-""" colo ARG      - colorscheme [gruvbox,iceberg,nordisk,pulumi,zenburn]
+""" - colo ARG      - colorscheme [gruvbox,iceberg,nordisk,pulumi,zenburn]
 
 colorscheme gruvbox
 " colorscheme iceberg

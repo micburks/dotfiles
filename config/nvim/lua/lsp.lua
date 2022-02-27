@@ -77,16 +77,16 @@ cmp.setup {
 }
 
 ---
---- ... autocomplete ...
---- <C-p>         - cmp.mapping.select_prev_item
---- <C-n>         - cmp.mapping.select_next_item
---- <C-d>         - cmp.mapping.scroll_docs back
---- <C-f>         - cmp.mapping.scroll_docs forward
---- <C-Space>     - cmp.mapping.complete
---- <C-e>         - cmp.mapping.close
---- <CR>          - cmp.mapping.confirm
---- <Tab>         - select_next or expand_or_jump
---- <S-Tab>       - select_prev or jump back
+--- # autocomplete
+--- - <C-p>         - cmp.mapping.select_prev_item
+--- - <C-n>         - cmp.mapping.select_next_item
+--- - <C-d>         - cmp.mapping.scroll_docs back
+--- - <C-f>         - cmp.mapping.scroll_docs forward
+--- - <C-Space>     - cmp.mapping.complete
+--- - <C-e>         - cmp.mapping.close
+--- - <CR>          - cmp.mapping.confirm
+--- - <Tab>         - select_next or expand_or_jump
+--- - <S-Tab>       - select_prev or jump back
 
 
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
@@ -133,25 +133,26 @@ local function eslint_config_exists()
   return false
 end
 
---- -------keymaps NEED work-------
--- group keymaps by???:
--- - g for going
--- - <space> for actions
--- - <leader> for dialogs
--- - capital letters for dialogs?
+---
+--- # keymaps NEED work-------
+--- group keymaps by???:
+--- - g for going
+--- - <space> for actions
+--- - <leader> for dialogs
+--- - capital letters for dialogs?
 
 ---
---- ... lsp ...
+--- # lsp
 -- Diagnostics mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
---- <space>e      - diagnostic.open_float
+--- - <space>e      - diagnostic.open_float
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
---- [d            - diagnostic.goto_prev
+--- - [d            - diagnostic.goto_prev
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
---- ]d            - diagnostic.goto_next
+--- - ]d            - diagnostic.goto_next
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
--- --- <space>q      - diagnostic.setloclist
+-- --- - <space>q      - diagnostic.setloclist
 -- vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
 -- Use an on_attach function to only map the following keys
@@ -164,31 +165,31 @@ local on_attach = function(client, bufnr)
 
   -- Lsp mappings
   -- See `:help vim.lsp.*` for documentation on any of the below functions
--- --- gD            - lsp.buf.declaration
+-- --- - gD            - lsp.buf.declaration
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
---- gd            - lsp.buf.definition
+--- - gd            - lsp.buf.definition
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
---- K             - lsp.buf.hover
+--- - K             - lsp.buf.hover
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
---- gi            - lsp.buf.implementation
+--- - gi            - lsp.buf.implementation
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
--- --- <C-k>         - lsp.buf.signature_help
+-- --- - <C-k>         - lsp.buf.signature_help
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
---- <space>wa     - lsp.buf.add_workspace_folder
+--- - <space>wa     - lsp.buf.add_workspace_folder
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
---- <space>wr     - lsp.buf.remove_workspace_folder
+--- - <space>wr     - lsp.buf.remove_workspace_folder
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
---- <space>wl     - print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+--- - <space>wl     - print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buflist_workspace_folders()))<CR>', opts)
--- --- <space>D      - lsp.buf.type_definition
+-- --- - <space>D      - lsp.buf.type_definition
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
---- <space>rn     - lsp.buf.rename
+--- - <space>rn     - lsp.buf.rename
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
---- <space>ca     - lsp.buf.code_action
+--- - <space>ca     - lsp.buf.code_action
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
---- gr            - lsp.buf.references
+--- - gr            - lsp.buf.references
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
---- <space>f      - lsp.buf.formatting
+--- - <space>f      - lsp.buf.formatting
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
@@ -261,7 +262,10 @@ nvim_lsp.tsserver.setup {
     end
     client.resolved_capabilities.document_formatting = false
     on_attach(client, bufnr)
-  end
+  end,
+  flags = {
+    debounce_text_changes = 150,
+  }
 }
 
 -- note: bug in efm-langserver/neovim/nvm-lspconfig where a directory that ends
@@ -272,6 +276,9 @@ nvim_lsp.efm.setup {
     client.resolved_capabilities.goto_definition = false
     on_attach(client, bufnr)
   end,
+  flags = {
+    debounce_text_changes = 150,
+  },
   root_dir = function()
     if not eslint_config_exists() then
       return nil

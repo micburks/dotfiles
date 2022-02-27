@@ -86,23 +86,23 @@ require("nvim-treesitter.configs").setup {
 }
 
 ---
---- ... treesitter ...
--- --- \go           - (g)(o) to definition
---- gp           - previous usage
---- gn           - next usage
--- --- \gd           - list definitions
--- --- \gr           - smart rename
--- --- \gg           - Re-indent file
+--- # treesitter
+-- --- - \go           - (g)(o) to definition
+--- - gp           - previous usage
+--- - gn           - next usage
+-- --- - \gd           - list definitions
+-- --- - \gr           - smart rename
+-- --- - \gg           - Re-indent file
 -- vim.api.nvim_set_keymap('n', '<leader>gg', 'mnggVG=<escape>`n', {noremap = true})
 
 ---
----     ... textobjects ...
----     [a/i]f        - around/inside function
----     [a/i]c        - around/inside class
+---     ## textobjects
+---     - [a/i]f        - around/inside function
+---     - [a/i]c        - around/inside class
 ---
----     ... swap ...
----     \a            - move parameter to right
----     \A            - move parameter to left
+---     ## swap
+---     - \a            - move parameter to right
+---     - \A            - move parameter to left
 
 require('treesitter-context.config').setup {
   enable = true,
