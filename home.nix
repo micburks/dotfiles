@@ -58,6 +58,7 @@ in
     rust-analyzer
     rustup
     silver-searcher
+    sumneko-lua-language-server
     tree
     vivid
     yarn
