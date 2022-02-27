@@ -19,7 +19,7 @@ M.help = function()
         row = math.min((vim.o.lines - height) / 2 - 1),
     }
   )
-  vim.fn.termopen("awk -F'[\"-]{3} ?' '/^[\"-]{3} ?/ { print $2 }' ~/.config/nvim/{,lua/}*.(lua|vim) | bat -pp -l md")
+  vim.fn.termopen("awk -f ~/.config/nvim/utils/helptree.awk ~/.config/nvim/{,lua/}*.(lua|vim) | bat -pp -l md")
   vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<cmd>q<CR>', {noremap=true, silent=true})
   vim.api.nvim_buf_set_keymap(0, 'n', 'f', '<C-f>', {noremap=true, silent=true})
   vim.api.nvim_buf_set_keymap(0, 'n', 'b', '<C-b>', {noremap=true, silent=true})

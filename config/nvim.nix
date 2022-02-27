@@ -14,6 +14,7 @@
   # hkupty/nvimux
 
   xdg.configFile."nvim/lua".source = ./nvim/lua;
+  xdg.configFile."nvim/utils".source = ./nvim/utils;
 
   programs.neovim = {
     enable = true;
