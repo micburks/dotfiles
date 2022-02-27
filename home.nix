@@ -47,6 +47,7 @@ in
     fd
     fzf
     fontforge
+    gawk
     gitAndTools.hub
     go
     highlight
