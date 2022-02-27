@@ -1,3 +1,9 @@
+
+---
+--- # help
+--- - <space>h        - help
+vim.api.nvim_set_keymap('n', '<space>h', '<cmd>lua require"modules/help".help()<CR>', {noremap=true, silent=true})
+
 ---
 --- ... hop ...
 --- \\            - hop
