@@ -1,9 +1,4 @@
-{
-  config,
-  sources ? import ./nix/sources.nix,
-  pkgs ? import sources.nixpkgs {},
-  ...
-}:
+{ config, pkgs, ... }:
 
 let
   comma = import ( pkgs.fetchFromGitHub {
@@ -55,7 +50,7 @@ in
     rust-analyzer
     rustup
     silver-searcher
-    sumneko-lua-language-server
+    # sumneko-lua-language-server
     tree
     vivid
     yarn
