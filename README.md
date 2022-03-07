@@ -21,30 +21,13 @@ nix-env -u '*'
 ```
 
 
-#### home manager
+#### build flake
+
+TODO: Remove need for --impure
 
 ```bash
-nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-nix-channel --update
-export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
-nix-shell '<home-manager>' -A install
+# change USERNAME and EMAIL in flake.nix
+nix build --no-link ~/.config/nixpkgs#homeConfigurations.mickey.activationPackage --impure
+"$(nix path-info ~/.config/nixpkgs#homeConfigurations.mickey.activationPackage --impure)"/activate
+home-manager switch --flake '~/.config/nixpkgs#mickey' --impure
 ```
-
-nix build --no-link <flake-uri>#homeConfigurations.mickey.activationPackage
-"$(nix path-info <flake-uri>#homeConfigurations.mickey.activationPackage)"/activate
-
-~/.config/nixpkgs
-github:micburks/dotfiles
-
-
-
-
-#### install
-
-```bash
-# email for global gitconfig
-echo "brks.mck@gmail.com" > ~/.config/nixpkgs/.user-email
-home-manager switch
-```
-
-home-manager switch --flake '<flake-uri>#mickey'
