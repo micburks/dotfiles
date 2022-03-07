@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, email, ... }:
 
 let
   comma = import ( pkgs.fetchFromGitHub {
@@ -7,6 +7,7 @@ let
       rev = "4a62ec17e20ce0e738a8e5126b4298a73903b468";
       sha256 = "0n5a3rnv9qnnsrl76kpi6dmaxmwj1mpdd2g0b4n1wfimqfaz6gi1";
   }) {};
+  git = import ./config/git.nix { inherit config pkgs email; };
 in
 {
   programs.home-manager.enable = true;
@@ -19,7 +20,7 @@ in
   fonts.fontconfig.enable = true;
 
   imports = [
-    ./config/git.nix
+    git
     ./config/nvim.nix
     ./config/tmux.nix
     ./config/zsh.nix

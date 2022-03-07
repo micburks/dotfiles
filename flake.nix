@@ -24,6 +24,9 @@
         stateVersion = "21.11";
 
         # Optionally use extraSpecialArgs to pass through arguments to home.nix
+        extraSpecialArgs = {
+          inherit email;
+        };
       };
     };
 }

@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, email, pkgs, ... }:
 
 {
   programs.git = {
     enable = true;
     userName = "Mickey Burks";
-    userEmail = builtins.replaceStrings ["\n"] [""] (builtins.readFile ~/.config/nixpkgs/.user-email);
+    userEmail = email;
     ignores = [
       "*.dll"
       "*.exe"
