@@ -10,7 +10,8 @@
   outputs = { home-manager, ... }:
     let
       system = "x86_64-darwin";
-      username = "mickey";
+      username = USERNAME;
+      email = EMAIL;
     in {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         configuration = import ./home.nix;
