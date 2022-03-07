@@ -24,6 +24,7 @@ nix-env -u '*'
 #### build flake
 
 TODO: Remove need for --impure
+This would significantly decrease build time
 
 ```bash
 # change USERNAME and EMAIL in flake.nix
