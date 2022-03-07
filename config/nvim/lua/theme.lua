@@ -1,5 +1,11 @@
 local fn = vim.fn
 local gl = require("galaxyline")
+local providers = {
+  fileinfo = require("galaxyline.provider_fileinfo"),
+  vcs = require("galaxyline.provider_vcs"),
+  buffer = require("galaxyline.provider_buffer")
+}
+
 local section = gl.section
 gl.short_line_list = { 'packer', 'NvimTree', "packager", "toggleterm"}
 local colors = {
@@ -85,13 +91,13 @@ section.left[3] = {
   FileIcon = {
     provider = "FileIcon",
     condition = buffer_not_empty,
-    highlight = {require("galaxyline/providers/fileinfo").get_file_icon_color, colors.line_bg}
+    highlight = {providers.fileinfo.get_file_icon_color, colors.line_bg}
   }
 }
 section.left[4] = {
   FileName = {
     provider = function()
-      local vcs = require('galaxyline/providers/vcs')
+      local vcs = providers.vcs
       local git_dir = vcs.get_git_dir()
       if git_dir == nil then
         return fn.expand("%:p")
@@ -120,7 +126,7 @@ section.left[5] = {
 section.right[1] = {
   GitBranch = {
     provider = "GitBranch",
-    condition = require("galaxyline/providers/vcs").check_git_workspace,
+    condition = providers.vcs.check_git_workspace,
     separator_highlight = {colors.purple, colors.bg},
     highlight = {colors.orange, colors.line_bg, "bold"}
   }
@@ -169,7 +175,7 @@ section.right[6] = {
 section.short_line_left[1] = {
   BufferType = {
     provider = function()
-      local fileinfo = require('galaxyline/providers/fileinfo')
+      local fileinfo = providers.fileinfo
       local fileicon = fileinfo.get_file_icon()
       if is_in_short_list() then
         return ""
@@ -184,7 +190,7 @@ section.short_line_left[1] = {
 section.short_line_left[2] = {
   SFileName = {
     provider = function()
-      local fileinfo = require("galaxyline/providers/fileinfo")
+      local fileinfo = providers.fileinfo
       local fname = fileinfo.get_current_file_name()
       if is_in_short_list() then
         return ""
@@ -199,7 +205,7 @@ section.short_line_left[2] = {
 section.short_line_right[1] = {
   BufferIcon = {
     provider = function()
-      local buffer = require('galaxyline/providers/buffer')
+      local buffer = providers.buffer
       local buffericon = buffer.get_buffer_type_icon()
       if is_in_short_list() then
         return ""
