@@ -17,10 +17,6 @@ in
   programs.home-manager.enable = true;
   news.display = "silent";
 
-  home.stateVersion = "21.11";
-  home.username = "$USER";
-  home.homeDirectory = "/Users/$USER";
-
   xdg.enable = true;
   xdg.configFile."nix/nix.conf".source = ./nix/nix.conf;
 

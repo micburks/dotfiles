@@ -30,6 +30,14 @@ export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/
 nix-shell '<home-manager>' -A install
 ```
 
+nix build --no-link <flake-uri>#homeConfigurations.mickey.activationPackage
+"$(nix path-info <flake-uri>#homeConfigurations.mickey.activationPackage)"/activate
+
+~/.config/nixpkgs
+github:micburks/dotfiles
+
+
+
 
 #### install
 
@@ -38,3 +46,5 @@ nix-shell '<home-manager>' -A install
 echo "brks.mck@gmail.com" > ~/.config/nixpkgs/.user-email
 home-manager switch
 ```
+
+home-manager switch --flake '<flake-uri>#mickey'
