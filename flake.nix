@@ -17,13 +17,9 @@
         configuration = import ./home.nix;
 
         inherit system username;
+
         homeDirectory = "/Users/${username}";
-
-        # See the changelog here:
-        # https://nix-community.github.io/home-manager/release-notes.html#sec-release-21.05
         stateVersion = "21.11";
-
-        # Optionally use extraSpecialArgs to pass through arguments to home.nix
         extraSpecialArgs = {
           inherit email;
         };

@@ -30,5 +30,5 @@ This would significantly decrease build time
 # change USERNAME and EMAIL in flake.nix
 nix build --no-link ~/.config/nixpkgs#homeConfigurations.mickey.activationPackage --impure
 "$(nix path-info ~/.config/nixpkgs#homeConfigurations.mickey.activationPackage --impure)"/activate
-home-manager switch --flake '~/.config/nixpkgs#mickey' --impure
+home-manager switch --flake ~/.config/nixpkgs#mickey --impure
 ```
