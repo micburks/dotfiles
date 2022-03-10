@@ -1,9 +1,9 @@
 local fn = vim.fn
 local gl = require("galaxyline")
 local providers = {
-  fileinfo = require("galaxyline.provider_fileinfo"),
-  vcs = require("galaxyline.provider_vcs"),
-  buffer = require("galaxyline.provider_buffer")
+  fileinfo = require("galaxyline/providers/fileinfo"),
+  vcs = require("galaxyline/providers/vcs"),
+  buffer = require("galaxyline/providers/buffer")
 }
 
 local section = gl.section
