@@ -52,7 +52,6 @@ set backspace=indent,eol,start
 set laststatus=2
 
 " Long line handling
-set wrap
 set textwidth=79
 set formatoptions=qrn1
 
@@ -252,23 +251,33 @@ noremap k gk
 " # splits
 "
 " ----------------------------------------------------------------------------
+set nowrap
 """splits - arrow keys    - Move to corresponding split
-nnoremap <silent> <left> <C-w><left><CR>
-nnoremap <silent> <down> <C-w><down><CR>
-nnoremap <silent> <up> <C-w><up><CR>
-nnoremap <silent> <right> <C-w><right><CR>
+nnoremap <silent> <left> :set nowrap<CR><C-w><left><CR><C-w>=<CR>:set wrap<CR>
+nnoremap <silent> <down> :set nowrap<CR><C-w><down><CR><C-w>=<CR>:set wrap<CR>
+nnoremap <silent> <up> :set nowrap<CR><C-w><up><CR><C-w>=<CR>:set wrap<CR>
+nnoremap <silent> <right> :set nowrap<CR><C-w><right><CR><C-w>=<CR>:set wrap<CR>
 
-"""splits - <leader>arrow - Resize split
-nnoremap <silent> <leader><left> :vertical resize -5<CR>
-nnoremap <silent> <leader><down> :resize -5<CR>
-nnoremap <silent> <leader><up> :resize +5<CR>
-nnoremap <silent> <leader><right> :vertical resize +5<CR>
+
+"""splits - <C-hjkl>      - Resize split
+nnoremap <silent> <C-l> :vertical resize -5<CR>
+nnoremap <silent> <C-j> :resize -5<CR>
+nnoremap <silent> <C-k> :resize +5<CR>
+nnoremap <silent> <C-h> :vertical resize +5<CR>
 
 " sensible splits
 set splitbelow
 set splitright
 
+" TODO make these easier
+"""splits - <C-w> _       - Max out the height of the current split
+"""splits - <C-w> |       - Max out the width of the current split
+"""splits - <C-w> =       - Normalize all split sizes, which is very handy when resizing terminal
+"""splits - <C-w> R       - Swap top/bottom or left/right split
+"""splits - <C-w> T       - Break out current window into a new tabview
+"""splits - <C-w> o       - Close every window in the current tabview but the current one
 
+   
 
 " ----------------------------------------------------------------------------
 "

@@ -21,6 +21,23 @@ require('packer').use {
   end
 }
 
+require('packer').use {
+  'beauwilliams/focus.nvim',
+  config = function()
+    require("focus").setup({
+      excluded_filetypes = {'fterm', 'term', 'toggleterm'},
+      excluded_buftypes = {'nofile', 'prompt', 'popup', 'terminal'},
+      minwidth = 65,
+      treewidth = 40,
+      colorcolumn = {enable = true, width = 100},
+    })
+  end
+}
+
+---splits - <space><ent>  - Toggle between equal splits or maximezed
+vim.api.nvim_set_keymap('n', '<space><enter>', '<cmd>lua require"focus".focus_max_or_equal()<CR>', {noremap=true, silent=true})
+
+
 
 
 
