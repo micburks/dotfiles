@@ -16,15 +16,20 @@ end
 -- these are not updated in nix right now
 local use = require('packer').use
 require('packer').startup(function()
-  use 'hrsh7th/vim-vsnip'
-  use 'hrsh7th/vim-vsnip-integ'
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-  use 'hrsh7th/cmp-nvim-lua' -- LSP source for neovim lua api
-  use 'lukas-reineke/cmp-rg' -- LSP source for ripgrep
-  use 'hrsh7th/cmp-buffer' -- LSP source for buffer
-  use 'rafamadriz/friendly-snippets'
+  -- nvim-cmp
+  use 'hrsh7th/cmp-nvim-lsp' -- completion source for neovim builtin LSP
+  use 'hrsh7th/cmp-buffer' -- completion source for words in current buffer
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+
+  -- vsnip
+  use 'hrsh7th/cmp-vsnip' -- completion source for vsnip
+  use 'hrsh7th/vim-vsnip' -- Snippet plugin
+  use 'hrsh7th/vim-vsnip-integ' -- snippet completion and expansion
+
+  use 'hrsh7th/cmp-nvim-lua' -- completion source for neovim lua api
+  use 'lukas-reineke/cmp-rg' -- completion source for ripgrep
+
+  use 'rafamadriz/friendly-snippets'
 end)
 
 local cmp = require('cmp')
@@ -42,8 +47,9 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm {
+      -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     },
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -68,7 +74,6 @@ cmp.setup {
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
-    -- { name = 'luasnip' },
     { name = 'nvim_lua' },
     { name = 'rg' }
   }, {
