@@ -253,10 +253,10 @@ noremap k gk
 " ----------------------------------------------------------------------------
 set nowrap
 """splits - arrow keys    - Move to corresponding split
-nnoremap <silent> <left> :set nowrap<CR><C-w><left><CR><C-w>=<CR>:set wrap<CR>
-nnoremap <silent> <down> :set nowrap<CR><C-w><down><CR><C-w>=<CR>:set wrap<CR>
-nnoremap <silent> <up> :set nowrap<CR><C-w><up><CR><C-w>=<CR>:set wrap<CR>
-nnoremap <silent> <right> :set nowrap<CR><C-w><right><CR><C-w>=<CR>:set wrap<CR>
+nnoremap <silent> <left> :set nowrap<CR><C-w><left><C-w>=:set wrap<CR>
+nnoremap <silent> <down> :set nowrap<CR><C-w><down><C-w>=:set wrap<CR>
+nnoremap <silent> <up> :set nowrap<CR><C-w><up><C-w>=:set wrap<CR>
+nnoremap <silent> <right> :set nowrap<CR><C-w><right><C-w>=:set wrap<CR>
 
 
 """splits - <C-hjkl>      - Resize split
