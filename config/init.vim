@@ -241,8 +241,9 @@ vnoremap <tab> %
 " Visual line nav, not real line nav
 " If you wrap lines, vim by default won't let you move down one line to the
 " wrapped portion. This fixes that.
-noremap j gj
-noremap k gk
+" Edit: these interfere with basic vim motions when `wrap` is set, such as `d<down>`
+" noremap j gj
+" noremap k gk
 
 
 
