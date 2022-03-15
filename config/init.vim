@@ -1,9 +1,3 @@
-
-" TODO - better scheme for nmap
-" <leaderfX for general things
-" <leader>gX for syntax things
-" idk
-
 " ----------------------------------------------------------------------------
 "
 " # general
@@ -119,7 +113,7 @@ set showmatch
 " Highlight matches
 set hlsearch
 
-"""search - //            - Search for currently selected text (all characters)
+"""search - //            - (visual) Search for currently selected text (all characters)
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 
@@ -202,9 +196,9 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 "
 " ----------------------------------------------------------------------------
 """copy-paste - \vc           - Copy mode (remove number settings)
-nnoremap <leader>vc :setlocal number! relativenumber!<cr>
+nnoremap <leader>vc :setlocal number! relativenumber!<cr><space><enter>
 
-"""copy-paste - \vy           - Copy entire file
+"""copy-paste - \vy           - Copy entire file contents
 nnoremap <leader>vy :!cat "%" \| pbcopy<cr>
 
 " `set paste` ruins everything
@@ -216,13 +210,13 @@ set pastetoggle=<leader>vv
 set viminfo='20,<1000
 
 " Quick way to add empty lines
-"""copy-paste - \vO           - New line above without entering insert
-nnoremap <leader>vO O<ESC>
-"""copy-paste - \vo           - New line below without entering insert
-nnoremap <leader>vo o<ESC>
+"""editing - <space>O      - New line above without entering insert
+nnoremap <space>O O<ESC>
+"""editing - <space>o      - New line below without entering insert
+nnoremap <space>o o<ESC>
 
 " Then <leader>s commented line to add long lines above and below for marking
-"""copy-paste - \vs           - Add same length '---' lines before/after current line
+"""editing - \vs           - Add same length '---' lines before/after current line
 nnoremap <leader>vs yyPVr-yyjp
 
 
@@ -233,10 +227,12 @@ nnoremap <leader>vs yyPVr-yyjp
 "
 " ----------------------------------------------------------------------------
 " Clear highlighting
+"""general - \<space>         - clear highlighting
 nnoremap <leader><space> :noh<cr>
 
-nnoremap <tab> %
-vnoremap <tab> %
+"""movement - g<tab>          - %
+nnoremap g<tab> %
+vnoremap g<tab> %
 
 " Visual line nav, not real line nav
 " If you wrap lines, vim by default won't let you move down one line to the
@@ -293,7 +289,7 @@ if exists('+termguicolors')
 endif
 
 "set background=dark
-"""colors - colo ARG      - colorscheme [gruvbox,iceberg,nordisk,pulumi,zenburn]
+"""general - colo ARG      - colorscheme [gruvbox,iceberg,nordisk,pulumi,zenburn]
 
 colorscheme gruvbox
 " colorscheme iceberg

@@ -151,9 +151,9 @@ end
 local opts = { noremap=true, silent=true }
 ---lsp - <space>e      - diagnostic.open_float
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
----lsp - [d            - diagnostic.goto_prev
+---movement - [d            - diagnostic.goto_prev (lsp)
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
----lsp - ]d            - diagnostic.goto_next
+---movement - ]d            - diagnostic.goto_next (lsp)
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 -- ---lsp - <space>q      - diagnostic.setloclist
 -- vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
@@ -170,29 +170,29 @@ local on_attach = function(client, bufnr)
   -- See `:help vim.lsp.*` for documentation on any of the below functions
 -- ---lsp - gD            - lsp.buf.declaration
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
----lsp - gd            - lsp.buf.definition
+---movement - gd            - lsp.buf.definition (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
----lsp - K             - lsp.buf.hover
+---lsp - K             - lsp.buf.hover (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
----lsp - gi            - lsp.buf.implementation
+---lsp - gi            - lsp.buf.implementation (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
--- ---lsp - <C-k>         - lsp.buf.signature_help
+-- ---lsp - <C-k>         - lsp.buf.signature_help (lsp)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
----lsp - <space>wa     - lsp.buf.add_workspace_folder
+---lsp - <space>wa     - lsp.buf.add_workspace_folder (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
----lsp - <space>wr     - lsp.buf.remove_workspace_folder
+---lsp - <space>wr     - lsp.buf.remove_workspace_folder (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
----lsp - <space>wl     - print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+---lsp - <space>wl     - print(vim.inspect(vim.lsp.buf.list_workspace_folders())) (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buflist_workspace_folders()))<CR>', opts)
--- ---lsp - <space>D      - lsp.buf.type_definition
+-- ---lsp - <space>D      - lsp.buf.type_definition (lsp)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
----lsp - <space>rn     - lsp.buf.rename
+---editing - <space>rn     - lsp.buf.rename (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
----lsp - <space>ca     - lsp.buf.code_action
+---lsp - <space>ca     - lsp.buf.code_action (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
----lsp - gr            - lsp.buf.references
+---lsp - gr            - lsp.buf.references (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
----lsp - <space>f      - lsp.buf.formatting
+---editing - <space>f      - lsp.buf.formatting (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 

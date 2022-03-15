@@ -1,10 +1,10 @@
 
 -- # help
----help - <space>h      - help
+---general - <space>h      - help
 vim.api.nvim_set_keymap('n', '<space>h', '<cmd>lua require"modules/help".help()<CR>', {noremap=true, silent=true})
 
 -- # hop
----hop - \\            - hop
+---movement - \\            - hop
 require('hop').setup{}
 vim.api.nvim_set_keymap('n', '<leader><leader>', "<cmd>lua require'hop'.hint_words()<cr>", {noremap=true})
 
@@ -34,7 +34,7 @@ require('packer').use {
   end
 }
 
----splits - <space><ent>  - Toggle between equal splits or maximezed
+---splits - <space><ent>  - Toggle between equal splits or maximized
 vim.api.nvim_set_keymap('n', '<space><enter>', '<cmd>lua require"focus".focus_max_or_equal()<CR>', {noremap=true, silent=true})
 
 
@@ -43,16 +43,16 @@ vim.api.nvim_set_keymap('n', '<space><enter>', '<cmd>lua require"focus".focus_ma
 
 
 -- # splitjoin
----splitjoin - gS            - splitjoin: 1 -> many lines
----splitjoin - gJ            - splitjoin: many -> 1 line
+---editing - gS            - splitjoin: 1 -> many lines (splitjoin)
+---editing - gJ            - splitjoin: many -> 1 line (splitjoin)
 
 
 
 -- # telescope
----telescope - \ff           - fuzzy find find_files
----telescope - \fg           - fuzzy find live_grep
----telescope - \fb           - fuzzy find buffers
----telescope - \fh           - fuzzy find help_tags
+---search - \ff           - fuzzy find find_files (telescope)
+---search - \fg           - fuzzy find live_grep (telescope)
+---search - \fb           - fuzzy find buffers (telescope)
+---search - \fh           - fuzzy find help_tags (telescope)
 require('telescope').setup{}
 require('telescope').load_extension('fzf')
 vim.api.nvim_set_keymap('n', '<leader>ff', "<cmd>Telescope find_files<cr>", {noremap=true})
@@ -63,14 +63,14 @@ vim.api.nvim_set_keymap('n', '<leader>fh', "<cmd>Telescope help_tags<cr>", {nore
 
 
 -- # toggleterm
----toggleterm - \t            - open first terminal
----toggleterm - X\t           - open numbered terminal
+---terminal - \t            - open first terminal
+---terminal - X\t           - open numbered terminal
 require("toggleterm").setup{
   open_mapping = "\\t",
   direction = 'float',
 }
 
----toggleterm - \rg           - lazygit terminal (arrow keys, enter, space, q)
+---terminal - \rg           - lazygit terminal (arrow keys, enter, space, q)
 -- custom terminal for lazygit
 local Terminal  = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, count = 5 })
