@@ -16,9 +16,10 @@ FS=/^["-]{3}/ NF>1 {
   parse_line($0)
 }
 END {
-  for (i in store) {
-    printf "# %s",  i
-    print store[i]
+  num = asorti(store, sorted_indices)
+  for (i=1; i<=num; i++) {
+    printf "# %s", sorted_indices[i]
+    print store[sorted_indices[i]]
     print "\n\n"
   }
 }
