@@ -216,8 +216,8 @@ nnoremap <space>O O<ESC>
 nnoremap <space>o o<ESC>
 
 " Then <leader>s commented line to add long lines above and below for marking
-"""editing - \vs           - Add same length '---' lines before/after current line
-nnoremap <leader>vs yyPVr-yyjp
+"""editing - <space>z      - Add same length '---' lines before/after current line
+nnoremap <space>z yyPVr-yyjp
 
 
 
@@ -227,10 +227,10 @@ nnoremap <leader>vs yyPVr-yyjp
 "
 " ----------------------------------------------------------------------------
 " Clear highlighting
-"""general - \<space>         - clear highlighting
+"""general - \<space>      - clear highlighting
 nnoremap <leader><space> :noh<cr>
 
-"""movement - g<tab>          - %
+"""movement - g<tab>        - %
 nnoremap g<tab> %
 vnoremap g<tab> %
 

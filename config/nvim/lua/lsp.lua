@@ -40,17 +40,27 @@ cmp.setup {
     end,
   },
   mapping = {
+
+-- # autocomplete
+---autocomplete - <C-p>         - cmp.mapping.select_prev_item
     ['<C-p>'] = cmp.mapping.select_prev_item(),
+---autocomplete - <C-n>         - cmp.mapping.select_next_item
     ['<C-n>'] = cmp.mapping.select_next_item(),
+---autocomplete - <C-d>         - cmp.mapping.scroll_docs back
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+---autocomplete - <C-f>         - cmp.mapping.scroll_docs forward
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+---autocomplete - <C-Space>     - cmp.mapping.complete
     ['<C-Space>'] = cmp.mapping.complete(),
+---autocomplete - <C-e>         - cmp.mapping.close
     ['<C-e>'] = cmp.mapping.close(),
+---autocomplete - <CR>          - cmp.mapping.confirm
     ['<CR>'] = cmp.mapping.confirm {
       -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
     },
+---autocomplete - <Tab>         - select_next or expand_or_jump
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -62,7 +72,7 @@ cmp.setup {
         fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
       end
     end, { "i", "s" }),
-
+---autocomplete - <S-Tab>       - select_prev or jump back
     ["<S-Tab>"] = cmp.mapping(function()
       if cmp.visible() then
         cmp.select_prev_item()
@@ -80,17 +90,6 @@ cmp.setup {
     { name = 'buffer' }
   })
 }
-
--- # autocomplete
----autocomplete - <C-p>         - cmp.mapping.select_prev_item
----autocomplete - <C-n>         - cmp.mapping.select_next_item
----autocomplete - <C-d>         - cmp.mapping.scroll_docs back
----autocomplete - <C-f>         - cmp.mapping.scroll_docs forward
----autocomplete - <C-Space>     - cmp.mapping.complete
----autocomplete - <C-e>         - cmp.mapping.close
----autocomplete - <CR>          - cmp.mapping.confirm
----autocomplete - <Tab>         - select_next or expand_or_jump
----autocomplete - <S-Tab>       - select_prev or jump back
 
 
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
@@ -149,13 +148,14 @@ end
 -- Diagnostics mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
----lsp - <space>e      - diagnostic.open_float
-vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
----movement - [d            - diagnostic.goto_prev (lsp)
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
----movement - ]d            - diagnostic.goto_next (lsp)
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
--- ---lsp - <space>q      - diagnostic.setloclist
+---movement - g;            - diagnostic.goto_next (lsp)
+vim.api.nvim_set_keymap('n', 'g;', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+---movement - g,            - diagnostic.goto_prev (lsp)
+vim.api.nvim_set_keymap('n', 'g,', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+
+-- doesn't seem to do anything
+-- vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+-- not helpful
 -- vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
 -- Use an on_attach function to only map the following keys
@@ -168,32 +168,36 @@ local on_attach = function(client, bufnr)
 
   -- Lsp mappings
   -- See `:help vim.lsp.*` for documentation on any of the below functions
--- ---lsp - gD            - lsp.buf.declaration
+  
+-- does nothing
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+-- redundant
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  
 ---movement - gd            - lsp.buf.definition (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
----lsp - K             - lsp.buf.hover (lsp)
+---movement - gD            - lsp.buf.type_definition (lsp)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+---diagnostics - \k            - lsp.buf.hover (lsp)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  -- todo remove redundant mapping
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
----lsp - gi            - lsp.buf.implementation (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
--- ---lsp - <C-k>         - lsp.buf.signature_help (lsp)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
----lsp - <space>wa     - lsp.buf.add_workspace_folder (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
----lsp - <space>wr     - lsp.buf.remove_workspace_folder (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
----lsp - <space>wl     - print(vim.inspect(vim.lsp.buf.list_workspace_folders())) (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buflist_workspace_folders()))<CR>', opts)
--- ---lsp - <space>D      - lsp.buf.type_definition (lsp)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
----editing - <space>rn     - lsp.buf.rename (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
----lsp - <space>ca     - lsp.buf.code_action (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
----lsp - gr            - lsp.buf.references (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+---editing - <space>r      - lsp.buf.rename across multiple files (lsp)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+---editing - <space>c      - lsp.buf.code_action (lsp)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>c', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+---diagnostics - \r            - lsp.buf.references (lsp)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>r', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 ---editing - <space>f      - lsp.buf.formatting (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+---workspace - <space>wa     - lsp.buf.add_workspace_folder (lsp)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+---workspace - <space>wr     - lsp.buf.remove_workspace_folder (lsp)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+---workspace - <space>wl     - print(vim.inspect(vim.lsp.buf.list_workspace_folders())) (lsp)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buflist_workspace_folders()))<CR>', opts)
 end
 
 -- Add additional capabilities supported by nvim-cmp

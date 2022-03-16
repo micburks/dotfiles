@@ -1,12 +1,13 @@
 
 -- # help
----general - <space>h      - help
-vim.api.nvim_set_keymap('n', '<space>h', '<cmd>lua require"modules/help".help()<CR>', {noremap=true, silent=true})
+---general - \h            - help
+vim.api.nvim_set_keymap('n', '<leader>h', '<cmd>lua require"modules/help".help()<CR>', {noremap=true, silent=true})
+
 
 -- # hop
----movement - \\            - hop
+---movement - g\            - hop
 require('hop').setup{}
-vim.api.nvim_set_keymap('n', '<leader><leader>', "<cmd>lua require'hop'.hint_words()<cr>", {noremap=true})
+vim.api.nvim_set_keymap('n', 'g<leader>', "<cmd>lua require'hop'.hint_words()<cr>", {noremap=true})
 
 
 -- ... closetag ...
@@ -25,7 +26,7 @@ require('packer').use {
   'beauwilliams/focus.nvim',
   config = function()
     require("focus").setup({
-      excluded_filetypes = {'fterm', 'term', 'toggleterm'},
+      excluded_filetypes = {'fterm', 'term', 'toggleterm', 'NvimTree'},
       excluded_buftypes = {'nofile', 'prompt', 'popup', 'terminal'},
       minwidth = 65,
       treewidth = 40,
@@ -34,17 +35,27 @@ require('packer').use {
   end
 }
 
----splits - <space><ent>  - Toggle between equal splits or maximized
-vim.api.nvim_set_keymap('n', '<space><enter>', '<cmd>lua require"focus".focus_max_or_equal()<CR>', {noremap=true, silent=true})
+---splits - \<enter>      - Toggle between equal splits or maximized
+vim.api.nvim_set_keymap('n', '<leader><enter>', '<cmd>lua require"focus".focus_max_or_equal()<CR>', {noremap=true, silent=true})
 
+
+
+-- git gutter
+vim.g.gitgutter_map_keys = 0
+ 
 
 
 
 
 
 -- # splitjoin
----editing - gS            - splitjoin: 1 -> many lines (splitjoin)
----editing - gJ            - splitjoin: many -> 1 line (splitjoin)
+---editing - <space>s      - splitjoin: 1 -> many lines (splitjoin)
+vim.api.nvim_set_keymap('n', '<space>s', '<cmd>SplitjoinSplit<cr>', {noremap=true, silent=true})
+---editing - <space>j      - splitjoin: many -> 1 line (splitjoin)
+vim.api.nvim_set_keymap('n', '<space>j', '<cmd>SplitjoinJoin<cr>', {noremap=true, silent=true})
+-- remove default keybindings
+vim.api.nvim_set_keymap('', 'gS', '<Nop>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap('', 'gJ', '<Nop>', {noremap=true, silent=true})
 
 
 
@@ -70,17 +81,18 @@ require("toggleterm").setup{
   direction = 'float',
 }
 
----terminal - \rg           - lazygit terminal (arrow keys, enter, space, q)
+---terminal - \g            - lazygit terminal (arrow keys, enter, space, q)
 -- custom terminal for lazygit
 local Terminal  = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, count = 5 })
 function _lazygit_toggle()
   lazygit:toggle()
 end
-vim.api.nvim_set_keymap("n", "<leader>rg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
 
 
 -- # nvim-tree
+-- TODO: remove nvim-tree help since you can find it via nvim-tree g? ??
 ---nvim-tree - g?            - open help
 --
 -- ## visibility

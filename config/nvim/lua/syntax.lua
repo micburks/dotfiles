@@ -1,4 +1,6 @@
---  treesitter
+-- # treesitter
+---editing - <space>g      - Re-indent file (treesitter)
+vim.api.nvim_set_keymap('n', '<space>g', 'mnggVG=<escape>`n', {noremap = true})
 require("nvim-treesitter.configs").setup {
   ensure_installed = "maintained",
   ignore_install = { "haskell" }, -- haskell broken?
@@ -17,15 +19,20 @@ require("nvim-treesitter.configs").setup {
     -- smart_rename = {
     --   enable = true,
     --   keymaps = {
+    -- ---treesitter - \gr           - smart rename
     --     smart_rename = "<leader>gr",
     --   },
     -- },
     navigation = {
       enable = true,
       keymaps = {
+-- doesn't work as well as lsp
         -- goto_definition = "<leader>go",
-        -- list_definitions = "<leader>gd",
+---diagnostics - \d            - list definitions (treesitter)
+        list_definitions = "<leader>d",
+---movement - gn            - next usage (treesitter)
         goto_next_usage = "gn",
+---movement - gp            - previous usage (treesitter)
         goto_previous_usage = "gp",
       },
     },
@@ -37,6 +44,10 @@ require("nvim-treesitter.configs").setup {
       lookahead = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
+-- ## textobjects
+---textobjects - f             - function (treesitter)
+---textobjects - c             - class (treesitter)
+---textobjects - b             - block (treesitter)
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
@@ -45,62 +56,52 @@ require("nvim-treesitter.configs").setup {
         ["ib"] = "@block.inner",
       },
     },
+--
+-- ## swap
+---editing - <space>a      - move parameter to right (treesitter)
+---editing - <space>A      - move parameter to left (treesitter)
     swap = {
       enable = true,
       swap_next = {
-        ["<leader>a"] = "@parameter.inner",
+        ["<space>a"] = "@parameter.inner",
       },
       swap_previous = {
-        ["<leader>A"] = "@parameter.inner",
+        ["<space>A"] = "@parameter.inner",
       },
     },
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        ["]m"] = "@function.outer",
-        ["]]"] = "@class.outer",
-      },
-      goto_next_end = {
-        ["]M"] = "@function.outer",
-        ["]["] = "@class.outer",
-      },
-      goto_previous_start = {
-        ["[m"] = "@function.outer",
-        ["[["] = "@class.outer",
-      },
-      goto_previous_end = {
-        ["[M"] = "@function.outer",
-        ["[]"] = "@class.outer",
-      },
+-- unnecessary
+--       goto_next_start = {
+--         ["]m"] = "@function.outer",
+--         ["]]"] = "@class.outer",
+--       },
+--       goto_next_end = {
+--         ["]M"] = "@function.outer",
+--         ["]["] = "@class.outer",
+--       },
+--       goto_previous_start = {
+--         ["[m"] = "@function.outer",
+--         ["[["] = "@class.outer",
+--       },
+--       goto_previous_end = {
+--         ["[M"] = "@function.outer",
+--         ["[]"] = "@class.outer",
+--       },
     },
     lsp_interop = {
       enable = true,
       border = 'none',
       peek_definition_code = {
-        ["<leader>df"] = "@function.outer",
-        ["<leader>dF"] = "@class.outer",
+---diagnostics - \b            - peek function outer definition (treesitter)
+        ["<leader>b"] = "@function.outer",
+---diagnostics - \c            - peek class outer definition (treesitter)
+        ["<leader>c"] = "@class.outer",
       },
     },
   },
 }
-
--- # treesitter
--- ---treesitter - \go           - (g)(o) to definition
----movement - gp            - previous usage (treesitter)
----movement - gn            - next usage (tresitter)
--- ---treesitter - \gd           - list definitions
--- ---treesitter - \gr           - smart rename
--- ---treesitter - \gg           - Re-indent file
--- vim.api.nvim_set_keymap('n', '<leader>gg', 'mnggVG=<escape>`n', {noremap = true})
-
--- ## textobjects
----movement - [a/i]f        - (textobject) around/inside function (treesitter)
----movement - [a/i]c        - (textobject) around/inside class (treesitter)
---
--- ## swap
----editing - \a            - move parameter to right (treesitter)
----editing - \A            - move parameter to left (treesitter)
 
 require('treesitter-context.config').setup {
   enable = true,
