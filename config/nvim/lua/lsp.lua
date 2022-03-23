@@ -152,9 +152,9 @@ local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', 'g;', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 ---movement - g,            - diagnostic.goto_prev (lsp)
 vim.api.nvim_set_keymap('n', 'g,', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+---diagnostics - \s            - diagnostic.open_float (lsp)
+vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 
--- doesn't seem to do anything
--- vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 -- not helpful
 -- vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
