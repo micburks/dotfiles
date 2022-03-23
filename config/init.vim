@@ -123,9 +123,9 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " # folds
 "
 " ----------------------------------------------------------------------------
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
-" set foldlevelstart=20
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldlevelstart=20
 
 """folds - :set fdm      - set fold method [manual, syntax, indent]
 """folds - zo            - (o)pen fold
