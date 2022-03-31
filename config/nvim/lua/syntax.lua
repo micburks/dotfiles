@@ -1,4 +1,9 @@
 -- # treesitter
+
+require('packer').startup(function()
+  use 'RRethy/nvim-treesitter-textsubjects'
+end)
+
 ---editing - <space>g      - Re-indent file (treesitter)
 vim.api.nvim_set_keymap('n', '<space>g', 'mnggVG=<escape>`n', {noremap = true})
 require("nvim-treesitter.configs").setup {
@@ -99,6 +104,15 @@ require("nvim-treesitter.configs").setup {
 ---diagnostics - \c            - peek class outer definition (treesitter)
         ["<leader>c"] = "@class.outer",
       },
+    },
+  },
+  textsubjects = {
+    enable = true,
+---textobjects - ,            - textsubject previous selection (treesitter)
+    prev_selection = ',',
+    keymaps = {
+---textobjects - .            - textsubject-smart (treesitter)
+      ['.'] = 'textsubjects-smart',
     },
   },
 }
