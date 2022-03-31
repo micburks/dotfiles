@@ -19,6 +19,8 @@ require('packer').startup(function()
   -- nvim-cmp
   use 'hrsh7th/cmp-nvim-lsp' -- completion source for neovim builtin LSP
   use 'hrsh7th/cmp-buffer' -- completion source for words in current buffer
+  use 'hrsh7th/cmp-path' -- completeion source for path
+  -- use 'hrsh7th/cmp-cmdline' -- completion source for cmdline
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
 
   -- vsnip
@@ -27,7 +29,7 @@ require('packer').startup(function()
   use 'hrsh7th/vim-vsnip-integ' -- snippet completion and expansion
 
   use 'hrsh7th/cmp-nvim-lua' -- completion source for neovim lua api
-  use 'lukas-reineke/cmp-rg' -- completion source for ripgrep
+  -- use 'lukas-reineke/cmp-rg' -- completion source for ripgrep
 
   use 'rafamadriz/friendly-snippets'
 end)
@@ -42,18 +44,23 @@ cmp.setup {
   mapping = {
 
 -- # autocomplete
----autocomplete - <C-p>         - cmp.mapping.select_prev_item
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
----autocomplete - <C-n>         - cmp.mapping.select_next_item
-    ['<C-n>'] = cmp.mapping.select_next_item(),
----autocomplete - <C-d>         - cmp.mapping.scroll_docs back
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+-- unnecessary
+--     ['<C-p>'] = cmp.mapping.select_prev_item(),
+--     ['<C-n>'] = cmp.mapping.select_next_item(),
+
+---autocomplete - <C-b>         - cmp.mapping.scroll_docs back
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
 ---autocomplete - <C-f>         - cmp.mapping.scroll_docs forward
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
 ---autocomplete - <C-Space>     - cmp.mapping.complete
-    ['<C-Space>'] = cmp.mapping.complete(),
----autocomplete - <C-e>         - cmp.mapping.close
-    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+---autocomplete - <C-y>         - cmp.config.disable
+    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+---autocomplete - <C-e>         - cmp.mapping.abort or cmp.mapping.close
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
 ---autocomplete - <CR>          - cmp.mapping.confirm
     ['<CR>'] = cmp.mapping.confirm {
       -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
@@ -85,11 +92,28 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
     { name = 'nvim_lua' },
-    { name = 'rg' }
+    -- { name = 'rg' }
   }, {
     { name = 'buffer' }
   })
 }
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+  sources = {
+  { name = 'buffer' }
+  }
+})
+
+-- This is kind of annoying
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- cmp.setup.cmdline(':', {
+--   sources = cmp.config.sources({
+--   { name = 'path' }
+--   }, {
+--     { name = 'cmdline' }
+--     })
+-- })
 
 
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
