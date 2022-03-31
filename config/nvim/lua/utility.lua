@@ -39,6 +39,9 @@ require('packer').use {
 vim.api.nvim_set_keymap('n', '<leader><enter>', '<cmd>lua require"focus".focus_max_or_equal()<CR>', {noremap=true, silent=true})
 
 
+-- numb
+require('numb').setup()
+
 
 -- git gutter
 vim.g.gitgutter_map_keys = 0

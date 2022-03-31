@@ -30,6 +30,7 @@
       iceberg-vim
       lsp-colors-nvim
       lush-nvim
+      numb-nvim
       nvim-compe
       # nvim-dap
       # nvim-dap-ui
