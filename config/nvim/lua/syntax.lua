@@ -32,7 +32,8 @@ require("nvim-treesitter.configs").setup {
       enable = true,
       keymaps = {
 -- doesn't work as well as lsp
-        -- goto_definition = "<leader>go",
+        goto_definition = "<Nop>", -- "<leader>go",
+        list_definitions_toc = "<Nop>", -- "gO",
 ---diagnostics - \d            - list definitions (treesitter)
         list_definitions = "<leader>d",
 ---movement - gn            - next usage (treesitter)
