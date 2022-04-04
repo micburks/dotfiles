@@ -1,3 +1,6 @@
+---general - \m            - Toggle goyo for markdown files
+vim.api.nvim_set_keymap('n', '<leader>m', ':FocusToggle<CR>:Goyo<CR>', {noremap=true, silent=true})
+
 local fn = vim.fn
 local gl = require("galaxyline")
 local providers = {

@@ -25,6 +25,7 @@
     '';
     plugins = with pkgs.vimPlugins; [
       galaxyline-nvim
+      goyo-vim
       gruvbox-nvim
       hop-nvim
       iceberg-vim

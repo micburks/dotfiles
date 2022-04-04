@@ -1,0 +1,18 @@
+# Set to true to use lowercase keywords instead of uppercase.
+lowercaseKeywords: false
+connections:
+  - alias: vice
+    driver: postgresql
+    dbName: vice
+# example
+#  - alias: individual_mysql
+#    driver: mysql
+#    proto: tcp
+#    user: root
+#    passwd: root
+#    host: 127.0.0.1
+#    port: 13306
+#    dbName: world
+#    params:
+#      autocommit: "true"
+#      tls: skip-verify
