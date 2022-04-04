@@ -34,6 +34,8 @@ require("nvim-treesitter.configs").setup {
 -- doesn't work as well as lsp
         goto_definition = "<Nop>", -- "<leader>go",
         list_definitions_toc = "<Nop>", -- "gO",
+-- ---movement - gd            - goto_definition_lsp_fallback, lsp.buf.definition fallback (treesitter)
+        goto_definition_lsp_fallback = "gd",
 ---diagnostics - \d            - list definitions (treesitter)
         list_definitions = "<leader>d",
 ---movement - gn            - next usage (treesitter)
@@ -109,10 +111,10 @@ require("nvim-treesitter.configs").setup {
   },
   textsubjects = {
     enable = true,
----textobjects - ,            - textsubject previous selection (treesitter)
+---textobjects - ,             - textsubject previous selection (treesitter)
     prev_selection = ',',
     keymaps = {
----textobjects - .            - textsubject-smart (treesitter)
+---textobjects - .             - textsubject-smart (treesitter)
       ['.'] = 'textsubjects-smart',
     },
   },
