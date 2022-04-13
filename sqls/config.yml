@@ -1,9 +1,12 @@
-# Set to true to use lowercase keywords instead of uppercase.
-lowercaseKeywords: false
+lowercaseKeywords: true
 connections:
   - alias: vice
     driver: postgresql
     dbName: vice
+    proto: tcp
+    user: mickey
+    host: localhost
+    port: 5432
 # example
 #  - alias: individual_mysql
 #    driver: mysql

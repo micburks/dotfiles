@@ -32,6 +32,8 @@ require('packer').startup(function()
   -- use 'lukas-reineke/cmp-rg' -- completion source for ripgrep
 
   use 'rafamadriz/friendly-snippets'
+
+  use 'nanotee/sqls.nvim'
 end)
 
 local cmp = require('cmp')
@@ -133,6 +135,7 @@ local servers = {
   'html',
   'jsonls',
   'rust_analyzer',
+  'sqls',
   'vimls'
 }
 

@@ -213,3 +213,9 @@ function jd() {
   cd $cwd
   echo $root
 }
+
+### pg          - use pgcli to fuzzy open a database
+function dbs () {
+  psql -l | awk 'NR>3 {if ($1 != "" && $1 !~ /^[|(]/) {print $1}}' | fzf
+}
+alias pg='pgcli $(dbs)'

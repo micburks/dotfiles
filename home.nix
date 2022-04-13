@@ -9,6 +9,8 @@ in
 
   xdg.enable = true;
   xdg.configFile."nix/nix.conf".source = ./nix/nix.conf;
+  xdg.configFile."sqls".source = ./sqls;
+  xdg.configFile."pgcli".source = ./pgcli;
 
   nixpkgs.config.allowUnfree = true;
   fonts.fontconfig.enable = true;
@@ -39,11 +41,13 @@ in
     jq
     lazygit
     (nerdfonts.override { fonts = [ "RobotoMono" ]; })
+    pgcli
     ranger
     ripgrep
     rust-analyzer
     rustup
     silver-searcher
+    sqls
     # sumneko-lua-language-server
     tree
     vivid
