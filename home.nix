@@ -36,7 +36,7 @@ in
     fontforge
     gawk
     gitAndTools.hub
-    go
+    gopls
     highlight
     jq
     lazygit
@@ -135,4 +135,6 @@ in
       enable = true;
     };
   };
+  
+  programs.go.enable = true;
 }
