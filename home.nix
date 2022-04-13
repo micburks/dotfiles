@@ -30,6 +30,7 @@ in
     delta
     direnv
     efm-langserver
+    entr
     exa
     fd
     fzf

@@ -48,6 +48,17 @@ vim.g.gitgutter_map_keys = 0
  
 
 
+--
+-- # comment
+-- - gcc           - normal: Toggles the current line using linewise comment
+-- - gbc           - normal: Toggles the current line using blockwise comment
+-- - Ngcc          - normal: Toggles N lines given as a prefix-count using linewise
+-- - Ngbc          - normal: Toggles N lines given as a prefix-count using blockwise
+-- - gcNM          - normal: (Op-pending) Toggles the region using linewise comment
+-- - gbNM          - normal: (Op-pending) Toggles the region using linewise comment
+-- - gc            - visual: Toggles the region using linewise comment
+-- - gb            - visual: Toggles the region using blockwise comment
+-- require('Comment').setup()
 
 
 

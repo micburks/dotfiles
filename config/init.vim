@@ -269,7 +269,7 @@ set splitright
 " TODO make these easier
 """splits - <C-w> _       - Max out the height of the current split
 """splits - <C-w> |       - Max out the width of the current split
-"""splits - <C-w> =       - Normalize all split sizes, which is very handy when resizing terminal
+"""splits - <C-w> =       - Normalize all split sizes, useful when resizing terminal
 """splits - <C-w> R       - Swap top/bottom or left/right split
 """splits - <C-w> T       - Break out current window into a new tabview
 """splits - <C-w> o       - Close every window in the current tabview but the current one
