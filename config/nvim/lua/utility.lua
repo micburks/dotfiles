@@ -3,6 +3,18 @@
 ---general - \h            - help
 vim.api.nvim_set_keymap('n', '<leader>h', '<cmd>lua require"modules/help".help()<CR>', {noremap=true, silent=true})
 
+-- cinnamon smooth scrolling
+require('packer').use {
+  'declancm/cinnamon.nvim',
+  config = function()
+    require('cinnamon').setup({
+      default_keymaps = true,
+      extra_keymaps = true,
+      extended_keymaps = true,
+      scroll_limit = 100,
+    })
+  end
+}
 
 -- # hop
 ---movement - g\            - hop
