@@ -67,4 +67,6 @@
 ### x                   - kill-pane without prompt binding (custom)
 ### [hjkl]              - switch between panes in a window (custom)
 ### [yuio]              - resize a pane (custom)
+### z                   - isolate a single pane fullscreen
+### e                   - scroll back mode
 
