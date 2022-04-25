@@ -1,5 +1,33 @@
 -- npm i -g bash-language-server graphql-language-service-cli flow-bin typescript-language-server vscode-langservers-extracted vim-language-server eslint_d @tailwindcss/language-server
 
+---diagnostics - \a            - open symbols
+vim.api.nvim_set_keymap('n', '<leader>a', "<cmd>SymbolsOutline<cr>", {noremap=true})
+vim.g.symbols_outline = {
+  keymaps = {
+---symbols - <ESC>         - close
+    close = {"<Esc>", "q"},
+---symbols - <CR>          - go to location
+    goto_location = "<Cr>",
+---symbols - o             - focus location
+    focus_location = "o",
+---symbols - <C-space>     - hover symbol
+    hover_symbol = "<C-space>",
+---symbols - K             - toggle preview
+    toggle_preview = "K",
+    rename_symbol = "<Nop>",
+    code_actions = "<Nop>",
+  },
+  highlight_hovered_item = false,
+  auto_close = true,
+  auto_preview = false,
+  show_symbol_details = false,
+}
+vim.api.nvim_exec(
+[[
+  hi FocusedSymbol guibg=NONE guifg=NONE ctermfg=NONE ctermbg=NONE
+]], false)
+
+
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 

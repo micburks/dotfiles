@@ -48,6 +48,7 @@
       quick-scope
       registers-nvim
       splitjoin-vim
+      symbols-outline-nvim
       tagalong-vim
       telescope-fzf-native-nvim
       telescope-nvim

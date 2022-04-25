@@ -38,7 +38,7 @@ require('packer').use {
   'beauwilliams/focus.nvim',
   config = function()
     require("focus").setup({
-      excluded_filetypes = {'fterm', 'term', 'toggleterm', 'NvimTree'},
+      excluded_filetypes = {'fterm', 'term', 'toggleterm', 'NvimTree', 'Outline'},
       excluded_buftypes = {'nofile', 'prompt', 'popup', 'terminal'},
       minwidth = 65,
       treewidth = 40,
