@@ -30,11 +30,6 @@
       hop-nvim
       iceberg-vim
       lsp-colors-nvim
-      lush-nvim
-      numb-nvim
-      nvim-compe
-      # nvim-dap
-      # nvim-dap-ui
       nvim-lspconfig
       nvim-tree-lua
       nvim-treesitter
@@ -47,23 +42,20 @@
       popup-nvim
       quick-scope
       registers-nvim
-      splitjoin-vim
       symbols-outline-nvim
       tagalong-vim
       telescope-fzf-native-nvim
       telescope-nvim
       toggleterm-nvim
-      # trouble-nvim
       vim-closetag
       vim-gitgutter
       vim-illuminate
-      # vim-surround
       zenburn
 
-      # hrsh7th/nvim-cmp
-      # hrsh7th/cmp-nvim-lsp
-      # saadparwaiz1/cmp_luasnip
-      # L3MON4D3/LuaSnip
+      # nvim-dap
+      # nvim-dap-ui
+      # trouble-nvim
+      # vim-surround
     ];
   };
 }

@@ -51,13 +51,8 @@ require('packer').use {
 vim.api.nvim_set_keymap('n', '<leader><enter>', '<cmd>lua require"focus".focus_max_or_equal()<CR>', {noremap=true, silent=true})
 
 
--- numb
-require('numb').setup()
-
-
 -- git gutter
 vim.g.gitgutter_map_keys = 0
- 
 
 
 --
@@ -71,18 +66,6 @@ vim.g.gitgutter_map_keys = 0
 -- - gc            - visual: Toggles the region using linewise comment
 -- - gb            - visual: Toggles the region using blockwise comment
 -- require('Comment').setup()
-
-
-
--- # splitjoin
----editing - <space>s      - splitjoin: 1 -> many lines (splitjoin)
-vim.api.nvim_set_keymap('n', '<space>s', '<cmd>SplitjoinSplit<cr>', {noremap=true, silent=true})
----editing - <space>j      - splitjoin: many -> 1 line (splitjoin)
-vim.api.nvim_set_keymap('n', '<space>j', '<cmd>SplitjoinJoin<cr>', {noremap=true, silent=true})
--- remove default keybindings
-vim.api.nvim_set_keymap('', 'gS', '<Nop>', {noremap=true, silent=true})
-vim.api.nvim_set_keymap('', 'gJ', '<Nop>', {noremap=true, silent=true})
-
 
 
 -- # telescope
