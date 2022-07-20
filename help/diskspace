@@ -1,33 +1,33 @@
-# When extra space needed
-
-- Removed 14G last time
-
-
-## ~/Code 
-
-- Delete some old projects
-- Delete tmp-test-repos if it exists
-- Temporarily get space back by deleting node_modules of repos you'll eventually get back to
-- Look for projects that create images or large files
-
-
-## /nix/store
-
-`nix-store --gc`
-
-
-## ~/Library/Caches
-
-- Look for unnecessary caches (like Yarn)
-
-
-## ~/Library/Containers
-
-- Docker keeps a really large cache
-
-`docker system prune -a`
-
-
-## Personal data (~/Pictures and ~/Library/Messages)
-
-Check settings so that messages and photos are not kept around
+### # When extra space needed
+### 
+### - Removed 14G last time
+### 
+### 
+### ## ~/Code 
+### 
+### - Delete some old projects
+### - Delete tmp-test-repos if it exists
+### - Temporarily get space back by deleting node_modules of repos you'll eventually get back to
+### - Look for projects that create images or large files
+### 
+### 
+### ## /nix/store
+### 
+### `nix-store --gc`
+### 
+### 
+### ## ~/Library/Caches
+### 
+### - Look for unnecessary caches (like Yarn)
+### 
+### 
+### ## ~/Library/Containers
+### 
+### - Docker keeps a really large cache
+### 
+### `docker system prune -a`
+### 
+### 
+### ## Personal data (~/Pictures and ~/Library/Messages)
+### 
+### Check settings so that messages and photos are not kept around
