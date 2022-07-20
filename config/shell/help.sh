@@ -13,7 +13,7 @@ help() {
   elif [[ "$1" == "help" ]]; then
     awk -F'###' '/^###/ { print $2 }' ~/.config/help/$1
     echo ""
-    echo "$(ls ~/.config/nixpkgs/help)"
+    echo "$(ls ~/.config/help)"
   elif [[ -e ~/.config/help/$1 ]]; then
     awk -F'###' '/^###/ { print $2 }' ~/.config/help/$1
   else
