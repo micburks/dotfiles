@@ -157,6 +157,7 @@ local nvim_lsp = require('lspconfig')
 local servers = {
   -- 'awk_ls',
   'bashls',
+  'clangd',
   'cssls',
   'flow',
   'graphql',

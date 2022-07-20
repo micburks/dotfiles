@@ -26,6 +26,7 @@ in
     alacritty
     autojump
     bat
+    cmake
     coreutils
     delta
     direnv
