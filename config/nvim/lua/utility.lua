@@ -18,7 +18,7 @@ require('packer').use {
 
 -- # hop
 ---movement - g\            - hop
-require('hop').setup{}
+require('hop').setup()
 vim.api.nvim_set_keymap('n', 'g<leader>', "<cmd>lua require'hop'.hint_words()<cr>", {noremap=true})
 
 
@@ -141,10 +141,9 @@ vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {nor
 ---nvim-tree.yanking - Y             - add relative path to copy clipboard
 ---nvim-tree.yanking - gy            - add absolute path to copy clipboard
 require'nvim-tree'.setup {
-  open_on_setup = 1,
+  open_on_setup = true,
   view = {
     width = 40,
-    auto_resize = true
   }
 }
 vim.api.nvim_set_keymap('n', '<leader>e', "<cmd>NvimTreeToggle<cr>", {noremap=true, silent=true})

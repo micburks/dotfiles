@@ -12,7 +12,7 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 
 
 ### hm          - home-manager switch
-alias hm="command time home-manager switch --flake ~/.config/nixpkgs#mickey --impure && source ~/.zshrc"
+alias hm="command time home-manager switch --flake ~/.config/nixpkgs#$USER --impure && source ~/.zshrc"
 
 
 

@@ -7,7 +7,25 @@ end)
 ---editing - <space>g      - Re-indent file (treesitter)
 vim.api.nvim_set_keymap('n', '<space>g', 'mnggVG=<escape>`n', {noremap = true})
 require("nvim-treesitter.configs").setup {
-  ensure_installed = "maintained",
+  ensure_installed = {
+    "bash",
+    "cmake",
+    "cpp",
+    "css",
+    "go",
+    "html",
+    "javascript",
+    "json",
+    "lua",
+    "markdown",
+    "nix",
+    "regex",
+    "rust",
+    "toml",
+    "typescript",
+    "vim",
+    "yaml"
+  },
   ignore_install = { "haskell" }, -- haskell broken?
   highlight = {
     enable = {enabled = true, use_languagetree = true},
@@ -120,6 +138,6 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
-require('treesitter-context.config').setup {
+require('treesitter-context').setup {
   enable = true,
 }

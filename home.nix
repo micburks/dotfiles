@@ -37,7 +37,6 @@ in
     fzf
     fontforge
     gawk
-    gitAndTools.hub
     gopls
     highlight
     jq

@@ -16,6 +16,9 @@ in
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
     initExtra = ''
+      # binaries installed with nix
+      export PATH="$HOME/.nix-profile/bin:$PATH"
+
       function parse_git_branch () {
         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
       }
