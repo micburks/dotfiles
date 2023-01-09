@@ -52,13 +52,13 @@ require("nvim-treesitter.configs").setup {
 -- doesn't work as well as lsp
         goto_definition = "<Nop>", -- "<leader>go",
         list_definitions_toc = "<Nop>", -- "gO",
--- ---movement - gd            - goto_definition_lsp_fallback, lsp.buf.definition fallback (treesitter)
+-- ---movement.lsp - gd            - goto_definition_lsp_fallback, lsp.buf.definition fallback (treesitter)
         goto_definition_lsp_fallback = "gd",
 ---diagnostics - \d            - list definitions (treesitter)
         list_definitions = "<leader>d",
----movement - gn            - next usage (treesitter)
+---movement.lsp - gn            - next usage (treesitter)
         goto_next_usage = "gn",
----movement - gp            - previous usage (treesitter)
+---movement.lsp - gp            - previous usage (treesitter)
         goto_previous_usage = "gp",
       },
     },

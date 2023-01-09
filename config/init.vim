@@ -5,6 +5,9 @@
 " ----------------------------------------------------------------------------
 """general - \             - leader
 
+" set git root so vimscript/lua have access to it
+let g:root = system("git rev-parse --show-toplevel | tr -d '\\n'")
+
 " show current line number
 set number
 " changes Vim’s line number column to display how far away each line is from the current one
@@ -46,17 +49,23 @@ set backspace=indent,eol,start
 set laststatus=2
 
 " Long line handling
-set textwidth=79
+set textwidth=72
 set formatoptions=qrn1
 
 " Color characters starting here
-set colorcolumn=85
+set colorcolumn=+1
 
 " set list
 set listchars=tab:▸\ ,eol:¬
 
 " visual bells off - important for nordisk theme
 set belloff=all
+
+" autoread file updates
+set autoread
+
+" trigger autoread when changing buffers - https://vi.stackexchange.com/a/13092
+au FocusGained,BufEnter * :checktime
 
 " Switch 0 and ^
 " Go to the first non-blank character of a line
@@ -116,6 +125,10 @@ set hlsearch
 """search - //            - (visual) Search for currently selected text (all characters)
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
+" Center screen on next/previous selection
+nnoremap n nzz
+nnoremap N Nzz
+
 
 
 " ----------------------------------------------------------------------------
@@ -123,9 +136,9 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " # folds
 "
 " ----------------------------------------------------------------------------
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-set foldlevelstart=20
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
+" set foldlevelstart=20
 
 """folds - :set fdm      - set fold method [manual, syntax, indent]
 """folds - zo            - (o)pen fold
@@ -181,13 +194,27 @@ set foldlevelstart=20
 " # marks - [Using marks](https://vim.fandom.com/wiki/Using_marks)
 "
 " ----------------------------------------------------------------------------
-"""marks [Using marks](https://vim.fandom.com/wiki/Using_marks)
-"""marks
-"""marks - ma            - mark "a"
-"""marks - 'a            - jump to line of mark "a"
-"""marks - `a            - jump to position of mark "a"
-"""marks - ``            - jump to position before last jump
+"""movement.marks [Using marks](https://vim.fandom.com/wiki/Using_marks)
+"""movement.marks
+"""movement.marks - ma            - mark "a"
+"""movement.marks - 'a            - jump to line of mark "a"
+"""movement.marks - `a            - jump to position of mark "a"
+"""movement.marks - ``            - jump to position before last jump
 
+
+
+" ----------------------------------------------------------------------------
+"
+" # jumps - :help jumplist
+"
+" ----------------------------------------------------------------------------
+"""movement.jumps - gf            - jump to file under cursor
+"""movement.jumps - <C-o>         - jump back
+"""movement.jumps - <C-i>         - jump forward
+
+" Center screen on next/previous jump
+nnoremap <C-o> <C-o>zz
+nnoremap <C-i> <C-i>zz
 
 
 " ----------------------------------------------------------------------------
@@ -230,7 +257,7 @@ nnoremap <space>z yyPVr-yyjp
 """general - \<space>      - clear highlighting
 nnoremap <leader><space> :noh<cr>
 
-"""movement - g<tab>        - %
+"""movement.util - g<tab>        - %
 nnoremap g<tab> %
 vnoremap g<tab> %
 

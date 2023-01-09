@@ -204,9 +204,9 @@ end
 -- Diagnostics mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
----movement - g;            - diagnostic.goto_next (lsp)
+---movement.lsp - g;            - diagnostic.goto_next (lsp)
 vim.api.nvim_set_keymap('n', 'g;', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
----movement - g,            - diagnostic.goto_prev (lsp)
+---movement.lsp - g,            - diagnostic.goto_prev (lsp)
 vim.api.nvim_set_keymap('n', 'g,', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 ---diagnostics - \s            - diagnostic.open_float (lsp)
 vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
@@ -231,10 +231,10 @@ local on_attach = function(client, bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   
--- ---movement - gd            - lsp.buf.definition (lsp)
+-- ---movement.lsp - gd            - lsp.buf.definition (lsp)
   -- attempting to replace this with treesitter and lsp fallback
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
----movement - gD            - lsp.buf.type_definition (lsp)
+---movement.lsp - gD            - lsp.buf.type_definition (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 ---diagnostics - \k            - lsp.buf.hover (lsp)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
