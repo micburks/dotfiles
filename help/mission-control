@@ -1,0 +1,8 @@
+###
+### mission control (mac)
+
+
+### # Mission control sometimes stops working
+### # Fix it by killing the dock
+###
+### killall Dock

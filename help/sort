@@ -1,0 +1,7 @@
+
+###
+### sort
+
+###
+### examples
+### grep -E "^(nvim|v|vim|vi) " $HISTFILE | awk '{print $2}' | sort | uniq -c | sort
