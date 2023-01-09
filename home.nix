@@ -11,6 +11,8 @@ in
   xdg.configFile."nix/nix.conf".source = ./nix/nix.conf;
   xdg.configFile."sqls".source = ./sqls;
   xdg.configFile."pgcli".source = ./pgcli;
+  xdg.configFile."ranger/rc.conf".source = ./ranger/rc.conf;
+  xdg.configFile."ranger/commands.py".source = ./ranger/commands.py;
 
   nixpkgs.config.allowUnfree = true;
   fonts.fontconfig.enable = true;
