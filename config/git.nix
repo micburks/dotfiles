@@ -17,6 +17,9 @@
       "node_modules"
       "tmp"
       ".user-email"
+      ".vscode"
+      "NOTES.md"
+      "common-files"
     ];
     aliases = {
       unstage = "reset HEAD --";
