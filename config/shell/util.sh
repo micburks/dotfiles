@@ -45,6 +45,15 @@ function uud() {
   find_git_root $PWD
 }
 
+### rel         - rel - print pwd relative to `git` root directory
+function rel() {
+  if [[ "$(pwd)" == "$(uud)" ]]; then
+    echo "."
+  else
+    echo "${$(pwd)/$(uud)\//}"
+  fi
+}
+
 # prints path at root of current `git` directory
 function find_git_root() {
   if [[ -s "$1/.git" || "$1" == "/" ]]; then

@@ -21,6 +21,40 @@ alias gcm='git commit -m'
 alias gps='git push'
 alias gpl='git pull'
 
+# improve speed of zsh autocomplete for git commands
+__git_files () { 
+    _wanted files expl 'local files' _files     
+}
+
+### git-stats   - log my stats for this repo (git_stats | pbcopy)
+git-stats() {
+  git log --author="$(git config user.name)" --numstat --oneline
+}
+
+### git-common  - cache commonly edit files data for this repo
+git-common() {
+  # todo: filter non-existent files
+  git log --author="$(git config user.name)" --numstat --oneline | \
+    grep -E "^\w{1,4}\s" | \
+    awk '{print $3}' | \
+    sort | \
+    uniq -c | \
+    sort -r | \
+    awk '{print $2}' \
+    > "common-files"
+}
+
+### fzg         - fzo for commonly edited files
+function fzg() {
+  if [[ -e "common-files" ]]; then
+    cat "common-files" | \
+      fzf --no-height --preview 'bat --style=numbers --color=always {}' --no-sort | \
+      xargs vim
+  else
+    echo "run git-common first";
+  fi
+}
+
 ### pr-checkout - interactively find pr and checkout that branch
 function pr-checkout() {
   get-pr-number | xargs hub pr checkout
