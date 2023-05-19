@@ -71,7 +71,10 @@ function vim() {
 function vim_unmerged() {
   local unmerged="$(git diff --name-only --diff-filter=U)"
   if [[ "$unmerged" != "" ]]; then
+    # mac
     echo $unmerged | xargs command nvim -p
+    # linux
+    # echo $unmerged | xargs nvim -p
   else
     echo "[vim_unmerged] no unmerged files to open"
   fi
