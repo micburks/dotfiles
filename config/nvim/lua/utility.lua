@@ -93,6 +93,23 @@ vim.api.nvim_set_keymap('n', '<leader>fg', "<cmd>Telescope live_grep<cr>", {nore
 vim.api.nvim_set_keymap('n', '<leader>fb', "<cmd>Telescope buffers<cr>", {noremap=true})
 vim.api.nvim_set_keymap('n', '<leader>fh', "<cmd>Telescope help_tags<cr>", {noremap=true})
 
+function _fzf_common_files(opts)
+  local pickers = require "telescope.pickers"
+  local finders = require "telescope.finders"
+  local conf = require("telescope.config").values
+  local find_command = { "cat", 'common-files' }
+  pickers
+    .new(opts, {
+      prompt_title = "Common Files",
+      finder = finders.new_oneshot_job(find_command, opts),
+      previewer = conf.file_previewer(opts),
+      sorter = conf.generic_sorter(opts),
+    })
+    :find()
+end
+
+---search - \fc           - fuzzy find common-files (telescope)
+vim.api.nvim_set_keymap('n', '<leader>fc', "<cmd>lua _fzf_common_files({})<cr>", {noremap=true})
 
 
 -- # toggleterm

@@ -44,8 +44,8 @@ git-common() {
     > "common-files"
 }
 
-### fzg         - fzo for commonly edited files
-function fzg() {
+### fzc         - fzo for commonly edited files
+function fzc() {
   if [[ -e "common-files" ]]; then
     cat "common-files" | \
       fzf --no-height --preview 'bat --style=numbers --color=always {}' --no-sort | \
@@ -107,4 +107,15 @@ function get-pr-url-for-branch() {
 # return name of current branch
 function get-branch-name () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
+
+# saves a list of all editted files in this repo
+function git-common () {
+	git log --author="$(git config user.name)" --numstat --oneline | \
+    grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox} -E "^\w{1,4}\s" | \
+    awk '{print $3}' | \
+    sort | \
+    uniq -c | \
+    sort -r | \
+    awk '{print $2}' > "common-files"
 }
