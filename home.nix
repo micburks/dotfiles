@@ -1,6 +1,7 @@
 { config, pkgs, email, ... }:
 
 let
+  email = "EMAIL";
   git = import ./config/git.nix { inherit config pkgs email; };
 in
 {

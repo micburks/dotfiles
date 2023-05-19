@@ -259,7 +259,7 @@ end
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 for _, lsp in ipairs(servers) do
@@ -324,7 +324,7 @@ nvim_lsp.tsserver.setup {
     if client.config.flags then
       client.config.flags.allow_incremental_sync = true
     end
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.document_formatting = false
     on_attach(client, bufnr)
   end,
   flags = {
@@ -336,8 +336,8 @@ nvim_lsp.tsserver.setup {
 -- with '-2021' will not run eslint. no time to investigate
 nvim_lsp.efm.setup {
   on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = true
-    client.resolved_capabilities.goto_definition = false
+    client.server_capabilities.document_formatting = true
+    client.server_capabilities.goto_definition = false
     on_attach(client, bufnr)
   end,
   flags = {

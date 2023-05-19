@@ -21,6 +21,14 @@
     vimAlias = true;
     extraConfig = ''
        ${builtins.readFile ~/.config/nixpkgs/config/init.vim}
+
+      lua <<EOF
+        local status, ts_install = pcall(require, "nvim-treesitter.install")
+        if(status) then
+          ts_install.compilers = { "${pkgs.gcc}/bin/gcc" }
+        end
+      EOF
+
        lua require('init');
     '';
     plugins = with pkgs.vimPlugins; [
@@ -33,6 +41,7 @@
       nvim-lspconfig
       nvim-tree-lua
       nvim-treesitter
+      nvim-treesitter.withAllGrammars
       nvim-treesitter-context
       nvim-treesitter-refactor
       nvim-treesitter-textobjects
