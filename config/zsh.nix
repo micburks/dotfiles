@@ -20,6 +20,14 @@ in
       export PATH="$HOME/.nix-profile/bin:$PATH"
       export PATH="$PATH:/nix/var/nix/profiles/default/bin/"
 
+      function get_hostname () {
+        local MACHINE_NAME=""
+        if [ -n "$TMUX" ]; then
+          echo "tmux:$MACHINE_NAME"
+        else
+          echo $MACHINE_NAME
+        fi
+      }
       function parse_git_branch () {
         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
       }
@@ -37,7 +45,7 @@ in
           echo $PWD | sed -e "s/^$(echo "$GIT_ROOT" | sed 's/\//\\\//g')\///"
         fi
       }
-      PROMPT='%{$fg[yellow]%}$(parse_repo_basename)%{$fg[green]%}$(parse_git_branch)%{$fg[blue]%}$(parse_pwd)
+      PROMPT='%{$fg[yellow]%}$(parse_repo_basename)%{$fg[green]%}$(parse_git_branch)%{$fg[red]%}<$(get_hostname)> %{$fg[blue]%}$(parse_pwd)
       %{$reset_color%}$ '
 
       ${shellContents}
