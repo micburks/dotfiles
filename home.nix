@@ -40,6 +40,7 @@ in
     fzf
     fontforge
     gawk
+    gcc
     gopls
     highlight
     jq

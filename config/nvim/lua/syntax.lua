@@ -141,3 +141,20 @@ require("nvim-treesitter.configs").setup {
 require('treesitter-context').setup {
   enable = true,
 }
+
+function _toggle_header()
+  local file = vim.fn.expand('%:r')
+  local ext = vim.fn.expand('%:e')
+  if (ext == 'h') then
+    vim.cmd('e ' .. file .. '.cc')
+  elseif (ext == 'cc') then
+    vim.cmd('e ' .. file .. '.h')
+  elseif (ext == 'ts') then
+    vim.cmd('e ' .. file .. '.html')
+  elseif (ext == 'html') then
+    vim.cmd('e ' .. file .. '.ts')
+  end
+end
+
+---movement.util - gh            - toggle switch to associated file (cc/h, ts/html)
+vim.api.nvim_set_keymap('n', 'gh', '<cmd>lua _toggle_header()<CR>', {noremap = true, silent = true})
