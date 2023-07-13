@@ -11,7 +11,6 @@
     let
       system = "x86_64-darwin";
       username = USERNAME;
-      email = EMAIL;
     in {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};

@@ -1,8 +1,10 @@
-{ config, pkgs, email, ... }:
+{ config, pkgs, lib, ... }:
 
 let
-  email = "EMAIL";
+  email = EMAIL;
+  machine-name = MACHINE-NAME;
   git = import ./config/git.nix { inherit config pkgs email; };
+  zsh = import ./config/zsh.nix { inherit config pkgs lib machine-name; };
 in
 {
   programs.home-manager.enable = true;
@@ -20,9 +22,9 @@ in
 
   imports = [
     git
+    zsh
     ./config/nvim.nix
     ./config/tmux.nix
-    ./config/zsh.nix
   ];
 
   home.packages = with pkgs; [

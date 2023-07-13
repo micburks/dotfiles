@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, machine-name, ... }:
 
 let
   shellDir = ~/.config/nixpkgs/config/shell;
@@ -21,7 +21,7 @@ in
       export PATH="$PATH:/nix/var/nix/profiles/default/bin/"
 
       function get_hostname () {
-        local MACHINE_NAME=""
+        local MACHINE_NAME="${machine-name}"
         if [ -n "$TMUX" ]; then
           echo "tmux:$MACHINE_NAME"
         else
