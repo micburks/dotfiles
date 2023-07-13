@@ -1,4 +1,12 @@
--- npm i -g bash-language-server graphql-language-service-cli flow-bin typescript-language-server vscode-langservers-extracted vim-language-server eslint_d @tailwindcss/language-server
+-- npm i -g
+-- -- bash-language-server
+-- graphql-language-service-cli
+-- flow-bin
+-- -- typescript-language-server
+-- -- vscode-langservers-extracted
+-- -- vim-language-server
+-- -- eslint_d
+--? -- @tailwindcss/language-server
 
 ---diagnostics - \a            - open symbols
 vim.api.nvim_set_keymap('n', '<leader>a', "<cmd>SymbolsOutline<cr>", {noremap=true})

@@ -46,6 +46,13 @@ in
     jq
     lazygit
     (nerdfonts.override { fonts = [ "RobotoMono" ]; })
+    nodejs
+    nodePackages.bash-language-server
+    nodePackages.eslint_d
+    nodePackages.tailwindcss
+    nodePackages.typescript-language-server
+    nodePackages.vim-language-server
+    nodePackages.vscode-langservers-extracted
     pgcli
     ranger
     ripgrep
