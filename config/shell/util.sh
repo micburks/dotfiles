@@ -100,8 +100,10 @@ alias fzp="fzf --no-height --preview 'bat --style=numbers --color=always {}'"
 ### fzo         - fuzzy open files
 alias fzo='vim $(fzp)'
 
-### fzr         - fuzzy open files by contents
-alias fzr='vim $(rg . | fzf | cut -d ":" -f 1)'
+### fzr [DIR]   - fuzzy open files by contents
+function fzr() {
+  vim $(rg . $1 | fzf | cut -d ":" -f 1)
+}
 
 ### smth        - find some file somewhere
 function smth() {

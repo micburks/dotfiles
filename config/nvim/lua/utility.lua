@@ -61,6 +61,7 @@ vim.api.nvim_set_keymap('n', '<leader>z', '<cmd>Ranger<CR>', {noremap=true, sile
 -- }
 
 ---splits - \<enter>      - Toggle between equal splits or maximized
+---splits - <leader>y     - swap splits (works with vertical splits)
 vim.api.nvim_set_keymap('n', '<leader><enter>', '<cmd>lua require"focus".focus_max_or_equal()<CR>', {noremap=true, silent=true})
 
 
@@ -183,13 +184,17 @@ vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>lua _lazygit_filtercurrentfile()
 ---nvim-tree.yanking - Y             - add relative path to copy clipboard
 ---nvim-tree.yanking - gy            - add absolute path to copy clipboard
 require'nvim-tree'.setup {
-  open_on_setup = true,
+  --open_on_setup = true,
   view = {
-    width = 40,
-  }
+    width = 70,
+  },
+  git = {
+    enable = false,
+  },
 }
 vim.api.nvim_set_keymap('n', '<leader>w', "<cmd>NvimTreeFindFile<cr>", {noremap=true, silent=true})
 vim.api.nvim_set_keymap('n', '<leader>e', "<cmd>NvimTreeToggle<cr>", {noremap=true, silent=true})
+vim.api.nvim_set_keymap('n', '<leader>y', "<cmd>NvimTreeClose<cr><C-w>r<cmd>NvimTreeOpen<cr><C-w><right>", {noremap=true, silent=true})
 -- vim.g.nvim_tree_width = 40
 
 --  only way to configure nvim-tree bindings but require('nvim-tree') is nil

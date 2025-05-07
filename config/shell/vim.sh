@@ -4,7 +4,7 @@
 #
 # -------------------------------
 ### v/vi/vim    - vim (wrapped): prevent implicitly opening new files
-export EDITOR=nvim
+export EDITOR="vim --clean -p"
 # Necessary for colors to work in tmux
 export TERM=xterm-256color
 export XDG_CONFIG_HOME=$HOME/.config
@@ -72,9 +72,9 @@ function vim_unmerged() {
   local unmerged="$(git diff --name-only --diff-filter=U)"
   if [[ "$unmerged" != "" ]]; then
     # mac
-    echo $unmerged | xargs command nvim -p
+    # echo $unmerged | xargs command nvim -p
     # linux
-    # echo $unmerged | xargs nvim -p
+    echo $unmerged | xargs vim --clean -p
   else
     echo "[vim_unmerged] no unmerged files to open"
   fi

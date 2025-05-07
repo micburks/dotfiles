@@ -56,11 +56,6 @@ in
       chpwd
 
       export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate molokai)"
-
-      alias ls="${pkgs.exa}/bin/exa"
-      alias la="${pkgs.exa}/bin/exa -a"
-      alias ll="${pkgs.exa}/bin/exa -la --git"
-      alias lt="${pkgs.exa}/bin/exa --tree"
     '';
     history.share = false;
     oh-my-zsh.enable = true;

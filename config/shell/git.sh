@@ -26,17 +26,24 @@ __git_files () {
     _wanted files expl 'local files' _files     
 }
 
-### git-stats   - log my stats for this repo (git_stats | pbcopy)
+### git-stats   - log my stats for this repo (git-stats | pbcopy)
 git-stats() {
   git log --author="$(git config user.name)" --numstat --oneline
 }
 
+file-exists() {
+  while read -r filename; do
+    test -f "$filename" && echo "$filename"
+  done
+}
+
 ### git-common  - cache commonly edit files data for this repo
 git-common() {
-  # todo: filter non-existent files
   git log --author="$(git config user.name)" --numstat --oneline | \
     grep -E "^\w{1,4}\s" | \
+    # grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox} -E "^\w{1,4}\s" | \
     awk '{print $3}' | \
+    file-exists | \
     sort | \
     uniq -c | \
     sort -r | \
@@ -107,15 +114,4 @@ function get-pr-url-for-branch() {
 # return name of current branch
 function get-branch-name () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
-}
-
-# saves a list of all editted files in this repo
-function git-common () {
-	git log --author="$(git config user.name)" --numstat --oneline | \
-    grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox} -E "^\w{1,4}\s" | \
-    awk '{print $3}' | \
-    sort | \
-    uniq -c | \
-    sort -r | \
-    awk '{print $2}' > "common-files"
 }

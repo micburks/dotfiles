@@ -72,6 +72,8 @@ require('packer').startup(function()
   use 'nanotee/sqls.nvim'
 end)
 
+---snip - :VsnipOpen    - Edit snippets
+vim.g.vsnip_snippet_dir = '~/.config/nixpkgs/snip/'
 local cmp = require('cmp')
 cmp.setup {
   snippet = {
@@ -167,13 +169,13 @@ local servers = {
   'bashls',
   'clangd',
   'cssls',
-  'flow',
-  'graphql',
+  --'flow',
+  -- 'graphql',
   'html',
   'jsonls',
-  'rust_analyzer',
-  'sqls',
-  'vimls'
+  -- 'rust_analyzer',
+  -- 'sqls',
+  -- 'vimls'
 }
 
 local eslint = {

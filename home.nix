@@ -34,43 +34,39 @@ in
     cmake
     coreutils
     delta
-    direnv
+    # direnv
     efm-langserver
-    entr
-    exa
+    # entr
     fd
     fzf
     fontforge
-    gawk
+    # gawk
     gcc
-    gopls
+    # gopls
     highlight
     jq
-    lazygit
+    # lazygit
     (nerdfonts.override { fonts = [ "RobotoMono" ]; })
     nodejs
     nodePackages.bash-language-server
     nodePackages.eslint_d
-    nodePackages.tailwindcss
+    # nodePackages.tailwindcss
     nodePackages.typescript-language-server
-    nodePackages.vim-language-server
+    # nodePackages.vim-language-server
     nodePackages.vscode-langservers-extracted
-    pgcli
+    # pgcli
     ranger
     ripgrep
-    rust-analyzer
-    rustup
+    # rust-analyzer
+    # rustup
     silver-searcher
-    sqls
+    # sqls
     # sumneko-lua-language-server
-    tree
-    vivid
-    yarn
+    # tree
+    typescript
+    # vivid
+    # yarn
   ];
-
-  programs.exa = {
-    enable = true;
-  };
 
   programs.autojump = {
     enable = true;

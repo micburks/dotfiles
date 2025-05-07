@@ -57,7 +57,7 @@
       telescope-nvim
       toggleterm-nvim
       vim-closetag
-      vim-gitgutter
+      # vim-gitgutter
       vim-illuminate
       zenburn
 

@@ -23,6 +23,7 @@
     ];
     aliases = {
       unstage = "reset HEAD --";
+      untracked = "ls-files --others --exclude-standard";
     };
     delta = {
       enable = true;
@@ -38,6 +39,12 @@
       };
       init = {
         defaultBranch = "main";
+      };
+      core = {
+        autocrlf = false;
+        filemode = false;
+        fsmonitor = false;
+        untrackedCache = true;
       };
     };
   };
