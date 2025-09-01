@@ -47,10 +47,11 @@ in
     jq
     # lazygit
     (nerdfonts.override { fonts = [ "RobotoMono" ]; })
-    nodejs
+    #nodejs
     nodePackages.bash-language-server
     nodePackages.eslint_d
     # nodePackages.tailwindcss
+    nodePackages.typescript
     nodePackages.typescript-language-server
     # nodePackages.vim-language-server
     nodePackages.vscode-langservers-extracted
@@ -62,10 +63,8 @@ in
     silver-searcher
     # sqls
     # sumneko-lua-language-server
-    # tree
-    typescript
-    # vivid
-    # yarn
+    vivid
+    #yarn
   ];
 
   programs.autojump = {
@@ -147,4 +146,15 @@ in
   };
   
   programs.go.enable = true;
+  programs.go.package = pkgs.go.overrideAttrs (_: rec {
+      version = "1.25.0";
+      /*
+      src = pkgs.fetchFromGitHub {
+      owner = "tmux";
+      repo = "tmux";
+      rev = version;
+      sha256 = "sha256-78YApTmw2/AG9lLXGzPPcUlzSr6KjwtuwSR82t+iFxA=";
+      };
+      */
+  });
 }

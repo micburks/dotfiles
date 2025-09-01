@@ -19,6 +19,7 @@
 ### ## ~/Library/Caches
 ### 
 ### - Look for unnecessary caches (like Yarn)
+### `du -sh ~/Library/Caches/* | sort -h`
 ### 
 ### 
 ### ## ~/Library/Containers

@@ -26,14 +26,6 @@ vim.api.nvim_set_keymap('n', 'g<leader>', "<cmd>lua require'hop'.hint_words()<cr
 vim.g.closetag_filetypes = 'html,xhtml,phtml,javascript,javascriptreact,javascript.jsx,typescript.tsx,typescriptreact'
 
 
--- not available on nix yet
-require('packer').use {
-  'lewis6991/spellsitter.nvim',
-  config = function()
-    require('spellsitter').setup()
-  end
-}
-
 -- ranger.vim
 require('packer').use {
   'francoiscabrol/ranger.vim',
@@ -184,7 +176,7 @@ vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>lua _lazygit_filtercurrentfile()
 ---nvim-tree.yanking - Y             - add relative path to copy clipboard
 ---nvim-tree.yanking - gy            - add absolute path to copy clipboard
 require'nvim-tree'.setup {
-  --open_on_setup = true,
+  -- open_on_setup = true,
   view = {
     width = 70,
   },

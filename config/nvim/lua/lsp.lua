@@ -1,12 +1,21 @@
 -- npm i -g
+--
 -- -- bash-language-server
 -- graphql-language-service-cli
--- flow-bin
 -- -- typescript-language-server
 -- -- vscode-langservers-extracted
 -- -- vim-language-server
 -- -- eslint_d
---? -- @tailwindcss/language-server
+--  @tailwindcss/language-server
+
+
+-- # keymaps legend
+-- group keymaps by:
+-- - g for going
+-- - <space> for actions
+-- - <leader> for dialogs
+-- - capital letters for dialogs?
+
 
 ---diagnostics - \a            - open symbols
 vim.api.nvim_set_keymap('n', '<leader>a', "<cmd>SymbolsOutline<cr>", {noremap=true})
@@ -56,7 +65,6 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lsp' -- completion source for neovim builtin LSP
   use 'hrsh7th/cmp-buffer' -- completion source for words in current buffer
   use 'hrsh7th/cmp-path' -- completeion source for path
-  -- use 'hrsh7th/cmp-cmdline' -- completion source for cmdline
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
 
   -- vsnip
@@ -65,11 +73,8 @@ require('packer').startup(function()
   use 'hrsh7th/vim-vsnip-integ' -- snippet completion and expansion
 
   use 'hrsh7th/cmp-nvim-lua' -- completion source for neovim lua api
-  -- use 'lukas-reineke/cmp-rg' -- completion source for ripgrep
 
   use 'rafamadriz/friendly-snippets'
-
-  use 'nanotee/sqls.nvim'
 end)
 
 ---snip - :VsnipOpen    - Edit snippets
@@ -84,10 +89,6 @@ cmp.setup {
   mapping = {
 
 -- # autocomplete
--- unnecessary
---     ['<C-p>'] = cmp.mapping.select_prev_item(),
---     ['<C-n>'] = cmp.mapping.select_next_item(),
-
 ---autocomplete - <C-b>         - cmp.mapping.scroll_docs back
     ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
 ---autocomplete - <C-f>         - cmp.mapping.scroll_docs forward
@@ -141,20 +142,9 @@ cmp.setup {
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
   sources = {
-  { name = 'buffer' }
+    { name = 'buffer' }
   }
 })
-
--- This is kind of annoying
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline(':', {
---   sources = cmp.config.sources({
---   { name = 'path' }
---   }, {
---     { name = 'cmdline' }
---     })
--- })
-
 
 local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
 for type, icon in pairs(signs) do
@@ -165,50 +155,42 @@ end
 local nvim_lsp = require('lspconfig')
 
 local servers = {
-  -- 'awk_ls',
   'bashls',
   'clangd',
   'cssls',
-  --'flow',
-  -- 'graphql',
+  'eslint',
   'html',
   'jsonls',
-  -- 'rust_analyzer',
-  -- 'sqls',
-  -- 'vimls'
+  'rust_analyzer',
+  'tsserver',
+  'vimls',
 }
 
-local eslint = {
-  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
-  lintStdin = true,
-  lintFormats = {"%f:%l:%c: %m"},
-  lintIgnoreExitCode = true,
-  formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
-  formatStdin = true
-}
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-local function eslint_config_exists()
-  local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
-
-  if not vim.tbl_isempty(eslintrc) then
-    return true
-  end
-
-  if vim.fn.filereadable("package.json") then
-    if vim.fn.json_decode(vim.fn.readfile("package.json"))["eslintConfig"] then
-      return true
-    end
-  end
-
-  return false
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    capabilities = capabilities,
+  }
 end
 
--- # keymaps NEED work-------
--- group keymaps by???:
--- - g for going
--- - <space> for actions
--- - <leader> for dialogs
--- - capital letters for dialogs?
+nvim_lsp.gopls.setup{
+	cmd = {'gopls'},
+	-- for postfix snippets and analyzers
+  settings = {
+    gopls = {
+      experimentalPostfixCompletions = true,
+      analyses = {
+        unusedparams = true,
+        shadow = true,
+      },
+      staticcheck = true,
+    },
+  },
+}
 
 -- # lsp
 -- Diagnostics mappings.
@@ -226,172 +208,56 @@ vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>lua vim.diagnostic.open_float()<
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
     -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-  -- Lsp mappings
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  
--- does nothing
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
--- redundant
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  
--- ---movement.lsp - gd            - lsp.buf.definition (lsp)
-  -- attempting to replace this with treesitter and lsp fallback
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
----movement.lsp - gD            - lsp.buf.type_definition (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
----diagnostics - \k            - lsp.buf.hover (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  -- todo remove redundant mapping
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
----editing - <space>r      - lsp.buf.rename across multiple files (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
----editing - <space>c      - lsp.buf.code_action (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>c', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
----diagnostics - \r            - lsp.buf.references (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>r', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
----editing - <space>f      - lsp.buf.formatting (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    -- local opts = { buffer = ev.buf }
+    local opts = { noremap=true, silent=true, buffer=ev.buf }
 
----workspace - <space>wa     - lsp.buf.add_workspace_folder (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
----workspace - <space>wr     - lsp.buf.remove_workspace_folder (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
----workspace - <space>wl     - print(vim.inspect(vim.lsp.buf.list_workspace_folders())) (lsp)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buflist_workspace_folders()))<CR>', opts)
-end
+    -- does nothing
+      -- vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    -- redundant
+      -- vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+      -- vim.keymap.set('n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+      
+    -- ---movement.lsp - gd            - lsp.buf.definition (lsp)
+      -- attempting to replace this with treesitter and lsp fallback
+      -- vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
--- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    },
-    capabilities = capabilities
-  }
-end
-
--- nvim_lsp.sumneko_lua.setup {
---   on_attach = on_attach,
---   flags = {
---     debounce_text_changes = 150,
---   },
---   capabilities = capabilities,
---   settings = {
---     Lua = {
---       diagnostics = {
---         -- Get the language server to recognize the `vim` global
---         globals = {'vim'},
---       },
---       workspace = {
---         -- Make the server aware of Neovim runtime files
---         library = vim.api.nvim_get_runtime_file("", true),
---       },
---       -- Do not send telemetry data containing a randomized but unique identifier
---       telemetry = {
---         enable = false,
---       },
---     },
---   }
--- }
-
-nvim_lsp.tailwindcss.setup {
-  on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  capabilities = capabilities,
-  settings = {
-    tailwindCSS = {
-      classAttributes = { 'class' , 'className' , 'classList' },
-        lint = {
-          cssConflict = "warning",
-          invalidApply = "error",
-          invalidConfigPath = "error",
-          invalidScreen = "error",
-          invalidTailwindDirective = "error",
-          invalidVariant = "error",
-          recommendedVariantOrder = "warning"
-        },
-      validate = true
-    }
-  }
-}
-
-nvim_lsp.tsserver.setup {
-  on_attach = function(client, bufnr)
-    if client.config.flags then
-      client.config.flags.allow_incremental_sync = true
+    ---movement.lsp - gD            - lsp.buf.type_definition (lsp)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, opts)
+    ---diagnostics - \k            - lsp.buf.hover (lsp)
+    vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts)
+    -- todo remove redundant mapping
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    ---editing - <space>r      - lsp.buf.rename across multiple files (lsp)
+    vim.keymap.set('n', '<space>r', vim.lsp.buf.rename, opts)
+    ---editing - <space>c      - lsp.buf.code_action (lsp)
+    vim.keymap.set('n', '<space>c', vim.lsp.buf.code_action, opts)
+    ---diagnostics - \r            - lsp.buf.references (lsp)
+    vim.keymap.set('n', '<leader>r', vim.lsp.buf.references, opts)
+    ---editing - <space>f      - lsp.buf.formatting (lsp)
+    if client.name == 'eslint' then
+      vim.keymap.set('n', '<space>f', ':EslintFixAll<cr>', opts)
+    elseif client.name == 'tsserver' then
+    else
+      vim.keymap.set('n', '<space>f', function()
+        vim.lsp.buf.format { async = true }
+      end, opts)
     end
-    client.server_capabilities.document_formatting = false
-    on_attach(client, bufnr)
-  end,
-  flags = {
-    debounce_text_changes = 150,
-  }
-}
 
--- note: bug in efm-langserver/neovim/nvm-lspconfig where a directory that ends
--- with '-2021' will not run eslint. no time to investigate
-nvim_lsp.efm.setup {
-  on_attach = function(client, bufnr)
-    client.server_capabilities.document_formatting = true
-    client.server_capabilities.goto_definition = false
-    on_attach(client, bufnr)
+    ---workspace - <space>wa     - lsp.buf.add_workspace_folder (lsp)
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+    ---workspace - <space>wr     - lsp.buf.remove_workspace_folder (lsp)
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    ---workspace - <space>wl     - print(vim.inspect(vim.lsp.buf.list_workspace_folders())) (lsp)
+    vim.keymap.set('n', '<space>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
   end,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  root_dir = function()
-    if not eslint_config_exists() then
-      return nil
-    end
-    return vim.fn.getcwd()
-  end,
-  settings = {
-    languages = {
-      javascript = {eslint},
-      javascriptreact = {eslint},
-      ["javascript.jsx"] = {eslint},
-      typescript = {eslint},
-      ["typescript.tsx"] = {eslint},
-      typescriptreact = {eslint}
-    }
-  },
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescript.tsx",
-    "typescriptreact"
-  },
-}
-
-nvim_lsp.gopls.setup{
-	cmd = {'gopls'},
-	-- for postfix snippets and analyzers
-  capabilities = capabilities,
-  settings = {
-    gopls = {
-      experimentalPostfixCompletions = true,
-      analyses = {
-        unusedparams = true,
-        shadow = true,
-      },
-      staticcheck = true,
-    },
-  },
-  on_attach = on_attach,
-}
+})

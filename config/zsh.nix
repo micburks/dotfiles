@@ -20,6 +20,8 @@ in
       export PATH="$HOME/.nix-profile/bin:$PATH"
       export PATH="$PATH:/nix/var/nix/profiles/default/bin/"
 
+      export PATH="$PATH:~/google-cloud-sdk/bin/"
+
       function get_hostname () {
         local MACHINE_NAME="${machine-name}"
         if [ -n "$TMUX" ]; then
