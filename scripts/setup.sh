@@ -17,6 +17,7 @@ mkdir -p $CONFIG
 
 # node - manual
 echo "run 'nvm use default node'" 
+mkdir $HOME/.nvm
 
 # nvim
 [ ! -L $CONFIG/nvim ] && \
@@ -27,5 +28,6 @@ echo "run 'nvm use default node'"
   ln -s $CONFIG_SRC/tmux $CONFIG/tmux
 
 # zsh
-[ ! -L $HOME/.zshrc ] && \
-  ln -s $HOME_SRC/.zshrc $HOME
+# Remove the zshrc that oh-my-zsh sets up.
+rm ~/.zshrc
+ln -s $HOME_SRC/.zshrc $HOME
