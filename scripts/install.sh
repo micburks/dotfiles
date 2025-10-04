@@ -8,6 +8,7 @@ brew install neovim
 brew install nvm
 brew install ranger
 brew install ripgrep
+brew install tmux
 brew install vivid
 
 # node

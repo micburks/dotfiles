@@ -5,7 +5,12 @@
 # -------------------------------
 #
 # autojump
+
+# could be this...
+[ -f /usr/local/opt/autojump/etc/profile.d/autojump.sh ] && . /usr/local/opt/autojump/etc/profile.d/autojump.sh
+# or this
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
 ### j           - autojump
 ### jd          - j (d)ry run - echo first result from autojump
 function jd() {
