@@ -1,17 +1,23 @@
 CONFIG="$HOME/.config"
-DOTFILES="$CONFIG/dotfiles"
-CONFIG_SRC="$DOTFILES/config"
-HOME_SRC="$DOTFILES/home"
-SHELL_SRC="$DOTFILES/shell"
+SHELL_SRC="$CONFIG/zsh"
 
 MACHINE_NAME="local"
+
+export XDG_CONFIG_HOME="$CONFIG"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# Used by git for editing commit messages.
+export EDITOR="vim --clean -p"
+# Used by ranger.py for editing.
+export VISUAL=vim
+# Used by ranger.py for previews.
+export PAGER=bat
 
 # oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
-
 
 # dotfiles
 [ -f $SHELL_SRC/cd.sh ] && . $SHELL_SRC/cd.sh

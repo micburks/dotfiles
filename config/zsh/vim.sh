@@ -4,10 +4,8 @@
 #
 # -------------------------------
 ### v/vi/vim    - vim (wrapped): prevent implicitly opening new files
-export EDITOR="vim --clean -p"
 # Necessary for colors to work in tmux
-export TERM=xterm-256color
-export XDG_CONFIG_HOME=$HOME/.config
+#export TERM=xterm-256color
 alias v='vim'
 alias vi='vim'
 alias nvim='vim'

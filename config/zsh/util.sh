@@ -1,23 +1,30 @@
 # user bin
 export PATH="$PATH:$HOME/bin"
 
+# psql
+export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/17/bin"
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
-
+#
 # might be this...
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh" # This loads nvm
+#
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 # or might be this...
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"                                       # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
+# rust
+. "$HOME/.cargo/env"
 
 # vivid
 export LS_COLORS="$(vivid generate nord)"
 alias ls="gls --color"
 alias ll="ls -al"
 
+### show-files  - fix mac finder for hidden files
+alias show-files='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 
 # -------------------------------
 #
@@ -58,7 +65,6 @@ function kill-grep() {
   kill -9 $all
 }
 
-
 # -------------------------------
 #
 # copy/paste
@@ -71,9 +77,8 @@ function copy() {
 
 ### paste FILE  - destructively paste clipboard contents to file
 function paste() {
-  pbpaste > $1
+  pbpaste >$1
 }
-
 
 # -------------------------------
 #
@@ -81,16 +86,16 @@ function paste() {
 #
 # -------------------------------
 ### CMD | i CMD - use fzf/xargs to pipe stdin to another command
-function i () {
+function i() {
   fzf | xargs "$@"
 }
 
 ### cl          - clear half of terminal
-function cl () {
+function cl() {
   half=$(stty size | awk '{print int($1/2)-1;}')
   echo $half
-  for i in `seq ${half}`;
-    do echo ''
+  for i in $(seq ${half}); do
+    echo ''
   done
   tput cup ${half} 0 && tput ed
 }
