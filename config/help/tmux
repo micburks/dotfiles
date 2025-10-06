@@ -69,4 +69,5 @@
 ### [yuio]              - resize a pane (custom)
 ### z                   - isolate a single pane fullscreen
 ### e                   - scroll back mode
+### ctrl+o              - rotate window
 
