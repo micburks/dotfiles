@@ -1,7 +1,12 @@
 #!/bin/bash
 
+SOURCE="${BASH_SOURCE[0]}"
+DIR=$(dirname $SOURCE)
+
 if [[ $(uname -s) == "Darwin" ]]; then
-  ./brew-install.sh
+  "$DIR/brew-install.sh"
+else
+  "$DIR/apt-install.sh"
 fi
 
 # node
