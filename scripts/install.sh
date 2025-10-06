@@ -1,20 +1,8 @@
 #!/bin/bash
 
-brew install autojump
-brew install bat
-brew install fd
-brew install fzf
-brew install jq
-brew install lazygit
-brew install neovim
-brew install nvm
-brew install ranger
-brew install ripgrep
-brew install tmux
-brew install vivid
-
-# dependency of vivid
-brew install coreutils
+if [[ $(uname -s) == "Darwin" ]]; then
+  ./brew-install.sh
+fi
 
 # node
 mkdir -p $HOME/.nvm
@@ -26,3 +14,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 # rust - https://rust-lang.org/tools/install/
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# install global npm utilities
+./npm-globals-install.sh
+
+# create symlinks
+./setup.sh
