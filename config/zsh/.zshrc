@@ -1,15 +1,15 @@
-CONFIG="$HOME/.config"
-SHELL_SRC="$CONFIG/zsh"
-
 MACHINE_NAME="local"
+CONFIG="$HOME/.config"
+SHELL_UTILS="$CONFIG/zsh/utils"
 
 export XDG_CONFIG_HOME="$CONFIG"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export VIMRC="$CONFIG/nvim/vimrc.vim"
 
-# Used by git for editing commit messages.
-export EDITOR="vim --clean -p"
 # Used by ranger.py for editing.
-export VISUAL=vim
+export VISUAL="vim -p -u $VIMRC"
+# Used by git for editing commit messages.
+export EDITOR="$VISUAL"
 # Used by ranger.py for previews.
 export PAGER=bat
 
@@ -20,12 +20,12 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # dotfiles
-[ -f $SHELL_SRC/cd.sh ] && . $SHELL_SRC/cd.sh
-[ -f $SHELL_SRC/chromium.sh ] && . $SHELL_SRC/chromium.sh
-[ -f $SHELL_SRC/git.sh ] && . $SHELL_SRC/git.sh
-[ -f $SHELL_SRC/help.sh ] && . $SHELL_SRC/help.sh
-[ -f $SHELL_SRC/util.sh ] && . $SHELL_SRC/util.sh
-[ -f $SHELL_SRC/vim.sh ] && . $SHELL_SRC/vim.sh
+[ -f $SHELL_UTILS/cd.sh ] && . $SHELL_UTILS/cd.sh
+[ -f $SHELL_UTILS/chromium.sh ] && . $SHELL_UTILS/chromium.sh
+[ -f $SHELL_UTILS/git.sh ] && . $SHELL_UTILS/git.sh
+[ -f $SHELL_UTILS/help.sh ] && . $SHELL_UTILS/help.sh
+[ -f $SHELL_UTILS/util.sh ] && . $SHELL_UTILS/util.sh
+[ -f $SHELL_UTILS/vim.sh ] && . $SHELL_UTILS/vim.sh
 
 
 # work machine specific things
