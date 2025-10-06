@@ -19,4 +19,13 @@ return {
     "folke/ts-comments.nvim",
     opts = {},
   },
+  {
+    "phaazon/hop.nvim",
+    keys = {
+---movement.util - g\            - hop
+      { "g<leader>", function() require("hop").hint_words() end, desc = "Hint words", mode = "n" },
+      --{noremap=true})
+    },
+    opts = {},
+  },
 }

@@ -1,5 +1,13 @@
 return {
-  { "shaunsingh/nord.nvim" },
+  {
+    "shaunsingh/nord.nvim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      -- load the colorscheme here
+      vim.cmd([[colorscheme nord]])
+    end,
+  },
   {
     'akinsho/bufferline.nvim',
     version = "*",
@@ -38,5 +46,68 @@ return {
       --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
       }
-  }
+  },
+  {
+-- # nvim-tree
+-- TODO: remove nvim-tree help since you can find it via nvim-tree g? ??
+---nvim-tree - g?            - open help
+--
+-- ## visibility
+---nvim-tree.visibility - <leader>e     - open tree
+---nvim-tree.visibility - <leader>w     - find current file in tree
+---nvim-tree.visibility - q             - close tree
+---nvim-tree.visibility - I             - toggle git hidden files
+---nvim-tree.visibility - H             - toggle dotfiles
+---nvim-tree.visibility - R             - refresh tree
+--
+--
+-- ## navigation
+---nvim-tree.navigation - o             - open file/toggle directory
+---nvim-tree.navigation - <BS>          - close directory
+---nvim-tree.navigation - P             - jump to parent directory
+---nvim-tree.navigation - </>           - jump to prev/next sibling
+---nvim-tree.navigation - -             - set parent directory as root
+---nvim-tree.navigation - <C-]>         - set directory as root
+---nvim-tree.navigation - <TAB>         - preview file
+---nvim-tree.navigation - <C-v>         - open in vertical split
+---nvim-tree.navigation - <C-x>         - open in horizontal split
+---nvim-tree.navigation - <C-t>         - open in new tab
+---nvim-tree.navigation - s             - open with system default application
+--
+--
+-- ## edit tree
+---nvim-tree.edit - a             - add file (use trailing slash to create directory)
+---nvim-tree.edit - r             - rename file
+---nvim-tree.edit - <C-r>         - rename file omitting current name
+---nvim-tree.edit - d             - delete file
+---nvim-tree.edit - x             - add file to cut clipboard
+---nvim-tree.edit - c             - add file to copy clipboard
+---nvim-tree.edit - p             - paste file from clipboard
+--
+--
+-- ## yanking
+---nvim-tree.yanking - y             - add name to copy clipboard
+---nvim-tree.yanking - Y             - add relative path to copy clipboard
+---nvim-tree.yanking - gy            - add absolute path to copy clipboard
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      -- open_on_setup = true,
+      view = {
+        width = 40,
+      },
+      git = {
+        enable = false,
+      },
+    },
+    keys = {
+      {"<leader>w", "<cmd>NvimTreeFindFile<cr>", desc = "Open tree for this file"},
+      {"<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle tree"},
+      {"<leader>y", "<cmd>NvimTreeClose<cr><C-w>r<cmd>NvimTreeOpen<cr><C-w><right>", desc = "Swap splits"},
+    },
+  },
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
+    opts = {},
+  },
 }
