@@ -4,38 +4,11 @@
 export PATH="$PATH:$HOME/depot_tools"
 
 # need more FDs for chromium build
-ulimit -n 200000
-
-### gitcookies  - [CHROME] switch domain in gitcookies to fix bad auth.
-function gitcookies() {
-  if [[ "$@" == "" ]]; then
-    echo "not sure if this actually works"
-    if [[ "$(grep "chrome-internal" ~/.gitcookies)" == "" ]]; then
-      gitcookies_in
-    else
-      gitcookies_ex
-    fi
-  elif [[ "$@" == "in" ]]; then
-    gitcookies_in
-  elif [[ "$@" == "ex" ]]; then
-    gitcookies_ex
-  else
-    echo "not a valid target. use 'ex' or 'in'"
-  fi
-}
-
-function gitcookies_in() {
-    sed -i -E "s/chromium\.googlesource\.com/chrome-internal.googlesource.com/g" ~/.gitcookies
-    sed -i -E "s/chromium-review\.googlesource\.com/chrome-internal-review.googlesource.com/g" ~/.gitcookies
-    cp ~/.gitcookies ~/.config/nixpkgs/gitcookies
-    echo "switched to internal - used to authenticate cipd"
-}
-
-function gitcookies_ex() {
-    sed -i -E "s/chrome-internal/chromium/g" ~/.gitcookies
-    cp ~/.gitcookies ~/.config/nixpkgs/gitcookies
-    echo "switched to external - used to push code"
-}
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  ulimit -n 200000
+else
+  ulimit -u unlimited
+fi
 
 ### ch-constants- [CHROME] edit common feature constants
 function ch-constants() {
@@ -114,52 +87,22 @@ function reset-exit() {
 
 ### ch-update   - [CHROME] run update script
 function ch-update() {
-  local PARENT_DIR=/usr/local/google/home/mickeyburks/chromium
-
-  local TS="date '+%Y-%m-%d %T'"
-  local CHROMIUM_DIR="$PARENT_DIR/src"
-  local LOGFILE="$PARENT_DIR/update-log"
-
-  echo "\n[$(eval $TS)] Starting update script." >> $LOGFILE
+  cd "$HOME/chromium/src"
 
   # updates
   if [[ "$@" != *"--skip-rebase"* ]]; then
-    echo "[$(eval $TS)] Update - Starting." >> $LOGFILE
-    cd $CHROMIUM_DIR
     git rebase-update -k # skip failed rebases
-    echo "[$(eval $TS)] Update - rebase-update successful." >> $LOGFILE
-
-    # switch to internal auth
-    #gitcookies in
-
     gclient sync -fD
-
-    # switch back to external auth
-    #gitcookies ex
-
-    echo "[$(eval $TS)] Update - gclient sync successful." >> $LOGFILE
-    echo "[$(eval $TS)] Update - Done." >> $LOGFILE
   fi
 
   # build
-  echo "[$(eval $TS)] Build - Starting." >> $LOGFILE
-  cd $CHROMIUM_DIR
   autoninja -C out/Default chrome
-  echo "[$(eval $TS)] Build - chrome build successful." >> $LOGFILE
 
-  #autoninja -C out/Default browser_tests
-  #autoninja -C out/Default unit_tests
-  echo "[$(eval $TS)] Build - chrome browser and unit tests successful." >> $LOGFILE
-
+  # lsp
   tools/clang/scripts/generate_compdb.py -p out/Default > compile_commands.json
-  echo "[$(eval $TS)] Build - compile_commands build successful." >> $LOGFILE
+
+  # editor
   git-common
-  echo "[$(eval $TS)] Build - git-common successful." >> $LOGFILE
-  echo "[$(eval $TS)] Build - Done." >> $LOGFILE
-
-
-  # exit
-  echo "[$(eval $TS)] All ready for today. Exiting." >> $LOGFILE
 }
 
 ### ch-tsd      - [CHROME] create ts configs for whats_new
