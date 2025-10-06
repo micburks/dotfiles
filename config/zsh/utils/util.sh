@@ -18,13 +18,6 @@ export NVM_DIR="$HOME/.nvm"
 # rust
 [ -f "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
 
-# bat
-if [[ "$(uname -s)" == "Linux" ]]; then
-  # Using apt will install the package as `batcat`
-  mkdir -p $HOME/.local/bin
-  ln -s /usr/bin/batcat $HOME/.local/bin/bat
-fi
-
 # vivid
 export LS_COLORS="$(vivid generate nord)"
 if [[ "$(uname -s)" == "Darwin" ]]; then

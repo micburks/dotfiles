@@ -6,6 +6,9 @@ export XDG_CONFIG_HOME="$CONFIG"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export VIMRC="$CONFIG/nvim/vimrc.vim"
 
+# Extra local binaries
+export PATH=$PATH:$HOME/.local/bin
+
 # Used by ranger.py for editing.
 export VISUAL="vim -p -u $VIMRC"
 # Used by git for editing commit messages.
