@@ -1,5 +1,14 @@
-MACHINE_NAME="local"
 CONFIG="$HOME/.config"
+MACHINE_FILE="$CONFIG/dotfiles/machine.txt"
+
+# Prompt for machine name if not already named.
+if [[ ! -f "$MACHINE_FILE" ]]; then
+  vared -p "No machine name found. What would you like to name this machine: " -c name
+  echo "$name" > $MACHINE_FILE
+  echo "Wrote $name to $MACHINE_FILE"
+fi
+
+MACHINE_NAME=$(cat "$MACHINE_FILE")
 SHELL_UTILS="$CONFIG/zsh/utils"
 
 export XDG_CONFIG_HOME="$CONFIG"
