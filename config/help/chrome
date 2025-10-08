@@ -1,0 +1,76 @@
+###
+### chrome
+
+
+###
+### views - visualizing
+### --draw-view-bounds-rects         - draw bounding boxes around elements in primary and secondary ui
+###
+### views - examples
+### autoninja -C out/Default views_examples && ./out/Default/views_examples
+###
+### views - dev tools
+### --enable-ui-devtools
+
+###
+### webui - dev tools
+### run release build to get faster dev tools
+
+###
+### ui - rtl
+### LANG=he_IL.UTF-8 LANGUAGE=he_IL ./out/Default/chrome    - launch with text rtl
+
+
+###
+### tests
+### where is this test being run
+###
+### Tests are split into multiple test targets based on their type and where they exist in the directory structure.
+### To see what target a given unit test or browser test file corresponds to, the following command can be used:
+###
+### gn refs out/Default --testonly=true --type=executable --all chrome/browser/ui/browser_list_unittest.cc
+### //chrome/test:unit_tests
+###
+###  repeat tests
+### recheck that these are accurate
+### --gtest_repeat=1000 --gtest_exit_on_failure
+
+
+###
+### user data
+### --user-data-dir=$(mktemp -d) \
+###
+### feature parameters
+### --enable-features=FeatureNameA:feature-param-1/param-1-value/feature-param-2/param-2-value,FeatureNameB
+
+###
+### turn off all flags
+### --no-experiments
+
+###
+### what's new browser command one-liner
+### const run = n => window.top.postMessage({'data': {'commandId': n, 'clickInfo': {}}}, 'chrome://whats-new');
+### run(10);
+
+
+###
+### code coverage - no idea if this works
+### run code coverage locally (note: this is not great)
+### gn gen out/coverage \
+###    --args="use_clang_coverage=true is_component_build=false
+###    dcheck_always_on=true is_debug=false"
+###
+### python tools/code_coverage/coverage.py \
+###    crypto_unittests url_unittests \
+###    -b out/coverage -o out/report \
+###    -c 'out/coverage/crypto_unittests' \
+###    -c 'out/coverage/url_unittests --gtest_filter=URLParser.PathURL' \
+###    -f url/ -f crypto/
+###
+### actually
+### python3 tools/code_coverage/coverage.py \
+###   unit_tests \
+###   -b out/coverage -o out/report \
+###   -c 'out/coverage/unit_tests --gtest_filter="BrowserCommandHandlerTest.*"'
+
+
