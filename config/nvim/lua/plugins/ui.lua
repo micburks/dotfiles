@@ -110,4 +110,43 @@ return {
     lazy = true,
     opts = {},
   },
+  {
+-- # toggleterm
+---terminal - \t            - open first terminal
+---terminal - X\t           - open numbered terminal
+    "akinsho/toggleterm.nvim",
+    lazy = false,
+    cmd = "ToggleTerm",
+    opts = {
+      open_mapping = "\\t",
+      direction = "float",
+    },
+    keys = {
+---terminal - \e            - enter normal mode in toggleterm
+      { "<leader>e", "<C-\\><C-n>", desc = "Enter normal mode in terminal", mode = "t" },
+---terminal - \g            - lazygit terminal (arrow keys, enter, space, q)
+      {
+        "<leader>g",
+        --lazygit_toggle
+        function()
+          local Terminal  = require("akinsho/toggleterm.nvim").Terminal
+          local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, count = 5 })
+          lazygit:toggle()
+        end,
+        desc = "Open lazygit terminal (arrow keys, enter, space, q)"
+      },
+---terminal - \q            - show filtered git history for current file
+      {
+        "<leader>q",
+        -- lazygit_filtercurrentfile
+        function()
+          local Terminal  = require("akinsho/toggleterm.nvim").Terminal
+          local current_file = vim.fn.expand('%:p'):sub(vim.g.root:len() + 2)
+          local lazygit_filter = Terminal:new({ cmd = 'lazygit ' .. '-f ' .. current_file, hidden = true, count = 5 })
+          lazygit_filter:toggle()
+        end,
+        desc = "Show filtered git history for current file" 
+      },
+    },
+  },
 }
