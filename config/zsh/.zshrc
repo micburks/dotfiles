@@ -41,7 +41,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 # work machine specific things
-[ -f $HOME/work-DO-NOT-COMMIT.sh ] && . $HOME/work-DO-NOT-COMMIT.sh
+[ -f $HOME/.work-DO-NOT-COMMIT.sh ] && . $HOME/.work-DO-NOT-COMMIT.sh
 
 
 # prompt
