@@ -52,12 +52,14 @@ function get_hostname () {
     echo $MACHINE_NAME
   fi
 }
+
 function parse_git_branch () {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
+
 function parse_repo_basename () {
   if [[ "$GIT_ROOT" != "/" ]]; then
-    echo "[$(basename $GIT_ROOT)] "
+    echo "$(basename $GIT_ROOT)"
   fi
 }
 
@@ -70,7 +72,28 @@ function parse_pwd () {
     echo $PWD | sed -e "s/^$(echo "$GIT_ROOT" | sed 's/\//\\\//g')\///"
   fi
 }
-PROMPT='%{$fg[yellow]%}$(parse_repo_basename)%{$fg[green]%}$(parse_git_branch)%{$fg[red]%}<$(get_hostname)> %{$fg[blue]%}$(parse_pwd)
+
+function get_repo_at_branch () {
+  repo=$(parse_repo_basename)
+  branch=$(parse_git_branch)
+  if [[ $branch != "" ]]; then
+    repo="$repo @ $branch"
+  fi
+  if [[ $repo != "" ]]; then
+    echo "($repo) "
+  fi
+}
+
+# https://www.nordtheme.com/
+declare -A c
+c[yellow]="%F{#ebcb8b}"
+c[green]="%F{#a3be8c}"
+c[red]="%F{#bf616a}"
+c[blue]="%F{#5e81ac}"
+
+timestamp="[%D{%H:%M:%S}] "
+
+PROMPT='%{$c[yellow]%}$(echo $timestamp)%{$c[green]%}$(get_repo_at_branch)%{$c[red]%}<$(get_hostname)> %{$c[blue]%}$(parse_pwd)
 %{$reset_color%}$ '
 
 function chpwd () {
