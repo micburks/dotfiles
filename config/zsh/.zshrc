@@ -14,6 +14,7 @@ SHELL_UTILS="$CONFIG/zsh/utils"
 export XDG_CONFIG_HOME="$CONFIG"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export VIMRC="$CONFIG/nvim/vimrc.vim"
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Extra local binaries
 export PATH=$PATH:$HOME/.local/bin

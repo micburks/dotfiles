@@ -15,3 +15,5 @@ brew install autojump \
              ripgrep \
              tmux \
              vivid
+
+brew install --cask scroll-reverser
