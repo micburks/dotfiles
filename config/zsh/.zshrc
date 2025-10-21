@@ -16,6 +16,9 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export VIMRC="$CONFIG/nvim/vimrc.vim"
 export HOMEBREW_NO_AUTO_UPDATE=1
 
+# Oh my zsh auto-update
+zstyle ':omz:update' mode disabled
+
 # Extra local binaries
 export PATH=$PATH:$HOME/.local/bin
 
