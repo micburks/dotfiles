@@ -1,3 +1,5 @@
+UTILS_DIR="$HOME/.config/zsh/utils"
+HELP_DIR="$HOME/.config/help"
 # -------------------------------
 #
 # help
@@ -7,14 +9,18 @@
 help() {
   if [[ "$1" == "" ]]; then
     echo "\n custom commands\n ------"
-    awk -F'###' '/^###/ { print $2 }' ~/.zshrc | sort
+    local cmds=""
+    for util in "$UTILS_DIR"/*; do
+      cmds="$cmds\n$(awk -F'###' '/^###/ { print $2 }' "$util")"
+    done
+    echo "$cmds" | sort
   elif [[ "$1" == "help" ]]; then
-    awk -F'###' '/^###/ { print $2 }' ~/.config/help/$1
+    awk -F'###' '/^###/ { print $2 }' "$HELP_DIR/$1"
     echo ""
     echo "\n custom help docs\n ------"
-    echo "$(ls ~/.config/help)"
-  elif [[ -e ~/.config/help/$1 ]]; then
-    awk -F'###' '/^###/ { print $2 }' ~/.config/help/$1
+    echo "$(ls "$HELP_DIR")"
+  elif [[ -e "$HELP_DIR/$1" ]]; then
+    awk -F'###' '/^###/ { print $2 }' "$HELP_DIR/$1"
   else
     echo "no such help doc"
   fi
