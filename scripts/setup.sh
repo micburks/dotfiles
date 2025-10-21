@@ -19,3 +19,6 @@ done
 # The env file sets the root directory
 [ ! -L $HOME/.zshenv ] &&
   ln -s $CONFIG/zsh/.zshenv $HOME/.zshenv
+
+# git
+git config --global core.excludesfile ~/.config/git/.gitignore
