@@ -56,7 +56,7 @@ function fzc() {
   if [[ -e "common-files" ]]; then
     cat "common-files" | \
       fzf --no-height --preview 'bat --style=numbers --color=always {}' --no-sort | \
-      xargs vim
+      xargs nvim {}
   else
     echo "run git-common first";
   fi
