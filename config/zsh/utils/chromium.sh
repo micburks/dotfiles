@@ -189,7 +189,7 @@ function ch-ts() {
     return
   fi
 
-  ch_status_ "Build tsconfig.js: $1"
+  ch-status_ "Build tsconfig.js: $1"
   BUILD_DIR="$(get_build_dir_)"
 
   if [[ -d "chrome/browser/resources/$1" ]]; then
@@ -209,7 +209,7 @@ function ch-ts() {
 
 ### ch-gn-args  - [CHROME] copy a decent starting args file
 function ch-gn-args() {
-  ch_status_
+  ch-status_
   BUILD_DIR="$(get_build_dir_)"
   mkdir -p "$HOME/chromium/src/out/$BUILD_DIR"
   cp "$HOME/.config/dotfiles/args.gn" "$HOME/chromium/src/out/$BUILD_DIR/args.gn"
@@ -227,7 +227,7 @@ function ch-constants() {
 
 ### ch-find     - [CHROME] find executable that references a file (good for finding what type of test this file is)
 function ch-find() {
-  ch_status_
+  ch-status_
   BUILD_DIR="$(get_build_dir_)"
   # gn refs out/Default //components/autofill/core/browser/payments/payments_requests/get_details_for_enrollment_request_unittest.cc --type=executable --all
   fd | fzf | xargs -I {} gn refs "out/$BUILD_DIR" {} --type=executable --all
@@ -249,7 +249,7 @@ function ch-test() {
     return
   fi
 
-  ch_status_
+  ch-status_
   BUILD_DIR="$(get_build_dir_)"
 
   local TEST=$(ch-run $TYPE --gtest_list_tests | ~/.config/nixpkgs/scripts/transform_tests.js | fzf)

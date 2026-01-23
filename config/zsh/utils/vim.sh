@@ -72,7 +72,7 @@ function vim_unmerged() {
     # mac
     # echo $unmerged | xargs command nvim -p
     # linux
-    echo $unmerged | xargs vim --clean -p
+    echo $unmerged | xargs vim --clean -p {}
   else
     echo "[vim_unmerged] no unmerged files to open"
   fi
