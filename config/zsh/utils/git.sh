@@ -37,8 +37,11 @@ file-exists() {
   done
 }
 
+GIT_COMMON_FILE=".ignore/git-common-files"
+
 ### git-common  - cache commonly edit files data for this repo
 git-common() {
+  mkdir -p "$(dirname $GIT_COMMON_FILE)"
   git log --author="$(git config user.name)" --numstat --oneline | \
     grep -E "^\w{1,4}\s" | \
     # grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox} -E "^\w{1,4}\s" | \
@@ -48,13 +51,13 @@ git-common() {
     uniq -c | \
     sort -r | \
     awk '{print $2}' \
-    > "common-files"
+    > $GIT_COMMON_FILE
 }
 
 ### fzc         - fzo for commonly edited files
 function fzc() {
-  if [[ -e "common-files" ]]; then
-    cat "common-files" | \
+  if [[ -e "$GIT_COMMON_FILE" ]]; then
+    cat $GIT_COMMON_FILE | \
       fzf --no-height --preview 'bat --style=numbers --color=always {}' --no-sort | \
       xargs nvim {}
   else

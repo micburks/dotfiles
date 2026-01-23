@@ -73,4 +73,10 @@
 ###   -b out/coverage -o out/report \
 ###   -c 'out/coverage/unit_tests --gtest_filter="BrowserCommandHandlerTest.*"'
 
-
+###
+### multiple builds
+###
+### out/Deafult
+### out/branded - branded builds (different binary is produced)
+###
+### remember to run `gn clean` occasionally to not run out of disk space

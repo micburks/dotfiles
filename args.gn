@@ -1,0 +1,20 @@
+### performance
+use_remoteexec=true
+
+### build type
+is_debug = true
+is_component_build = true
+
+### symbols
+symbol_level = 1
+blink_symbol_level=0
+v8_symbol_level=0
+
+### official/branded
+is_chrome_branded=false
+# is_official_build = true
+# ignore_missing_widevine_signing_cert = true
+
+### webui
+# optimize_webui = false
+# load_webui_from_disk = true
