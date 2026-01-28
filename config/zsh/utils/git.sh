@@ -7,7 +7,7 @@
 [ "$(alias gl)" != "" ] && unalias gl
 [ "$(alias ga)" != "" ] && unalias ga
 
-### g/git       - git
+### g           - git
 alias g='git'
 
 # these are aliases so autocomplete works
@@ -16,10 +16,19 @@ alias ga='git add'
 alias gd='git diff'
 alias gb='git branch'
 alias gl='git log'
-alias gch='git checkout'
 alias gcm='git commit -m'
 alias gps='git push'
 alias gpl='git pull'
+
+### gch         - git checkout (fuzzy branch checkout without args)
+function gch() {
+  if [[ "$1" == "" ]]; then
+    git branch | i git checkout
+    return
+  fi
+
+  git checkout "$@"
+}
 
 # improve speed of zsh autocomplete for git commands
 __git_files () { 
