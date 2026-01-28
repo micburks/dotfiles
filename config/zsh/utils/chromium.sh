@@ -81,7 +81,7 @@ function ch-status_() {
   echo "$STR"
   if [[ ! "$1" == "" ]]; then
     echo "$SUBHR"
-    echo " $1"
+    echo " $@"
   fi
   echo "$HR"
 }
@@ -182,14 +182,14 @@ function ch-update() {
   git-common
 }
 
-### ch-tsd      - [CHROME] create ts configs for a webui and its tests
+### ch-ts       - [CHROME] create ts configs for a webui and its tests
 function ch-ts() {
   if [[ "$1" == "" ]]; then
     echo "need project name"
     return
   fi
 
-  ch-status_ "Build tsconfig.js: $1"
+  ch-status_ "Build TS configs: $1"
   BUILD_DIR="$(get_build_dir_)"
 
   if [[ -d "chrome/browser/resources/$1" ]]; then
@@ -203,8 +203,35 @@ function ch-ts() {
       --root_out_dir "out/$BUILD_DIR" \
       --gn_target "chrome/test/data/webui/$1:build_ts"
   fi
+}
 
-  # TODO: Might want to consider building all the ui/webui/ directories, too.
+### ch-ts-ui    - [CHROME] create ts configs for all shared ui/webui code
+function ch-ts-ui() {
+  ch-status_ "Build ui/webui TS configs: $1"
+  BUILD_DIR="$(get_build_dir_)"
+
+  python3 ash/webui/personalization_app/tools/gen_tsconfig.py \
+    --root_out_dir "out/$BUILD_DIR" \
+    --gn_target "ui/webui/resources/cr_elements:build_ts"
+
+  python3 ash/webui/personalization_app/tools/gen_tsconfig.py \
+    --root_out_dir "out/$BUILD_DIR" \
+    --gn_target "ui/webui/resources/js:build_ts"
+}
+
+### ch-ts-comp  - [CHROME] create ts config for a shared ui/webui component
+function ch-ts-comp() {
+  if [[ "$1" == "" ]]; then
+    echo "need component name"
+    return
+  fi
+
+  ch-status_ "Build component TS config: $1"
+  BUILD_DIR="$(get_build_dir_)"
+
+  python3 ash/webui/personalization_app/tools/gen_tsconfig.py \
+    --root_out_dir "out/$BUILD_DIR" \
+    --gn_target "ui/webui/resources/cr_components/$1:build_ts"
 }
 
 ### ch-gn-args  - [CHROME] copy a decent starting args file
@@ -256,4 +283,12 @@ function ch-test() {
   # print to history
   print -s "ch-build $TYPE && ch-run $TYPE --gtest_filter=\"$TEST\"\n"
   echo "$TEST"
+}
+
+### ch-format   - [CHROME] Format C++ and common WebUI locations
+function ch-format() {
+  git cl format
+  git cl format --js --no-python chrome/browser/resources/
+  git cl format --js --no-python ui/webui/resources/
+  git cl format --js --no-python chrome/test//data/webui/
 }
