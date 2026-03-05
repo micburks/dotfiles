@@ -104,23 +104,24 @@ function ch-run() {
 
   BUILD_DIR="$(get_build_dir_)"
 
+  # This is especially necessary for branded builds on the local OS so it doesn't open an existing browser.
+  # This allows all the reset scripts to work on the same data directory.
+  USER_DATA_DIR="--user-data-dir=./out/$BUILD_DIR/data"
+
   # Chrome builds on Mac have different binary names.
   if [[ "$(uname -s)" == "Darwin" && "$1" == "chrome" ]]; then
     # TODO: Make more robust branded detection
     if [[ "$BUILD_DIR" == "branded" ]]; then
-      # This is necessary for branded builds on the local OS so it doesn't open an existing browser.
-      local USER_DATA_DIR="--user-data-dir=./out/$BUILD_DIR/data"
-
       ch-status_ "Run $1\n./out/$BUILD_DIR/Google Chrome.app/Contents/MacOS/Google Chrome $USER_DATA_DIR ${@:2}"
       "./out/$BUILD_DIR/Google Chrome.app/Contents/MacOS/Google Chrome" "$USER_DATA_DIR" "${@:2}"
     else
-      ch-status_ "Run $1\n./out/$BUILD_DIR/Chromium.app/Contents/MacOS/Chromium ${@:2}"
-      "./out/$BUILD_DIR/Chromium.app/Contents/MacOS/Chromium" "${@:2}"
+      ch-status_ "Run $1\n./out/$BUILD_DIR/Chromium.app/Contents/MacOS/Chromium $USER_DATA_DIR ${@:2}"
+      "./out/$BUILD_DIR/Chromium.app/Contents/MacOS/Chromium" "$USER_DATA_DIR" "${@:2}"
     fi
   else
     # pass the rest of arguments to the binary
-    ch-status_ "Run $1\n./out/$BUILD_DIR/$1 ${@:2}"
-    "./out/$BUILD_DIR/$1" "${@:2}"
+    ch-status_ "Run $1\n./out/$BUILD_DIR/$1 $USER_DATA_DIR ${@:2}"
+    "./out/$BUILD_DIR/$1" "$USER_DATA_DIR" "${@:2}"
   fi
 }
 
