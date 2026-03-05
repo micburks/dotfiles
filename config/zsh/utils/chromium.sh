@@ -10,43 +10,6 @@ else
   ulimit -u unlimited
 fi
 
-### reset-wnp   - [CHROME] reset wn page
-function reset-wnp() {
-  if [[ "$1" == "" ]]; then
-    echo "need 'chromium' or 'google-chrome'"
-    return
-  fi
-  cat "$HOME/.config/$1/Local State" | jq '.browser.last_whats_new_version -= 1' >tmp.json && mv tmp.json "$HOME/.config/$1/Local State"
-}
-
-### reset-wnpr  - [CHROME] reset wn refresh page
-function reset-wnpr() {
-  if [[ "$1" == "" ]]; then
-    echo "need 'chromium' or 'google-chrome'"
-    return
-  fi
-  cat "$HOME/.config/$1/Local State" | jq '.browser.has_shown_refresh_2023_whats_new = false' >tmp.json && mv tmp.json "$HOME/.config/$1/Local State"
-}
-
-### reset-iph   - [CHROME] reset iph config
-function reset-iph() {
-  if [[ "$1" == "" ]]; then
-    echo "need 'chromium' or 'google-chrome'"
-    return
-  fi
-  cat "$HOME/.config/$1/Default/Preferences" | jq '.in_product_help = {}' >tmp.json && mv tmp.json "$HOME/.config/$1/Default/Preferences"
-}
-
-### reset-exit  - [CHROME] reset exit config
-function reset-exit() {
-  if [[ "$1" == "" ]]; then
-    echo "need 'chromium' or 'google-chrome'"
-    return
-  fi
-  cat "$HOME/.config/$1/Local State" | jq '.exited_cleanly = true' >tmp.json && mv tmp.json "$HOME/.config/$1/Local State"
-  cat "$HOME/.config/$1/Default/Preferences" | jq '.profile.exit_type = "none"' >tmp.json && mv tmp.json "$HOME/.config/$1/Default/Preferences"
-}
-
 CHROME_DIR="$HOME/chromium/src"
 BUILD_STATUS_FILENAME=".ignore/chrome-build-dir"
 function get_build_dir_() {
@@ -291,4 +254,43 @@ function ch-format() {
   git cl format --js --no-python chrome/browser/resources/
   git cl format --js --no-python ui/webui/resources/
   git cl format --js --no-python chrome/test//data/webui/
+}
+
+###########################################
+# Reset scripts
+###########################################
+
+### reset-wnp   - [CHROME] reset wn page
+function reset-wnp() {
+  # TODO: Allow reseting data for an install from a specific channel
+
+  BUILD_DIR="$(get_build_dir_)"
+  USER_DATA_DIR="./out/$BUILD_DIR/data"
+
+  cat "$USER_DATA_DIR/Local State" | jq '.browser.last_whats_new_version -= 1' > tmp.json && mv tmp.json "$USER_DATA_DIR/Local State"
+}
+
+### reset-wnpr  - [CHROME] reset wn refresh page
+function reset-wnpr() {
+  BUILD_DIR="$(get_build_dir_)"
+  USER_DATA_DIR="./out/$BUILD_DIR/data"
+
+  cat "$USER_DATA_DIR/Local State" | jq '.browser.has_shown_refresh_2023_whats_new = false' > tmp.json && mv tmp.json "$USER_DATA_DIR/Local State"
+}
+
+### reset-iph   - [CHROME] reset iph config
+function reset-iph() {
+  BUILD_DIR="$(get_build_dir_)"
+  USER_DATA_DIR="./out/$BUILD_DIR/data"
+
+  cat "$USER_DATA_DIR/Default/Preferences" | jq '.in_product_help = {}' > tmp.json && mv tmp.json "$USER_DATA_DIR/Default/Preferences"
+}
+
+### reset-exit  - [CHROME] reset exit config
+function reset-exit() {
+  BUILD_DIR="$(get_build_dir_)"
+  USER_DATA_DIR="./out/$BUILD_DIR/data"
+
+  cat "$USER_DATA_DIR/Local State" | jq '.exited_cleanly = true' > tmp.json && mv tmp.json "$USER_DATA_DIR/Local State"
+  cat "$USER_DATA_DIR/Default/Preferences" | jq '.profile.exit_type = "none"' > tmp.json && mv tmp.json "$USER_DATA_DIR/Default/Preferences"
 }
