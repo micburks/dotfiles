@@ -66,4 +66,46 @@ return {
       },
     },
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      -- enable_git_status = false, -- this causes the UI to block when changing files
+      enable_diagnostics = false,
+      -- Ensure bind_to_cwd is set to true to have Neo-tree follow the current working directory changes
+      filtered_items = {
+        visible = false,
+        hide_dotfiles = false,
+        hide_gitignored = true,
+        hide_by_name = {
+          "node_modules",
+          "out",
+          ".git",
+          ".cache",
+        },
+      },
+      filesystem = {
+        follow_current_file = {
+          enabled = true, -- Only follow when tree is open
+        },
+      },
+      use_libuv_file_watcher = true, -- Much faster
+    },
+
+    keys = {
+      {
+        "<leader>e",
+        function()
+          local parent_dir = vim.fn.expand("%:p:h")
+          require("neo-tree.command").execute({
+            action = "focus",
+            -- 'toggle = true' makes the same key close the panel if it's open
+            toggle = true,
+            dir = parent_dir,
+            reveal = true,
+          })
+        end,
+        desc = "Explorer NeoTree (Adjacent Files Only)",
+      },
+    },
+  },
 }

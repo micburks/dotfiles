@@ -5,3 +5,6 @@ vim.g.mapleader = "\\"
 
 -- Turn off autoformat
 vim.g.autoformat = false
+
+-- for neo-tree to use cwd
+vim.g.root_spec = { "cwd" }
