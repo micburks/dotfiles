@@ -22,3 +22,23 @@ done
 
 # git
 git config --global core.excludesfile ~/.config/git/.gitignore
+
+# gemini skills
+GEMINI_SKILLS="$HOME/.gemini/config/skills"
+if [ -d "$DOTFILES/skills" ]; then
+  mkdir -p "$GEMINI_SKILLS"
+  for skill in "$DOTFILES/skills"/*; do
+    if [ -d "$skill" ]; then
+      SKILL_NAME=$(basename "$skill")
+      if [ ! -L "$GEMINI_SKILLS/$SKILL_NAME" ]; then
+        ln -s "$skill" "$GEMINI_SKILLS/$SKILL_NAME"
+      fi
+    fi
+  done
+fi
+
+# local binaries
+mkdir -p "$HOME/.local/bin"
+if [ ! -e "$HOME/.local/bin/fd" ] && command -v fdfind >/dev/null 2>&1; then
+  ln -s "$(command -v fdfind)" "$HOME/.local/bin/fd"
+fi
