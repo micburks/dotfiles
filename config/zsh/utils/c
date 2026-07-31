@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+### c [-a]      - fuzzy cd (-a for hidden and ignored files)
+FD_BIN=$(command -v fd || command -v fdfind)
+if [[ -z "$FD_BIN" ]]; then
+  echo "[c] error: fd or fdfind not found in PATH" >&2
+  exit 1
+fi
+
+FD_CMD="$FD_BIN --max-depth 6 --type d"
+if [[ "$*" == *"-a"* ]]; then
+  FD_CMD="$FD_BIN --max-depth 6 --type d --hidden -I"
+fi
+target=$(eval ${FD_CMD} | fzf --preview "tree -C {} | head -200")
+if [[ -n "$target" ]]; then
+  echo "$target"
+fi

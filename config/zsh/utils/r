@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+### r           - ranger file explorer
+UTILS_DIR="$(cd "$(dirname "$0")" && pwd)"
+REAL_RANGER=$(which -a ranger 2>/dev/null | grep -v "^$UTILS_DIR" | head -n 1)
+if [[ -z "$REAL_RANGER" ]]; then
+  REAL_RANGER="/usr/bin/ranger"
+fi
+exec "$REAL_RANGER" --cmd "set show_hidden=true" "$@"

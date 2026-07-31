@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+### ch-set      - [CHROME] set build status
+BUILD_STATUS_FILENAME=".ignore/chrome-build-dir"
+if [[ "$1" == "" ]]; then
+  echo "need build name"
+  exit 1
+fi
+
+mkdir -p "$(dirname "$BUILD_STATUS_FILENAME")"
+echo "$1" > "./$BUILD_STATUS_FILENAME"
+ch-status

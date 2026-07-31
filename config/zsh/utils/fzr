@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+### fzr [DIR]   - fuzzy open files by contents
+exec vim $(rg . "$1" | fzf | cut -d ":" -f 1)

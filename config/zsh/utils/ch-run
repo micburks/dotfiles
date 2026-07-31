@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+### ch-run      - [CHROME] run a target
+if [[ "$1" == "" ]]; then
+  echo "need build target"
+  exit 1
+fi
+
+BUILD_DIR="$(get_build_dir_)"
+USER_DATA_DIR="--user-data-dir=./out/$BUILD_DIR/data"
+
+if [[ "$(uname -s)" == "Darwin" && "$1" == "chrome" ]]; then
+  if [[ "$BUILD_DIR" == "branded" ]]; then
+    ch-status_ "Run $1\n./out/$BUILD_DIR/Google Chrome.app/Contents/MacOS/Google Chrome $USER_DATA_DIR ${@:2}"
+    "./out/$BUILD_DIR/Google Chrome.app/Contents/MacOS/Google Chrome" "$USER_DATA_DIR" "${@:2}"
+  else
+    ch-status_ "Run $1\n./out/$BUILD_DIR/Chromium.app/Contents/MacOS/Chromium $USER_DATA_DIR ${@:2}"
+    "./out/$BUILD_DIR/Chromium.app/Contents/MacOS/Chromium" "$USER_DATA_DIR" "${@:2}"
+  fi
+else
+  ch-status_ "Run $1\n./out/$BUILD_DIR/$1 $USER_DATA_DIR ${@:2}"
+  "./out/$BUILD_DIR/$1" "$USER_DATA_DIR" "${@:2}"
+fi

@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+### ch-clean    - [CHROME] clean all other output directories
+ch-status_ "Clean"
+BUILD_DIR="$(get_build_dir_)"
+
+if [[ ! -d "./out/$BUILD_DIR" ]]; then
+  echo "output directory does not exist for $BUILD_DIR"
+  exit 1
+fi
+
+for DIR in out/*; do
+  if [[ ! "$DIR" == "out/$BUILD_DIR" ]]; then
+    echo "Cleaning $DIR"
+    gn clean "$DIR"
+  fi
+done

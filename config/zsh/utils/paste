@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+### paste FILE  - destructively paste clipboard contents to file
+pbpaste > "$1"

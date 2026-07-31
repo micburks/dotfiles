@@ -1,0 +1,63 @@
+#!/usr/bin/env zsh
+### v/vi/vim    - vim (wrapped): prevent implicitly opening new files
+
+UTILS_DIR="$(cd "$(dirname "$0")" && pwd)"
+REAL_NVIM=$(which -a nvim 2>/dev/null | grep -v "^$UTILS_DIR" | head -n 1)
+if [[ -z "$REAL_NVIM" ]]; then
+  REAL_NVIM="/usr/bin/nvim"
+fi
+
+vim_unmerged() {
+  local unmerged="$(git diff --name-only --diff-filter=U)"
+  if [[ "$unmerged" != "" ]]; then
+    echo $unmerged | xargs "$REAL_NVIM" --clean -p
+  else
+    echo "[vim wrapper] no unmerged files to open"
+  fi
+}
+
+local original_args=("$@")
+local vim_args=()
+local filtered_vim_args=()
+local new=0
+local fail=0
+
+if [[ "$#" -eq 0 ]]; then
+  vim_unmerged
+  exit 0
+fi
+
+for arg in "${original_args[@]}"; do
+  if [[ "$arg" == "--new" || "$arg" == "-n" ]]; then
+    new=1
+  else
+    vim_args+=( "$arg" )
+  fi
+done
+
+if (( new )); then
+  exec "$REAL_NVIM" -p "${vim_args[@]}"
+else
+  for file in "${vim_args[@]}"; do
+    [[ $file = -* ]] && continue
+
+    if ! [[ -e $file ]]; then
+      printf '[vim wrapper] ignored argument "%s" - no such file or directory\n' "$file" >&2
+      fail=1
+    else
+      filtered_vim_args+=( "$file" )
+    fi
+  done
+
+  if (( fail )); then
+    echo -e "[vim wrapper] filtered arguments - force default behavior by using \"--\e[4mn\e[0mew\"\n"
+    echo "  vim $@ -n"
+    echo ""
+  fi
+
+  if [[ "${#filtered_vim_args[@]}" -eq 0 ]]; then
+    echo "[vim wrapper] no files to open"
+  else
+    exec "$REAL_NVIM" -p "${filtered_vim_args[@]}"
+  fi
+fi

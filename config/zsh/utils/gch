@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+### gch         - git checkout (fuzzy branch checkout without args)
+if [[ "$1" == "" ]]; then
+  git branch | i git checkout
+  exit 0
+fi
+
+exec git checkout "$@"

@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+### show-files  - fix mac finder for hidden files
+defaults write com.apple.finder AppleShowAllFiles YES
+killall Finder /System/Library/CoreServices/Finder.app

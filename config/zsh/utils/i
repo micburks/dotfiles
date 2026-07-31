@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+### CMD | i CMD - use fzf/xargs to pipe stdin to another command
+fzf | xargs "$@"

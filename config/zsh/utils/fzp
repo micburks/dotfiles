@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+### fzp         - fuzzy preview files
+exec fzf --no-height --preview 'bat --style=numbers --color=always {}' "$@"

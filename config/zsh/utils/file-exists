@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+while read -r filename; do
+  test -f "$filename" && echo "$filename"
+done

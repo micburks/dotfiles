@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+### jd          - j (d)ry run - echo first result from autojump
+[ -f /usr/local/opt/autojump/etc/profile.d/autojump.sh ] && . /usr/local/opt/autojump/etc/profile.d/autojump.sh
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+[ -f /usr/share/autojump/autojump.zsh ] && . /usr/share/autojump/autojump.zsh
+
+j "$1"

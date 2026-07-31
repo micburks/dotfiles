@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+### ch-constants- [CHROME] edit common feature constants
+nvim chrome/browser/ui/browser_element_identifiers.cc \
+  chrome/browser/ui/browser_element_identifiers.h \
+  components/feature_engagement/public/feature_constants.cc \
+  components/feature_engagement/public/feature_constants.h \
+  components/feature_engagement/public/feature_list.cc \
+  components/feature_engagement/public/feature_list.h

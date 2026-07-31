@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+### cl          - clear half of terminal
+half=$(stty size | awk '{print int($1/2)-1;}')
+echo $half
+for i in $(seq ${half}); do
+  echo ''
+done
+tput cup ${half} 0 && tput ed

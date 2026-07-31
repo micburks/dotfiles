@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+### uu          - (u)p (u)p - cd to root parent `git` directory
+root=$(find_git_root "$PWD")
+if [[ "$root" == "/" ]]; then
+  echo "No root found" >&2
+elif [[ "$root" == "$PWD" ]]; then
+  echo "Already at root!" >&2
+else
+  echo "$root"
+fi

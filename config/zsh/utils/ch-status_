@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+BUILD_DIR="$(get_build_dir_)"
+
+local STR=" CHROME STATUS: '$BUILD_DIR' (out/$BUILD_DIR) "
+local HR=$(head -c ${#STR} < /dev/zero | tr '\0' '-')
+local SUBHR=$(echo $HR | tr '-' '.')
+
+echo "$HR"
+echo "$STR"
+if [[ ! "$1" == "" ]]; then
+  echo "$SUBHR"
+  echo " $@"
+fi
+echo "$HR"

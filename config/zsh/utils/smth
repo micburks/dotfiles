@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+### smth        - find some file somewhere
+FD_BIN=$(command -v fd || command -v fdfind)
+exec $FD_BIN . ~/Code -H -d 9 -E node_modules | fzf "$@"

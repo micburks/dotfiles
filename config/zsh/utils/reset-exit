@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+### reset-exit  - [CHROME] reset exit config
+BUILD_DIR="$(get_build_dir_)"
+USER_DATA_DIR="./out/$BUILD_DIR/data"
+
+cat "$USER_DATA_DIR/Local State" | jq '.exited_cleanly = true' > tmp.json && mv tmp.json "$USER_DATA_DIR/Local State"
+cat "$USER_DATA_DIR/Default/Preferences" | jq '.profile.exit_type = "none"' > tmp.json && mv tmp.json "$USER_DATA_DIR/Default/Preferences"

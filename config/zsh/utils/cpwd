@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+### cpwd        - copy current working directory
+echo "cd $(pwd)" | pbcopy

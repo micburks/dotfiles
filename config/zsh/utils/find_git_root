@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+find_git_root() {
+  if [[ -s "$1/.git" || "$1" == "/" ]]; then
+    echo "$1"
+  else
+    find_git_root "$(dirname "$1")"
+  fi
+}
+find_git_root "${1:-$PWD}"

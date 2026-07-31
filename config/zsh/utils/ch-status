@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+### ch-status   - [CHROME] output build status
+BUILD_DIR="$(get_build_dir_)"
+
+local STR=" CHROME STATUS: '$BUILD_DIR' (out/$BUILD_DIR) "
+local HR=$(head -c ${#STR} < /dev/zero | tr '\0' '-')
+local SUBHR=$(echo $HR | tr '-' '.')
+
+echo "$HR"
+echo "$STR"
+echo "$SUBHR"
+cat "out/$BUILD_DIR/args.gn"
+echo "$HR"

@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+### ch-find     - [CHROME] find executable that references a file (good for finding what type of test this file is)
+FD_BIN=$(command -v fd || command -v fdfind)
+ch-status_
+BUILD_DIR="$(get_build_dir_)"
+$FD_BIN | fzf | xargs -I {} gn refs "out/$BUILD_DIR" {} --type=executable --all

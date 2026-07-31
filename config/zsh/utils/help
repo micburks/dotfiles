@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+### help        - print all help comments or help for specific binaries (e.g. ag, fd, git, etc.)
+
+UTILS_DIR="$(cd "$(dirname "$0")" && pwd)"
+HELP_DIR="${HELP_DIR:-$HOME/.config/help}"
+
+if [[ "$1" == "" ]]; then
+  printf "\n custom commands\n ------\n"
+  local cmds=""
+  for util in "$UTILS_DIR"/*; do
+    if [[ -f "$util" ]]; then
+      local line="$(awk -F'###' '/^###/ { print $2 }' "$util")"
+      if [[ -n "$line" ]]; then
+        cmds="${cmds}\n${line}"
+      fi
+    fi
+  done
+  echo -e "$cmds" | grep . | sort
+elif [[ "$1" == "help" ]]; then
+  awk -F'###' '/^###/ { print $2 }' "$HELP_DIR/$1"
+  echo ""
+  printf "\n custom help docs\n ------\n"
+  echo "$(ls "$HELP_DIR")"
+elif [[ -e "$HELP_DIR/$1" ]]; then
+  awk -F'###' '/^###/ { print $2 }' "$HELP_DIR/$1"
+else
+  echo "no such help doc"
+fi

@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+### git-common  - cache commonly edit files data for this repo
+GIT_COMMON_FILE=".ignore/git-common-files"
+mkdir -p "$(dirname "$GIT_COMMON_FILE")"
+git log --author="$(git config user.name)" --numstat --oneline | \
+  grep -E "^\w{1,4}\s" | \
+  awk '{print $3}' | \
+  file-exists | \
+  sort | \
+  uniq -c | \
+  sort -r | \
+  awk '{print $2}' \
+  > "$GIT_COMMON_FILE"

@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+### ch-build    - [CHROME] build a target
+if [[ "$1" == "" ]]; then
+  echo "need build target"
+  exit 1
+fi
+
+ch-status_ "Build $1"
+BUILD_DIR="$(get_build_dir_)"
+
+autoninja -C "out/$BUILD_DIR" "$1"

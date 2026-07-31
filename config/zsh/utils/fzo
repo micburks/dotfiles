@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+### fzo         - fuzzy open files
+exec vim $(fzp "$@")

@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+### ch-format   - [CHROME] Format C++ and common WebUI locations
+git cl format
+git cl format --js --no-python chrome/browser/resources/
+git cl format --js --no-python ui/webui/resources/
+git cl format --js --no-python chrome/test//data/webui/

@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+### ch-gn-args  - [CHROME] copy a decent starting args file
+ch-status_
+BUILD_DIR="$(get_build_dir_)"
+if [[ "$(basename $PWD)" != "src" ]]; then
+  echo "must be in a 'src' directory"
+fi
+gn gen "./out/$BUILD_DIR"
+cp "$HOME/.config/dotfiles/args.gn" "./out/$BUILD_DIR/args.gn"
+gn args "./out/$BUILD_DIR"

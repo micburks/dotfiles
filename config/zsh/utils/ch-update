@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+### ch-update   - [CHROME] run update script
+ch-status_ "Update"
+BUILD_DIR="$(get_build_dir_)"
+
+if [[ "$*" != *"--skip-rebase"* ]]; then
+  git rebase-update -k
+  gclient sync -fD
+fi
+
+ch-build chrome
+
+tools/clang/scripts/generate_compdb.py -p "out/$BUILD_DIR" > compile_commands.json
+
+git-common
+
+cp internal/agents/policies/*.toml ~/.gemini/policies/

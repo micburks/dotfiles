@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+### json        - pretty display json dump from stdin
+exec python -m json.tool "$@"

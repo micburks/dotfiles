@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+### fzc         - fzo for commonly edited files
+GIT_COMMON_FILE=".ignore/git-common-files"
+if [[ -e "$GIT_COMMON_FILE" ]]; then
+  cat "$GIT_COMMON_FILE" | \
+    fzf --no-height --preview 'bat --style=numbers --color=always {}' --no-sort | \
+    xargs nvim {}
+else
+  echo "run git-common first"
+fi

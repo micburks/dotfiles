@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+### g           - git
+exec git "$@"

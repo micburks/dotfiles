@@ -37,14 +37,74 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
+unalias g ga gb gcm gd gl gps gpl 2>/dev/null || true
 
-# dotfiles
-[ -f $SHELL_UTILS/cd.sh ] && . $SHELL_UTILS/cd.sh
-[ -f $SHELL_UTILS/chromium.sh ] && . $SHELL_UTILS/chromium.sh
-[ -f $SHELL_UTILS/git.sh ] && . $SHELL_UTILS/git.sh
-[ -f $SHELL_UTILS/help.sh ] && . $SHELL_UTILS/help.sh
-[ -f $SHELL_UTILS/util.sh ] && . $SHELL_UTILS/util.sh
-[ -f $SHELL_UTILS/vim.sh ] && . $SHELL_UTILS/vim.sh
+# dotfiles utilities path
+export PATH="$SHELL_UTILS:$PATH"
+
+# Interactive shell wrappers for directory-changing utilities
+function c() {
+  local target=$(command c "$@")
+  if [[ -n "$target" && -d "$target" ]]; then
+    cd "$target"
+  fi
+}
+
+function uu() {
+  local root=$(command uu "$@")
+  if [[ -n "$root" && -d "$root" ]]; then
+    cd "$root"
+    echo "Found $(basename "$root")"
+  fi
+}
+
+function jd() {
+  local cwd=$(pwd)
+  local root=$(command jd "$@")
+  if [[ -n "$root" && -d "$root" ]]; then
+    cd "$root"
+    echo "$root"
+  fi
+}
+
+# Override zsh builtin 'r' to execute ranger utility script
+alias r="command r"
+
+# Environment & PATH settings
+export PATH="$PATH:$HOME/depot_tools"
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/17/bin"
+
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  ulimit -n 200000
+  alias ls="gls --color"
+else
+  ulimit -u unlimited 2>/dev/null || true
+fi
+
+alias ll="ls -al"
+
+# NVM & Rust & Autojump
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+[ -f /usr/local/opt/autojump/etc/profile.d/autojump.sh ] && . /usr/local/opt/autojump/etc/profile.d/autojump.sh
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+[ -f /usr/share/autojump/autojump.zsh ] && . /usr/share/autojump/autojump.zsh
+
+# Colors
+if command -v vivid >/dev/null 2>&1; then
+  export LS_COLORS="$(vivid generate nord)"
+fi
+
+# Zsh git completion helper
+__git_files () { 
+    _wanted files expl 'local files' _files     
+}
 
 
 # work machine specific things

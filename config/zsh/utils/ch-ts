@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+### ch-ts       - [CHROME] create ts configs for a webui and its tests
+if [[ "$1" == "" ]]; then
+  echo "need project name"
+  exit 1
+fi
+
+ch-status_ "Build TS configs: $1"
+BUILD_DIR="$(get_build_dir_)"
+
+if [[ -d "chrome/browser/resources/$1" ]]; then
+  python3 ash/webui/personalization_app/tools/gen_tsconfig.py \
+    --root_out_dir "out/$BUILD_DIR" \
+    --gn_target "chrome/browser/resources/$1:build_ts"
+fi
+
+if [[ -d "chrome/test/data/webui/$1" ]]; then
+  python3 ash/webui/personalization_app/tools/gen_tsconfig.py \
+    --root_out_dir "out/$BUILD_DIR" \
+    --gn_target "chrome/test/data/webui/$1:build_ts"
+fi

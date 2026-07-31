@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+### ch-test     - [CHROME] fuzzy find a test and add the command to history
+local TYPE
+if [[ "$1" == "browser" ]]; then
+  TYPE="browser_tests"
+elif [[ "$1" == "unit" ]]; then
+  TYPE="unit_tests"
+elif [[ "$1" == "ui" ]]; then
+  TYPE="interactive_ui_tests"
+elif [[ "$1" == "component" ]]; then
+  TYPE="components_unittests"
+else
+  echo "browser, unit, ui, or component?"
+  exit 1
+fi
+
+ch-status_
+BUILD_DIR="$(get_build_dir_)"
+
+local TEST=$(ch-run $TYPE --gtest_list_tests | ~/.config/nixpkgs/scripts/transform_tests.js | fzf)
+print -s "ch-build $TYPE && ch-run $TYPE --gtest_filter=\"$TEST\"\n"
+echo "$TEST"

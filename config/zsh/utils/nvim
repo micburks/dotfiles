@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+UTILS_DIR="$(cd "$(dirname "$0")" && pwd)"
+exec "$UTILS_DIR/vim" "$@"

@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+### rel         - rel - print pwd relative to `git` root directory
+if [[ "$(pwd)" == "$(uud)" ]]; then
+  echo "."
+else
+  echo "${$(pwd)/$(uud)\/}"
+fi

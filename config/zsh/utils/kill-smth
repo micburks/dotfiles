@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+### kill-smth   - fzf kill something
+kill -9 $(ps aux | fzf | awk 'NR<2 {print $2}')

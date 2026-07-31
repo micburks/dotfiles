@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+### ch-ts-ui    - [CHROME] create ts configs for all shared ui/webui code
+ch-status_ "Build ui/webui TS configs: $1"
+BUILD_DIR="$(get_build_dir_)"
+
+python3 ash/webui/personalization_app/tools/gen_tsconfig.py \
+  --root_out_dir "out/$BUILD_DIR" \
+  --gn_target "ui/webui/resources/cr_elements:build_ts"
+
+python3 ash/webui/personalization_app/tools/gen_tsconfig.py \
+  --root_out_dir "out/$BUILD_DIR" \
+  --gn_target "ui/webui/resources/js:build_ts"

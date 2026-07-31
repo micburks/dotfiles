@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+### reset-iph   - [CHROME] reset iph config
+BUILD_DIR="$(get_build_dir_)"
+USER_DATA_DIR="./out/$BUILD_DIR/data"
+
+cat "$USER_DATA_DIR/Default/Preferences" | jq '.in_product_help = {}' > tmp.json && mv tmp.json "$USER_DATA_DIR/Default/Preferences"

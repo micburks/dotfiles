@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+### reset-wnp   - [CHROME] reset wn page
+BUILD_DIR="$(get_build_dir_)"
+USER_DATA_DIR="./out/$BUILD_DIR/data"
+
+cat "$USER_DATA_DIR/Local State" | jq '.browser.last_whats_new_version -= 1' > tmp.json && mv tmp.json "$USER_DATA_DIR/Local State"

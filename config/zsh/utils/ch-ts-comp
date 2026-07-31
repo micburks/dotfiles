@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+### ch-ts-comp  - [CHROME] create ts config for a shared ui/webui component
+if [[ "$1" == "" ]]; then
+  echo "need component name"
+  exit 1
+fi
+
+ch-status_ "Build component TS config: $1"
+BUILD_DIR="$(get_build_dir_)"
+
+python3 ash/webui/personalization_app/tools/gen_tsconfig.py \
+  --root_out_dir "out/$BUILD_DIR" \
+  --gn_target "ui/webui/resources/cr_components/$1:build_ts"

@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+BUILD_STATUS_FILENAME=".ignore/chrome-build-dir"
+if [[ ! -f "./$BUILD_STATUS_FILENAME" ]]; then
+  echo "Default"
+  exit 0
+fi
+
+cat "./$BUILD_STATUS_FILENAME"
