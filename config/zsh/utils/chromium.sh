@@ -3,6 +3,10 @@
 # depot_tools
 export PATH="$PATH:$HOME/depot_tools"
 
+# siso virtual paths make builds better for btrfs
+# auth does not work well with this
+# export SISO_USE_VIRTUAL_BUILD_PATH=1
+
 # need more FDs for chromium build
 if [[ "$(uname -s)" == "Darwin" ]]; then
   ulimit -n 200000
@@ -10,7 +14,7 @@ else
   ulimit -u unlimited
 fi
 
-CHROME_DIR="$HOME/chromium/src"
+# CHROME_DIR="$HOME/chromium/src"
 BUILD_STATUS_FILENAME=".ignore/chrome-build-dir"
 function get_build_dir_() {
   if [[ ! -f "./$BUILD_STATUS_FILENAME" ]]; then
@@ -144,6 +148,9 @@ function ch-update() {
 
   # editor
   git-common
+
+  # copy gemini policies
+  cp internal/agents/policies/*.toml ~/.gemini/policies/
 }
 
 ### ch-ts       - [CHROME] create ts configs for a webui and its tests
@@ -202,8 +209,12 @@ function ch-ts-comp() {
 function ch-gn-args() {
   ch-status_
   BUILD_DIR="$(get_build_dir_)"
-  mkdir -p "$HOME/chromium/src/out/$BUILD_DIR"
-  cp "$HOME/.config/dotfiles/args.gn" "$HOME/chromium/src/out/$BUILD_DIR/args.gn"
+  if [[ "$(basename $PWD)" != "src" ]]; then
+    echo "must be in a 'src' directory"
+  fi
+  gn gen "./out/$BUILD_DIR"
+  cp "$HOME/.config/dotfiles/args.gn" "./out/$BUILD_DIR/args.gn"
+  gn args "./out/$BUILD_DIR"
 }
 
 ### ch-constants- [CHROME] edit common feature constants

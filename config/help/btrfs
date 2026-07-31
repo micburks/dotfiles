@@ -1,0 +1,45 @@
+Mount a file-backed Btrfs loop device:
+Create a sparse file (uses no space initially): 
+mkdir -p /usr/local/google/btrfs_img
+truncate -s 1T /usr/local/google/btrfs_img/btrfs.img
+
+
+Format it: 
+sudo mkfs.btrfs -f /usr/local/google/btrfs_img/btrfs.img
+
+
+Add the following to /etc/fstab (not run as a terminal command):
+/usr/local/google/btrfs_img/btrfs.img /usr/local/google/btrfs_mount btrfs loop,nofail,compress=zstd:3,discard=async 0 0
+
+
+Mount it (and set permissions): 
+sudo systemctl daemon-reload
+mkdir -p /usr/local/google/btrfs_mount
+sudo mount /usr/local/google/btrfs_mount
+sudo chown -R $USER: /usr/local/google/btrfs_mount
+
+
+
+
+Create the subvolume
+cd /usr/local/google/btrfs_mount 
+btrfs subvolume create chromium_base 
+
+
+Set up a Chromium repo clone as normal
+cd chromium_base
+fetch chromium # or cp an existing clone
+gn gen out/Default # or cp existing gn args, etc.
+
+
+
+
+Create a snapshot (in /usr/local/google/btrfs_mount):
+btrfs subvolume snapshot ./chromium_base ./my_cool_feature
+
+or butter yet, use Chromium’s depot_tools:
+gclient-new-workdir.py ./chromium_base ./my_cool_feature
+
+
+Delete a snapshot:
+btrfs subvolume delete ./my_cool_feature
