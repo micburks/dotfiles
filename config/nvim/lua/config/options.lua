@@ -8,3 +8,6 @@ vim.g.autoformat = false
 
 -- for neo-tree to use cwd
 vim.g.root_spec = { "cwd" }
+
+-- turn off matchparen to try to speed up nvim
+vim.g.loaded_matchparen = 1

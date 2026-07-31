@@ -4,6 +4,9 @@
 local map = vim.keymap.set
 local unmap = vim.keymap.del
 
+-- Print full path
+map('n', '<leader>fp', '<Cmd>echo expand("%:p")<CR>', { desc = "Print Full Path" })
+
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<left>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 map("n", "<down>", "<C-w>j", { desc = "Go to Lower Window", remap = true })

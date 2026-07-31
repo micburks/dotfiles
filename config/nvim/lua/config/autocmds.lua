@@ -28,3 +28,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
   end
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "txt" }, -- Replace with your desired file types
+  callback = function()
+    vim.diagnostic.enable(false)
+  end,
+})

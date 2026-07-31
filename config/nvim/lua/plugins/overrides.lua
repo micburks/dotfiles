@@ -108,4 +108,41 @@ return {
       },
     },
   },
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    opts = {
+      options = {
+        -- You can keep your existing separators or use these defaults
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+        globalstatus = true, -- Ensures lualine is used for the global statusline
+      },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "branch", "diff", "diagnostics" },
+        -- Dedicate the center section to the filename
+        lualine_c = {
+          {
+            "filename",
+            path = 2, -- 0: filename only, 1: relative path, 2: absolute path
+            -- newfile_status = true, -- Show [New] for new files
+            -- file_status = true, -- Show [M] for modified, [RO] for readonly
+          },
+        },
+        -- Keep other sections minimal if needed
+        lualine_x = { "encoding", "fileformat", "filetype" },
+        lualine_y = { "progress" },
+        lualine_z = { "location" },
+      },
+      inactive_sections = { -- Optional: Configure for inactive windows too
+        lualine_c = {
+          {
+            "filename",
+            path = 2,
+          },
+        },
+      },
+    },
+  }
 }
