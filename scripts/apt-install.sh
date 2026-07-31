@@ -7,9 +7,12 @@ sudo apt-get install autojump \
                      jq \
                      lazygit \
                      neovim \
+                     npm \
                      ranger \
                      ripgrep \
-                     tmux
+                     tmux \
+                     tree-sitter-cli
+
 
 # bat
 # Using apt will install the package as `batcat`
